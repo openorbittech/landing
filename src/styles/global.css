@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #070A12;
@@ -14,12 +16,6 @@
   --font-space-grotesk: 'Space Grotesk', sans-serif;
   --font-dm-sans: 'DM Sans', sans-serif;
   --font-ibm-plex-mono: 'IBM Plex Mono', monospace;
-}
-
-@theme {
-  --font-display: "Space Grotesk", sans-serif;
-  --font-body: "DM Sans", sans-serif;
-  --font-mono: "IBM Plex Mono", monospace;
 }
 
 * {

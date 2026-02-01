@@ -1,10 +1,76 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { PortfolioPage } from '../components/landing/PortfolioPage';
-const title = "Portfolio - 150+ Successful Projects | OpenOrbit Software Development";
-const description = "Explore our award-winning portfolio of 150+ successful software projects. Web applications, mobile apps, fintech, healthcare, e-commerce, AI integration, and more. See real results with 98% client satisfaction.";
+
+const title = "Portfolio | 150+ Successful Software Projects | OpenOrbit Development Agency";
+const description = "Explore OpenOrbit's award-winning portfolio: 150+ successful software projects including FinTech, HealthTech, e-commerce, AI/ML, and IoT solutions. See case studies with 98% client satisfaction and real business results.";
+const keywords = [
+  "software development portfolio",
+  "web development case studies",
+  "mobile app portfolio",
+  "fintech software projects",
+  "healthcare app development",
+  "e-commerce development",
+  "AI integration projects",
+  "enterprise software examples"
+];
+
+const portfolioStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "OpenOrbit Portfolio",
+  "description": description,
+  "url": "https://openorbit.io/portfolio",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "FinFlow",
+          "description": "Fintech platform serving 50K+ users",
+          "genre": "Financial Technology"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "HealthSync",
+          "description": "Telemedicine platform with 100K+ consultations",
+          "genre": "Healthcare Technology"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "CreativeWork",
+          "name": "RetailPro",
+          "description": "Enterprise e-commerce with 65% conversion increase",
+          "genre": "E-commerce"
+        }
+      }
+    ]
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "150",
+    "bestRating": "5"
+  }
+};
 ---
 
-<Layout title={title} description={description}>
+<Layout 
+  title={title} 
+  description={description}
+  keywords={keywords}
+  structuredData={portfolioStructuredData}
+  canonicalUrl="https://openorbit.io/portfolio"
+>
   <PortfolioPage client:load />
 </Layout>

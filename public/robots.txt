@@ -4,14 +4,72 @@ Allow: /
 # Sitemap location
 Sitemap: https://openorbit.io/sitemap.xml
 
-# Crawl-delay (optional, adjust based on server capacity)
+# Crawl-delay for better server performance
 Crawl-delay: 1
 
-# Block specific paths if needed (uncomment and modify as needed)
-# Disallow: /admin/
-# Disallow: /private/
-# Disallow: /api/
+# Allow all bots to access important pages
+User-agent: Googlebot
+Allow: /
 
-# Block specific user-agents if needed
-# User-agent: BadBot
-# Disallow: /
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Block specific paths that shouldn't be indexed
+Disallow: /api/
+Disallow: /_actions/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /draft/
+Disallow: /*?*  # Block URL parameters
+
+# Allow specific parameter patterns that are okay
+Allow: /*?utm_
+Allow: /*?ref=
+
+# Block specific file types
+Disallow: /*.pdf$
+Disallow: /*.doc$
+Disallow: /*.docx$
+Disallow: /*.xls$
+Disallow: /*.xlsx$
+
+# Host directive for preferred domain
+Host: https://openorbit.io
+
+# Rate limiting for aggressive crawlers
+User-agent: AhrefsBot
+Crawl-delay: 3
+
+User-agent: SemrushBot
+Crawl-delay: 3
+
+User-agent: MJ12bot
+Crawl-delay: 5
+
+User-agent: DotBot
+Crawl-delay: 5
+
+# Block known bad bots
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: Barkrowler
+Disallow: /
+
+User-agent: ZoominfoBot
+Disallow: /
