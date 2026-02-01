@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://openorbit.io/sitemap.xml
+
+# Crawl-delay (optional, adjust based on server capacity)
+Crawl-delay: 1
+
+# Block specific paths if needed (uncomment and modify as needed)
+# Disallow: /admin/
+# Disallow: /private/
+# Disallow: /api/
+
+# Block specific user-agents if needed
+# User-agent: BadBot
+# Disallow: /

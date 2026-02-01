@@ -1,0 +1,10 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { PortfolioPage } from '../components/landing/PortfolioPage';
+const title = "Portfolio - 150+ Successful Projects | OpenOrbit Software Development";
+const description = "Explore our award-winning portfolio of 150+ successful software projects. Web applications, mobile apps, fintech, healthcare, e-commerce, AI integration, and more. See real results with 98% client satisfaction.";
+---
+
+<Layout title={title} description={description}>
+  <PortfolioPage client:load />
+</Layout>

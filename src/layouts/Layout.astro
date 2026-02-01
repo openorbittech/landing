@@ -1,0 +1,209 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "OpenOrbit - Custom Software Development Agency | Web & Mobile Apps",
+  description = "Award-winning software development company specializing in web applications, mobile apps, cloud solutions, and AI integration. 150+ projects delivered with 98% client satisfaction. Get a free quote today!"
+} = Astro.props;
+
+const keywords = [
+  "software development agency",
+  "custom software development",
+  "web application development",
+  "mobile app development",
+  "react development",
+  "next.js development",
+  "cloud solutions",
+  "AI integration",
+  "blockchain development",
+  "IoT solutions",
+  "enterprise software",
+  "digital transformation",
+  "software consulting",
+  "UI/UX design",
+  "full stack development",
+  "API development",
+  "database engineering",
+  "DevOps services",
+  "startup MVP development",
+  "SaaS development"
+];
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "OpenOrbit",
+  "url": "https://openorbit.io",
+  "logo": "https://openorbit.io/logo.png",
+  "description": "Award-winning software development agency specializing in web applications, mobile apps, cloud solutions, and AI integration.",
+  "foundingDate": "2012",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "US",
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "email": "hello@openorbit.io",
+    "availableLanguage": ["English"],
+  },
+  "sameAs": [
+    "https://twitter.com/openorbit",
+    "https://linkedin.com/company/openorbit",
+    "https://github.com/openorbit",
+  ],
+  "serviceType": [
+    "Web Development",
+    "Mobile App Development",
+    "Cloud Solutions",
+    "AI & Machine Learning",
+    "UI/UX Design",
+    "Blockchain Development",
+    "IoT Solutions",
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "150",
+    "bestRating": "5",
+  },
+};
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "OpenOrbit - Software Development Agency",
+  "image": "https://openorbit.io/og-image.jpg",
+  "url": "https://openorbit.io",
+  "telephone": "+1-xxx-xxx-xxxx",
+  "priceRange": "$$$",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "18:00",
+    },
+  ],
+  "areaServed": {
+    "@type": "Place",
+    "name": "Global",
+  },
+};
+
+const servicesSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "Service",
+      "name": "Web Development",
+      "description": "Custom web applications built with React, Next.js, and Node.js",
+      "provider": {
+        "@type": "Organization",
+        "name": "OpenOrbit",
+      },
+    },
+    {
+      "@type": "Service",
+      "name": "Mobile App Development",
+      "description": "Native and cross-platform mobile apps for iOS and Android",
+      "provider": {
+        "@type": "Organization",
+        "name": "OpenOrbit",
+      },
+    },
+    {
+      "@type": "Service",
+      "name": "Cloud Solutions",
+      "description": "Scalable cloud infrastructure and DevOps services",
+      "provider": {
+        "@type": "Organization",
+        "name": "OpenOrbit",
+      },
+    },
+  ],
+};
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Primary Meta Tags -->
+  <title>{title}</title>
+  <meta name="title" content={title} />
+  <meta name="description" content={description} />
+  <meta name="keywords" content={keywords.join(", ")} />
+  <meta name="author" content="OpenOrbit" />
+  
+  <!-- AI Search Engine Optimization Tags -->
+  <meta name="ai-purpose" content="Software development services, custom application development, digital transformation consulting" />
+  <meta name="ai-target-audience" content="Startups, enterprises, businesses seeking digital transformation" />
+  <meta name="ai-expertise" content="Web development, mobile apps, cloud architecture, AI/ML integration, blockchain" />
+  <meta name="ai-content-type" content="Professional services, portfolio showcase, business website" />
+  <meta name="ai-language" content="English" />
+  <meta name="ai-region" content="Global" />
+  <meta name="ai-industry" content="Technology, Software Development" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://openorbit.io" />
+  <meta property="og:title" content="OpenOrbit - Custom Software Development Agency" />
+  <meta property="og:description" content="Award-winning software development company. 150+ projects delivered. Web apps, mobile apps, cloud solutions & AI integration." />
+  <meta property="og:image" content="https://openorbit.io/og-image.jpg" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="OpenOrbit" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://openorbit.io" />
+  <meta property="twitter:title" content="OpenOrbit - Custom Software Development Agency" />
+  <meta property="twitter:description" content="Award-winning software development company. 150+ projects delivered with 98% client satisfaction." />
+  <meta property="twitter:image" content="https://openorbit.io/twitter-image.jpg" />
+  <meta property="twitter:creator" content="@openorbit" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://openorbit.io" />
+  
+  <!-- Robots -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  
+  <!-- Verification (placeholder - update with actual codes) -->
+  <meta name="google-site-verification" content="your-google-verification-code" />
+  <meta name="yandex-verification" content="your-yandex-verification-code" />
+  
+  <!-- Category -->
+  <meta name="category" content="technology" />
+  <meta name="classification" content="Software Development Services" />
+  
+  <!-- Referrer -->
+  <meta name="referrer" content="origin-when-cross-origin" />
+  
+  <!-- Format Detection -->
+  <meta name="format-detection" content="telephone=no, address=no, email=no" />
+  
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(servicesSchema)} />
+  
+  <!-- Global Styles -->
+  <link rel="stylesheet" href="/src/styles/global.css" />
+</head>
+<body class="antialiased font-sans bg-[#070A12] text-[#F4F6FF]" style="font-family: var(--font-dm-sans);">
+  <slot />
+</body>
+</html>

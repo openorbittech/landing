@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Navbar } from '../components/landing/Navbar';
+import { Hero } from '../components/landing/Hero';
+import { Services } from '../components/landing/Services';
+import { Work } from '../components/landing/Work';
+import { Testimonials } from '../components/landing/Testimonials';
+import { CTA } from '../components/landing/CTA';
+import { Footer } from '../components/landing/Footer';
+import { FloatingCTA } from '../components/landing/FloatingCTA';
+---
+
+<Layout>
+  <main class="relative min-h-screen bg-[#070A12] text-[#F4F6FF] overflow-x-hidden">
+    <Navbar client:load />
+    <Hero client:visible />
+    <Services client:visible />
+    <Work client:visible />
+    <Testimonials client:visible />
+    <CTA client:visible />
+    <Footer client:idle />
+    <FloatingCTA client:idle />
+  </main>
+</Layout>
