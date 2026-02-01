@@ -1,4 +1,5 @@
 ---
+import '../styles/global.css';
 import { SEO } from 'astro-seo';
 
 interface Props {
@@ -596,13 +597,9 @@ const jsonLdScript = allSchemas.map(schema =>
   
   <!-- Performance Hints -->
   <link rel="prefetch" href="/portfolio" />
-  <link rel="prefetch" href="/src/styles/global.css" />
   
   <!-- JSON-LD Structured Data -->
   <Fragment set:html={jsonLdScript} />
-  
-  <!-- Global Styles -->
-  <link rel="stylesheet" href="/src/styles/global.css" />
   
   <!-- Performance: Defer non-critical CSS -->
   <style>

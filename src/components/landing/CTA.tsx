@@ -34,13 +34,18 @@ export function CTA() {
     setIsSubmitting(true);
 
     try {
-      const formData = new FormData();
-      formData.append('email', email);
-      formData.append('type', 'newsletter');
-
-      const response = await fetch('/_actions/contact', {
+      // Use Formspree for static sites (replace FORMSPREE_ID with your actual ID)
+      const response = await fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email,
+          subject: 'Newsletter Signup',
+          message: 'New newsletter signup from website'
+        }),
       });
 
       if (response.ok) {

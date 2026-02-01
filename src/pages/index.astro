@@ -1,7 +1,5 @@
 ---
-// Prerender this page at build time for better performance
 export const prerender = true;
-
 import Layout from '../layouts/Layout.astro';
 import { Navbar } from '../components/landing/Navbar';
 import { Hero } from '../components/landing/Hero';
@@ -12,60 +10,19 @@ import { CTA } from '../components/landing/CTA';
 import { Footer } from '../components/landing/Footer';
 import { FloatingCTA } from '../components/landing/FloatingCTA';
 
-const title = "OpenOrbit | Award-Winning Software Development Agency - Web & Mobile Apps";
-const description = "OpenOrbit delivers premium software development services: custom web apps, mobile applications, cloud solutions & AI integration. 150+ successful projects, 98% client satisfaction. Serving startups to Fortune 500. Get a free consultation.";
-const keywords = [
-  "software development agency",
-  "custom software development",
-  "web application development",
-  "mobile app development",
-  "enterprise software",
-  "cloud solutions",
-  "AI development",
-  "digital transformation"
-];
-
-// Additional structured data for the home page
-const heroStructuredData = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Web Development",
-      "description": "React, Next.js, Node.js applications"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Mobile Development",
-      "description": "iOS, Android, React Native apps"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Cloud Solutions",
-      "description": "AWS, GCP, Azure architecture"
-    }
-  ]
-};
+const title = "OpenOrbit | Award-Winning Software Development Agency";
+const description = "Premium software development services for web apps, mobile apps, and cloud solutions.";
 ---
 
-<Layout 
-  title={title} 
-  description={description}
-  keywords={keywords}
-  structuredData={heroStructuredData}
->
-  <div class="relative min-h-screen bg-[#070A12] text-[#F4F6FF] overflow-x-hidden" role="document">
+<Layout title={title} description={description}>
+  <main class="relative min-h-screen bg-[#070A12] text-[#F4F6FF]">
     <Navbar client:load />
     <Hero client:visible />
     <Services client:visible />
     <Work client:visible />
     <Testimonials client:visible />
     <CTA client:visible />
-    <Footer client:idle />
-    <FloatingCTA client:idle />
-  </div>
+    <Footer client:visible />
+    <FloatingCTA client:visible />
+  </main>
 </Layout>

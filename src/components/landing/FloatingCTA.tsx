@@ -31,16 +31,20 @@ export function FloatingCTA() {
     setIsSubmitting(true);
 
     try {
-      const formDataObj = new FormData();
-      formDataObj.append('name', formData.name);
-      formDataObj.append('email', formData.email);
-      formDataObj.append('company', formData.company);
-      formDataObj.append('message', formData.message);
-      formDataObj.append('type', 'contact');
-
-      const response = await fetch('/_actions/contact', {
+      // Use Formspree for static sites (replace YOUR_FORMSPREE_ID with your actual ID)
+      const response = await fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
         method: 'POST',
-        body: formDataObj,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          message: formData.message,
+          subject: 'Quote Request from Website'
+        }),
       });
 
       if (response.ok) {
@@ -50,6 +54,8 @@ export function FloatingCTA() {
           setIsSubmitted(false);
           setIsOpen(false);
         }, 3000);
+      } else {
+        console.error('Form submission failed');
       }
     } catch (error) {
       console.error("Error submitting form:", error);

@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
-import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,12 +10,12 @@ export default defineConfig({
       applyBaseStyles: false,
     })
   ],
-  output: 'server',
-  adapter: vercel({
-    webAnalytics: {
-      enabled: true,
-    },
-    imageService: true,
-  }),
+  output: 'static',
   site: 'https://openorbit.io',
+  vite: {
+    build: {
+      cssCodeSplit: true,
+      minify: true,
+    },
+  },
 });
