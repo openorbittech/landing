@@ -1,0 +1,10 @@
+.astro
+node_modules
+.vercel
+.env*.local
+*.log
+.DS_Store
+.vscode
+.idea
+README.md
+SEO-OPTIMIZATION.md

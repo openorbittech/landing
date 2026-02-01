@@ -1,21 +1,22 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
+import tailwind from '@astrojs/tailwind';
 import vercel from '@astrojs/vercel';
-import tailwindcssPostcss from '@tailwindcss/postcss';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react()],
+  integrations: [
+    react(),
+    tailwind({
+      applyBaseStyles: false,
+    })
+  ],
   output: 'server',
-  adapter: vercel(),
-  site: 'https://openorbit.io',
-  vite: {
-    css: {
-      postcss: {
-        plugins: [
-          tailwindcssPostcss,
-        ],
-      },
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
     },
-  },
+    imageService: true,
+  }),
+  site: 'https://openorbit.io',
 });
