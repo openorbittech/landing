@@ -36,16 +36,11 @@ export function Navbar() {
         <div className="container mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
           <a href="/" className="flex items-center gap-2 group">
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.3 }}
-              className="w-10 h-10 rounded-full bg-gradient-to-br from-[#4F6DFF] to-[#3D5AD8] flex items-center justify-center"
-            >
-              <span className="text-white font-bold text-lg">O</span>
-            </motion.div>
-            <span className="text-2xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)] group-hover:text-[#4F6DFF] transition-colors">
-              OpenOrbit
-            </span>
+            <img
+              src="/logod/openorbitlogo.svg"
+              alt="OpenOrbit Logo"
+              className="h-10 w-auto"
+            />
           </a>
 
           {/* Desktop Navigation */}
