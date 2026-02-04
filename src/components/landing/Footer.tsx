@@ -1,7 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Twitter, Linkedin, Github, Instagram, ArrowUpRight, Mail } from "lucide-react";
+import {
+  Twitter,
+  Linkedin,
+  Github,
+  Instagram,
+  ArrowUpRight,
+  Mail,
+} from "lucide-react";
 
 const footerLinks = {
   services: [
@@ -16,21 +23,33 @@ const footerLinks = {
     { label: "Work", href: "/portfolio" },
     { label: "Contact", href: "#contact" },
   ],
-  resources: [
-    { label: "Blog", href: "/blog" },
-  ],
+  resources: [{ label: "Blog", href: "/blog" }],
 };
 
 const socialLinks = [
   { icon: Twitter, href: "https://twitter.com/openorbit", label: "Twitter" },
-  { icon: Linkedin, href: "https://linkedin.com/company/openorbit", label: "LinkedIn" },
+  {
+    icon: Linkedin,
+    href: "https://linkedin.com/company/openorbit",
+    label: "LinkedIn",
+  },
   { icon: Github, href: "https://github.com/openorbit", label: "GitHub" },
-  { icon: Instagram, href: "https://instagram.com/openorbit", label: "Instagram" },
+  {
+    icon: Instagram,
+    href: "https://instagram.com/openorbit",
+    label: "Instagram",
+  },
 ];
 
 export function Footer() {
   return (
-    <footer className="relative bg-[#070A12] border-t border-white/5">
+    <footer
+      role="contentinfo"
+      aria-label="Site footer with navigation and contact information"
+      itemScope
+      itemType="https://schema.org/WPFooter"
+      className="relative bg-[#070A12] border-t border-white/5"
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 grid-pattern opacity-10" />
 
@@ -48,10 +67,10 @@ export function Footer() {
               </span>
             </a>
             <p className="text-[#A7B0C8] mb-6 max-w-sm leading-relaxed font-[family-name:var(--font-dm-sans)]">
-              We build scalable software solutions that drive business growth. 
+              We build scalable software solutions that drive business growth.
               From concept to deployment, we deliver excellence.
             </p>
-            
+
             {/* Contact */}
             <div className="space-y-3">
               <motion.a

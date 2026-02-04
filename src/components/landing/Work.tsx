@@ -8,8 +8,10 @@ const projects = [
   {
     title: "FinFlow",
     category: "Fintech Platform",
-    description: "A comprehensive financial management platform serving 50K+ users.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    description:
+      "A comprehensive financial management platform serving 50K+ users.",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
     tags: ["React", "Node.js", "PostgreSQL", "AWS"],
     color: "#4F6DFF",
     size: "large",
@@ -19,7 +21,8 @@ const projects = [
     title: "HealthSync",
     category: "Healthcare App",
     description: "Telemedicine platform connecting patients with providers.",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
     tags: ["React Native", "GraphQL", "TensorFlow"],
     color: "#FF6B6B",
     size: "tall",
@@ -29,7 +32,8 @@ const projects = [
     title: "RetailPro",
     category: "E-commerce",
     description: "Enterprise e-commerce with AI-powered recommendations.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
     tags: ["Next.js", "Python", "Redis"],
     color: "#00D9FF",
     size: "medium",
@@ -39,7 +43,8 @@ const projects = [
     title: "DataVault",
     category: "Data Analytics",
     description: "Big data platform processing 10TB+ daily.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
     tags: ["Apache Spark", "Kafka", "Kubernetes"],
     color: "#9B59B6",
     size: "medium",
@@ -49,7 +54,8 @@ const projects = [
     title: "SmartCity",
     category: "IoT Platform",
     description: "Smart city management and monitoring system.",
-    image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80",
     tags: ["IoT", "React", "Node.js"],
     color: "#2ECC71",
     size: "wide",
@@ -59,7 +65,8 @@ const projects = [
     title: "ArtChain",
     category: "Web3 dApp",
     description: "NFT marketplace for digital artists.",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&q=80",
     tags: ["Solidity", "React", "Ethereum"],
     color: "#F39C12",
     size: "small",
@@ -69,7 +76,8 @@ const projects = [
     title: "EduTech",
     category: "EdTech Platform",
     description: "Online learning platform with AI tutors.",
-    image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80",
     tags: ["React", "Python", "OpenAI"],
     color: "#E74C3C",
     size: "medium",
@@ -79,7 +87,8 @@ const projects = [
     title: "LogiChain",
     category: "Supply Chain",
     description: "Blockchain-based supply chain tracking.",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
     tags: ["Blockchain", "IoT", "React"],
     color: "#8E44AD",
     size: "medium",
@@ -101,13 +110,16 @@ export function Work() {
   const backgroundColor = useTransform(
     scrollYProgress,
     [0, 0.3, 0.6, 1],
-    ["#070A12", "#0B0F1C", "#0F0B1C", "#070A12"]
+    ["#070A12", "#0B0F1C", "#0F0B1C", "#070A12"],
   );
 
   return (
-    <motion.section 
+    <motion.section
       ref={containerRef}
-      id="work" 
+      id="work"
+      aria-label="Our Portfolio - Featured Software Projects"
+      itemScope
+      itemType="https://schema.org/CreativeWork"
       style={{ backgroundColor }}
       className="relative py-32 overflow-hidden"
     >
@@ -116,7 +128,10 @@ export function Work() {
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-20" ref={headerRef}>
+        <div
+          className="flex flex-col md:flex-row md:items-end md:justify-between mb-20"
+          ref={headerRef}
+        >
           <div className="max-w-2xl">
             <motion.div
               initial={{ x: -100, opacity: 0 }}
@@ -125,7 +140,9 @@ export function Work() {
               className="flex items-center gap-4 mb-6"
             >
               <div className="h-px w-16 bg-gradient-to-r from-[#4F6DFF] to-transparent" />
-              <span className="text-sm font-medium text-[#4F6DFF] uppercase tracking-widest">Selected Work</span>
+              <span className="text-sm font-medium text-[#4F6DFF] uppercase tracking-widest">
+                Selected Work
+              </span>
             </motion.div>
 
             <motion.h2
@@ -145,12 +162,13 @@ export function Work() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-[#A7B0C8] max-w-md mt-6 md:mt-0 md:text-right font-[family-name:var(--font-dm-sans)]"
           >
-            Award-winning projects that transformed businesses and delighted users.
+            Award-winning projects that transformed businesses and delighted
+            users.
           </motion.p>
         </div>
 
         {/* Masonry Gallery */}
-        <motion.div 
+        <motion.div
           style={{ x }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[200px]"
         >
@@ -182,17 +200,27 @@ export function Work() {
   );
 }
 
-function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
+function ProjectCard({
+  project,
+  index,
+}: {
+  project: (typeof projects)[0];
+  index: number;
+}) {
   const [isHovered, setIsHovered] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   const getSpanClass = () => {
     switch (project.size) {
-      case "large": return "md:col-span-2 md:row-span-2";
-      case "wide": return "md:col-span-2";
-      case "tall": return "md:row-span-2";
-      default: return "";
+      case "large":
+        return "md:col-span-2 md:row-span-2";
+      case "wide":
+        return "md:col-span-2";
+      case "tall":
+        return "md:row-span-2";
+      default:
+        return "";
     }
   };
 
@@ -207,20 +235,24 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
   return (
     <motion.div
       ref={ref}
-      initial={{ 
-        opacity: 0, 
+      initial={{
+        opacity: 0,
         y: 100,
         scale: 0.9,
       }}
-      animate={isInView ? { 
-        opacity: 1, 
-        y: 0,
-        scale: 1,
-      } : {}}
-      transition={{ 
-        duration: 0.8, 
+      animate={
+        isInView
+          ? {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+            }
+          : {}
+      }
+      transition={{
+        duration: 0.8,
         delay: index * 0.1,
-        ease: [0.21, 0.47, 0.32, 0.98]
+        ease: [0.21, 0.47, 0.32, 0.98],
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -232,16 +264,16 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         }}
         transition={{ duration: 0.4 }}
         className="relative h-full rounded-2xl overflow-hidden"
-        style={{ 
-          boxShadow: isHovered ? `0 30px 60px ${project.color}30` : 'none',
+        style={{
+          boxShadow: isHovered ? `0 30px 60px ${project.color}30` : "none",
         }}
       >
         {/* Image with parallax */}
-        <motion.div 
+        <motion.div
           style={{ scale: imageScale, y: imageY }}
           className="absolute inset-0"
         >
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${project.image})` }}
           />
@@ -329,8 +361,8 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         {/* Hover Icon */}
         <motion.div
           initial={{ scale: 0, y: -20 }}
-          animate={{ 
-            scale: isHovered ? 1 : 0, 
+          animate={{
+            scale: isHovered ? 1 : 0,
             y: isHovered ? 0 : -20,
           }}
           transition={{ duration: 0.4, type: "spring" }}

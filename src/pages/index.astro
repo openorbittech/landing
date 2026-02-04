@@ -10,19 +10,45 @@ import { CTA } from '../components/landing/CTA';
 import { Footer } from '../components/landing/Footer';
 import { FloatingCTA } from '../components/landing/FloatingCTA';
 
-const title = "OpenOrbit | Award-Winning Software Development Agency";
-const description = "Premium software development services for web apps, mobile apps, and cloud solutions.";
+// SEO Configuration
+const title = "OpenOrbit | Award-Winning Software Development Agency - Web Apps, Mobile Apps & AI";
+const description = "OpenOrbit is a premium software development agency delivering custom web applications, mobile apps, cloud solutions, and AI integration. 150+ successful projects, 98% client satisfaction. Enterprise-grade solutions for startups to Fortune 500 companies. Get a free consultation today.";
+
+const keywords = [
+  "software development agency San Francisco",
+  "custom software development company",
+  "enterprise web application development",
+  "React development agency",
+  "Next.js development company",
+  "AI software development",
+  "startup MVP development",
+  "mobile app development company USA",
+  "cloud migration services",
+  "DevOps consulting services"
+];
 ---
 
-<Layout title={title} description={description}>
-  <main class="relative min-h-screen bg-[#070A12] text-[#F4F6FF]">
+<Layout 
+  title={title} 
+  description={description}
+  keywords={keywords}
+>
+  <main 
+    class="relative min-h-screen bg-[#070A12] text-[#F4F6FF]"
+    itemscope 
+    itemtype="https://schema.org/WebPage"
+    role="main"
+  >
     <Navbar client:load />
-    <Hero client:visible />
-    <Services client:visible />
-    <Work client:visible />
-    <Testimonials client:visible />
-    <CTA client:visible />
+    <article itemscope itemtype="https://schema.org/Service">
+      <Hero client:visible />
+      <Services client:visible />
+      <Work client:visible />
+      <Testimonials client:visible />
+      <CTA client:visible />
+    </article>
     <Footer client:visible />
     <FloatingCTA client:visible />
   </main>
 </Layout>
+

@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import { SEO } from 'astro-seo';
 
 interface Props {
   title?: string;
@@ -430,6 +429,93 @@ const breadcrumbSchema = {
   ]
 };
 
+// HowTo Schema for Development Process (rich snippet)
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How OpenOrbit Builds Custom Software",
+  "description": "Our proven 4-step software development process from discovery to deployment",
+  "totalTime": "P3M",
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "USD",
+    "value": "Custom quote based on project scope"
+  },
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Discovery & Planning",
+      "text": "We analyze your business requirements, define project scope, and create a detailed technical specification document."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Design & Architecture",
+      "text": "Our team designs the UI/UX and system architecture, ensuring scalability and optimal user experience."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Agile Development",
+      "text": "We build your software using agile methodology with 2-week sprints, continuous integration, and regular demos."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Testing & Deployment",
+      "text": "Comprehensive QA testing, security audits, and smooth deployment to production with ongoing support."
+    }
+  ]
+};
+
+// Review Aggregate Schema
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "OpenOrbit Software Development Services",
+  "description": "Custom software development services including web apps, mobile apps, and cloud solutions",
+  "brand": {
+    "@type": "Brand",
+    "name": siteName
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "150",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Sarah Chen"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "OpenOrbit transformed our outdated systems into a modern, scalable platform. Revenue increased by 40% within 6 months."
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Dr. Michael Torres"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "Working with OpenOrbit was a game-changer. They delivered a robust telemedicine platform in record time."
+    }
+  ]
+};
+
 // Combine all schemas
 const allSchemas = [
   organizationSchema,
@@ -439,6 +525,8 @@ const allSchemas = [
   faqSchema,
   serviceSchema,
   breadcrumbSchema,
+  howToSchema,
+  reviewSchema,
   ...(Array.isArray(structuredData) ? structuredData : [structuredData])
 ].filter(Boolean);
 
@@ -570,10 +658,44 @@ const jsonLdScript = allSchemas.map(schema =>
   <meta name="p:domain_verify" content="YOUR_PINTEREST_VERIFICATION_CODE" />
   <meta name="facebook-domain-verification" content="YOUR_FACEBOOK_VERIFICATION_CODE" />
   
+  <!-- Geo Meta Tags for Local SEO -->
+  <meta name="geo.region" content="US-CA" />
+  <meta name="geo.placename" content="San Francisco" />
+  <meta name="geo.position" content="37.7749;-122.4194" />
+  <meta name="ICBM" content="37.7749, -122.4194" />
+  
+  <!-- Dublin Core Metadata -->
+  <meta name="DC.title" content={title} />
+  <meta name="DC.creator" content={author} />
+  <meta name="DC.subject" content="Software Development" />
+  <meta name="DC.description" content={description} />
+  <meta name="DC.publisher" content={siteName} />
+  <meta name="DC.type" content="Service" />
+  <meta name="DC.format" content="text/html" />
+  <meta name="DC.language" content="en" />
+  
   <!-- Content Classification -->
   <meta name="category" content="Technology" />
   <meta name="classification" content="Software Development Services" />
   <meta name="rating" content="general" />
+  <meta name="revisit-after" content="7 days" />
+  <meta name="distribution" content="global" />
+  <meta name="coverage" content="Worldwide" />
+  <meta name="target" content="all" />
+  <meta name="audience" content="all" />
+  <meta name="doc-type" content="Web Page" />
+  <meta name="doc-class" content="Complete" />
+  <meta name="doc-rights" content="Copyrighted Work" />
+  
+  <!-- Publisher Information -->
+  <meta name="publisher" content={siteName} />
+  <meta name="web_author" content="OpenOrbit Development Team" />
+  <meta name="reply-to" content="hello@openorbit.io" />
+  <meta name="owner" content={siteName} />
+  <meta name="url" content={siteUrl} />
+  <meta name="identifier-URL" content={siteUrl} />
+  <meta name="directory" content="submission" />
+  <meta name="pagename" content={title} />
   
   <!-- Referrer Policy -->
   <meta name="referrer" content="origin-when-cross-origin" />

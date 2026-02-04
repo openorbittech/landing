@@ -26,7 +26,7 @@ export function CTA() {
   const backgroundColor = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    ["#070A12", "#0B0F1C", "#070A12"]
+    ["#070A12", "#0B0F1C", "#070A12"],
   );
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -35,16 +35,16 @@ export function CTA() {
 
     try {
       // Use Formspree for static sites (replace FORMSPREE_ID with your actual ID)
-      const response = await fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
-        method: 'POST',
+      const response = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ID", {
+        method: "POST",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email,
-          subject: 'Newsletter Signup',
-          message: 'New newsletter signup from website'
+          subject: "Newsletter Signup",
+          message: "New newsletter signup from website",
         }),
       });
 
@@ -52,19 +52,22 @@ export function CTA() {
         setIsSubmitted(true);
         setEmail("");
       } else {
-        console.error('Form submission failed');
+        console.error("Form submission failed");
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error("Error submitting form:", error);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <motion.section 
+    <motion.section
       ref={containerRef}
-      id="contact" 
+      id="contact"
+      aria-label="Contact Us - Start Your Project"
+      itemScope
+      itemType="https://schema.org/ContactPage"
       style={{ backgroundColor }}
       className="relative py-32 overflow-hidden"
     >
@@ -128,7 +131,11 @@ export function CTA() {
               <motion.h2
                 initial={{ y: 150, opacity: 0 }}
                 animate={isInView ? { y: 0, opacity: 1 } : {}}
-                transition={{ duration: 1, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
+                transition={{
+                  duration: 1,
+                  delay: 0.2,
+                  ease: [0.21, 0.47, 0.32, 0.98],
+                }}
                 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)]"
               >
                 Ready to{" "}
@@ -159,7 +166,8 @@ export function CTA() {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="text-xl text-[#A7B0C8] mb-12 max-w-2xl mx-auto leading-relaxed font-[family-name:var(--font-dm-sans)]"
             >
-              Let&apos;s discuss your project and explore how we can help you achieve your goals.
+              Let&apos;s discuss your project and explore how we can help you
+              achieve your goals.
             </motion.p>
 
             {/* Benefits */}
@@ -181,7 +189,9 @@ export function CTA() {
                     className="flex items-center gap-2 px-4 py-2 rounded-full glass"
                   >
                     <Icon className="w-4 h-4 text-[#4F6DFF]" />
-                    <span className="text-sm text-[#A7B0C8] font-[family-name:var(--font-dm-sans)]">{benefit.text}</span>
+                    <span className="text-sm text-[#A7B0C8] font-[family-name:var(--font-dm-sans)]">
+                      {benefit.text}
+                    </span>
                   </motion.div>
                 );
               })}

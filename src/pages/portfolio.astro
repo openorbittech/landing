@@ -3,10 +3,36 @@ export const prerender = true;
 import Layout from '../layouts/Layout.astro';
 import { PortfolioPage } from '../components/landing/PortfolioPage';
 
-const title = "Portfolio | OpenOrbit";
-const description = "Explore our award-winning portfolio of 150+ successful software projects.";
+// SEO Configuration for Portfolio
+const title = "Software Development Portfolio | 150+ Successful Projects | OpenOrbit";
+const description = "Explore OpenOrbit's award-winning software development portfolio. 150+ successful projects including enterprise web apps, mobile applications, AI/ML solutions, cloud platforms, and digital transformation initiatives. View case studies from Fortune 500 companies and innovative startups.";
+
+const keywords = [
+  "software development portfolio",
+  "web application case studies",
+  "mobile app portfolio",
+  "enterprise software projects",
+  "AI development projects",
+  "cloud platform case studies",
+  "digital transformation examples",
+  "React project portfolio",
+  "fintech software development",
+  "healthcare app development"
+];
 ---
 
-<Layout title={title} description={description}>
-  <PortfolioPage client:load />
+<Layout 
+  title={title} 
+  description={description}
+  keywords={keywords}
+>
+  <main 
+    class="relative min-h-screen bg-[#070A12] text-[#F4F6FF]"
+    itemscope 
+    itemtype="https://schema.org/CollectionPage"
+    role="main"
+  >
+    <PortfolioPage client:load />
+  </main>
 </Layout>
+

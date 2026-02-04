@@ -17,7 +17,7 @@ const useCounter = (target: number, duration: number = 2) => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     if (ref.current) {
@@ -35,7 +35,10 @@ const useCounter = (target: number, duration: number = 2) => {
 
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
+      const progress = Math.min(
+        (currentTime - startTime) / (duration * 1000),
+        1,
+      );
       const easeOutQuart = 1 - Math.pow(1 - progress, 4);
       setCount(Math.floor(easeOutQuart * target));
 
@@ -56,7 +59,7 @@ export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
@@ -80,8 +83,6 @@ export function Hero() {
   const countValues = [projectsCount, satisfactionCount, yearsCount, teamCount];
   const countRefs = [projectsRef, satisfactionRef, yearsRef, teamRef];
 
-
-
   const toggleVideo = () => {
     if (videoRef.current) {
       if (isPlaying) {
@@ -94,30 +95,34 @@ export function Hero() {
   };
 
   return (
-      <section
+    <section
       ref={containerRef}
+      id="hero"
+      aria-label="Hero section - OpenOrbit Software Development Agency"
       className="relative min-h-screen w-full overflow-hidden flex items-center justify-center"
     >
       {/* Video Background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0" aria-hidden="true">
         <video
           ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
+          aria-label="Software development background video"
           className="absolute w-full h-full object-cover scale-110"
           poster="https://images.unsplash.com/photo-1517134191118-9d595e4c8c2b?w=1920&q=80"
         >
-          <source 
-            src="https://cdn.coverr.co/videos/coverr-coding-on-a-laptop-1584/1080p.mp4" 
-            type="video/mp4" 
+          <source
+            src="https://cdn.coverr.co/videos/coverr-coding-on-a-laptop-1584/1080p.mp4"
+            type="video/mp4"
           />
+          Your browser does not support the video tag.
         </video>
-        
+
         {/* Video Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#070A12]/90 via-[#0B0F1C]/70 to-[#070A12]/90" />
-        
+
         {/* Animated mesh gradient overlay */}
         <motion.div
           animate={{
@@ -164,9 +169,9 @@ export function Hero() {
 
       {/* Content */}
       <motion.div
-        style={{ 
-          opacity, 
-          scale
+        style={{
+          opacity,
+          scale,
         }}
         className="relative z-10 container mx-auto px-6 pt-32 pb-20"
       >
@@ -195,10 +200,10 @@ export function Hero() {
                       key={i}
                       initial={{ y: 100, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
-                      transition={{ 
-                        duration: 0.5, 
+                      transition={{
+                        duration: 0.5,
                         delay: i * 0.05,
-                        ease: [0.21, 0.47, 0.32, 0.98]
+                        ease: [0.21, 0.47, 0.32, 0.98],
                       }}
                       className="inline-block"
                     >
@@ -206,7 +211,7 @@ export function Hero() {
                     </motion.span>
                   ))}
                 </motion.h1>
-                
+
                 <motion.div
                   initial={{ clipPath: "inset(0 100% 0 0)" }}
                   animate={{ clipPath: "inset(0 0% 0 0)" }}
@@ -217,7 +222,7 @@ export function Hero() {
                     Digital Dreams
                   </span>
                 </motion.div>
-                
+
                 <motion.div
                   initial={{ y: 50, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -237,7 +242,8 @@ export function Hero() {
                 transition={{ duration: 0.8, delay: 1 }}
                 className="text-xl text-[#A7B0C8] max-w-lg mb-8 leading-relaxed font-[family-name:var(--font-dm-sans)]"
               >
-                Award-winning software agency crafting digital experiences that drive growth and innovation.
+                Award-winning software agency crafting digital experiences that
+                drive growth and innovation.
               </motion.p>
 
               {/* CTAs */}
@@ -282,32 +288,39 @@ export function Hero() {
                     animate={{
                       y: [-10, 10, -10],
                     }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{
+                      duration: 10,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
                     className="absolute -top-20 -right-20 w-40 h-40 bg-[#4F6DFF]/20 blur-[50px]"
                   />
-                  
+
                   <div className="grid grid-cols-2 gap-6 relative z-10">
                     {stats.map((stat, index) => (
                       <motion.div
                         key={stat.label}
                         initial={{ y: 50, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        transition={{ 
-                          duration: 0.5, 
+                        transition={{
+                          duration: 0.5,
                           delay: 1 + index * 0.1,
-                          ease: [0.21, 0.47, 0.32, 0.98]
+                          ease: [0.21, 0.47, 0.32, 0.98],
                         }}
-                        whileHover={{ 
+                        whileHover={{
                           y: -5,
-                          transition: { duration: 0.2 }
+                          transition: { duration: 0.2 },
                         }}
                         className="text-center p-4 rounded-2xl bg-white/5 border border-white/10"
                         ref={countRefs[index]}
                       >
                         <div className="text-4xl font-bold text-white mb-1 font-[family-name:var(--font-space-grotesk)] gradient-text">
-                          {countValues[index]}{stat.suffix}
+                          {countValues[index]}
+                          {stat.suffix}
                         </div>
-                        <div className="text-sm text-[#A7B0C8] font-[family-name:var(--font-dm-sans)]">{stat.label}</div>
+                        <div className="text-sm text-[#A7B0C8] font-[family-name:var(--font-dm-sans)]">
+                          {stat.label}
+                        </div>
                       </motion.div>
                     ))}
                   </div>
@@ -333,7 +346,7 @@ export function Hero() {
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer"
         >
           <motion.div
-            animate={{ 
+            animate={{
               y: [0, 15, 0],
               opacity: [1, 0.3, 1],
             }}

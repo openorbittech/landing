@@ -30,17 +30,12 @@ export function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "glass-strong py-4"
-            : "bg-transparent py-6"
+          scrolled ? "glass-strong py-4" : "bg-transparent py-6"
         }`}
       >
         <div className="container mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
-          <a 
-            href="/" 
-            className="flex items-center gap-2 group"
-          >
+          <a href="/" className="flex items-center gap-2 group">
             <motion.div
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.3 }}
@@ -75,13 +70,6 @@ export function Navbar() {
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center gap-4">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-secondary text-sm font-[family-name:var(--font-dm-sans)]"
-            >
-              Client Login
-            </motion.button>
             <motion.a
               href="#contact"
               whileHover={{ scale: 1.05 }}

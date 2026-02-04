@@ -2,24 +2,30 @@
 
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { 
-  Code2, 
-  Smartphone, 
-  Cloud, 
-  Database, 
-  Bot, 
+import {
+  Code2,
+  Smartphone,
+  Cloud,
+  Database,
+  Bot,
   Palette,
   ArrowUpRight,
   Globe,
-  Cpu
+  Cpu,
 } from "lucide-react";
 
 const services = [
   {
     icon: Code2,
     title: "Web Development",
-    description: "Custom web apps with React, Next.js, Node.js. Scalable, fast, SEO-friendly.",
-    features: ["React & Next.js", "Node.js Backend", "API Development", "Performance"],
+    description:
+      "Custom web apps with React, Next.js, Node.js. Scalable, fast, SEO-friendly.",
+    features: [
+      "React & Next.js",
+      "Node.js Backend",
+      "API Development",
+      "Performance",
+    ],
     color: "#4F6DFF",
     size: "large",
   },
@@ -85,7 +91,7 @@ export function Services() {
   const containerRef = useRef(null);
   const headerRef = useRef(null);
   const isInView = useInView(headerRef, { once: true, margin: "-100px" });
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -94,19 +100,18 @@ export function Services() {
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
 
   return (
-    <section 
+    <section
       ref={containerRef}
-      id="services" 
+      id="services"
+      aria-label="Our Services - Software Development Solutions"
+      itemScope
+      itemType="https://schema.org/ItemList"
       className="relative py-32 overflow-hidden bg-[#070A12]"
     >
       {/* Background Effects */}
       <div className="absolute inset-0">
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-[#4F6DFF]/10 rounded-full"
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-[#FF6B6B]/10 rounded-full"
-        />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-[#4F6DFF]/10 rounded-full" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-[#FF6B6B]/10 rounded-full" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -119,7 +124,9 @@ export function Services() {
             className="flex items-center gap-4 mb-6"
           >
             <div className="h-px flex-1 bg-gradient-to-r from-[#4F6DFF] to-transparent" />
-            <span className="text-sm font-medium text-[#4F6DFF] uppercase tracking-widest">What We Do</span>
+            <span className="text-sm font-medium text-[#4F6DFF] uppercase tracking-widest">
+              What We Do
+            </span>
           </motion.div>
 
           <motion.h2
@@ -138,12 +145,13 @@ export function Services() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl text-[#A7B0C8] max-w-2xl leading-relaxed font-[family-name:var(--font-dm-sans)]"
           >
-            From concept to deployment, we deliver complete digital solutions that drive business growth.
+            From concept to deployment, we deliver complete digital solutions
+            that drive business growth.
           </motion.p>
         </div>
 
         {/* Bento Grid Layout */}
-        <motion.div 
+        <motion.div
           style={{ x }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(200px,auto)]"
         >
@@ -160,7 +168,7 @@ export function Services() {
           transition={{ duration: 0.8 }}
           className="mt-20 text-center"
         >
-          <motion.p 
+          <motion.p
             className="text-[#A7B0C8] mb-6 text-lg font-[family-name:var(--font-dm-sans)]"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -184,31 +192,45 @@ export function Services() {
   );
 }
 
-function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
+function ServiceCard({
+  service,
+  index,
+}: {
+  service: (typeof services)[0];
+  index: number;
+}) {
   const [isHovered, setIsHovered] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
-  const spanClass = service.size === "large" ? "md:col-span-2 md:row-span-2" : 
-                    service.size === "medium" ? "md:col-span-2" : "";
+  const spanClass =
+    service.size === "large"
+      ? "md:col-span-2 md:row-span-2"
+      : service.size === "medium"
+        ? "md:col-span-2"
+        : "";
 
   return (
     <motion.div
       ref={ref}
-      initial={{ 
-        opacity: 0, 
+      initial={{
+        opacity: 0,
         y: 50,
         scale: 0.9,
       }}
-      animate={isInView ? { 
-        opacity: 1, 
-        y: 0,
-        scale: 1,
-      } : {}}
-      transition={{ 
-        duration: 0.6, 
+      animate={
+        isInView
+          ? {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+            }
+          : {}
+      }
+      transition={{
+        duration: 0.6,
         delay: index * 0.1,
-        ease: [0.21, 0.47, 0.32, 0.98]
+        ease: [0.21, 0.47, 0.32, 0.98],
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -223,7 +245,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
         style={{
           background: `linear-gradient(135deg, ${service.color}08 0%, #0B0F1C 100%)`,
           border: `1px solid ${service.color}20`,
-          boxShadow: isHovered ? `0 30px 60px ${service.color}20` : 'none',
+          boxShadow: isHovered ? `0 30px 60px ${service.color}20` : "none",
         }}
       >
         {/* Animated Background */}
@@ -253,14 +275,14 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 
         {/* Content */}
         <div className="relative z-10">
-          <motion.h3 
+          <motion.h3
             className="text-xl md:text-2xl font-bold text-white mb-2 font-[family-name:var(--font-space-grotesk)]"
             animate={{ y: isHovered ? -5 : 0 }}
             transition={{ duration: 0.3 }}
           >
             {service.title}
           </motion.h3>
-          
+
           <motion.p
             animate={{ y: isHovered ? -3 : 0, opacity: isHovered ? 1 : 0.7 }}
             transition={{ duration: 0.3 }}
@@ -279,7 +301,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
                 transition={{ delay: 0.2 + i * 0.05 }}
                 whileHover={{ scale: 1.1, backgroundColor: service.color }}
                 className="px-3 py-1 rounded-full text-xs font-medium transition-colors"
-                style={{ 
+                style={{
                   backgroundColor: `${service.color}20`,
                   color: service.color,
                 }}
@@ -312,7 +334,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
           className="absolute bottom-2 right-6 text-7xl font-bold font-[family-name:var(--font-space-grotesk)] pointer-events-none"
           style={{ color: service.color }}
         >
-          {String(index + 1).padStart(2, '0')}
+          {String(index + 1).padStart(2, "0")}
         </motion.div>
       </motion.div>
     </motion.div>
