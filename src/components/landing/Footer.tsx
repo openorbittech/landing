@@ -27,16 +27,16 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { icon: Twitter, href: "https://twitter.com/openorbit", label: "Twitter" },
+  { icon: Twitter, href: "https://x.com/openorbittech", label: "Twitter" },
   {
     icon: Linkedin,
-    href: "https://linkedin.com/company/openorbit",
+    href: "https://linkedin.com/company/openorbit-tech",
     label: "LinkedIn",
   },
-  { icon: Github, href: "https://github.com/openorbit", label: "GitHub" },
+  { icon: Github, href: "https://github.com/openorbittech", label: "GitHub" },
   {
     icon: Instagram,
-    href: "https://instagram.com/openorbit",
+    href: "https://instagram.com/openorbittech",
     label: "Instagram",
   },
 ];
@@ -162,7 +162,7 @@ export function Footer() {
         </div>
 
         {/* Newsletter */}
-        <div className="py-8 border-t border-white/5">
+        {/* <div className="py-8 border-t border-white/5">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <h4 className="text-white font-bold mb-1 font-[family-name:var(--font-space-grotesk)]">
@@ -188,7 +188,7 @@ export function Footer() {
               </motion.button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Bottom Bar */}
         <div className="py-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
