@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import {
   Code2,
   Smartphone,
@@ -97,7 +97,19 @@ export function Services() {
     offset: ["start end", "end start"],
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const x = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["0%", isMobile ? "0%" : "-15%"]
+  );
 
   return (
     <section
@@ -221,10 +233,10 @@ function ServiceCard({
       animate={
         isInView
           ? {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-            }
+            opacity: 1,
+            y: 0,
+            scale: 1,
+          }
           : {}
       }
       transition={{
