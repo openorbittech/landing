@@ -74,12 +74,12 @@ export function Footer() {
             {/* Contact */}
             <div className="space-y-3">
               <motion.a
-                href="mailto:hello@openorbit.io"
+                href="mailto:contact@openorbit.tech"
                 whileHover={{ x: 5 }}
                 className="flex items-center gap-2 text-[#A7B0C8] hover:text-[#4F6DFF] transition-colors font-[family-name:var(--font-dm-sans)]"
               >
                 <Mail className="w-4 h-4" />
-                hello@openorbit.io
+                contact@openorbit.tech
               </motion.a>
             </div>
 
