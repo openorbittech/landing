@@ -290,24 +290,31 @@ function ProjectCard({
         {/* Gradient Overlay */}
         <motion.div
           animate={{
-            opacity: isHovered ? 0.9 : 0.6,
-            background: `linear-gradient(to top, ${project.color}90, transparent)`,
+            opacity: isHovered ? 1 : 0.7,
+            background: isHovered
+              ? `linear-gradient(to top, black 0%, ${project.color}40 50%, transparent 100%)`
+              : `linear-gradient(to top, ${project.color}80, transparent)`,
           }}
-          transition={{ duration: 0.3 }}
-          className="absolute inset-0"
+          transition={{ duration: 0.4 }}
+          className="absolute inset-0 z-10"
         />
 
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        {/* Dark Vignette Overlay */}
+        <motion.div
+          animate={{
+            opacity: isHovered ? 0.6 : 0.3,
+          }}
+          transition={{ duration: 0.4 }}
+          className="absolute inset-0 bg-black z-10"
+        />
 
         {/* Content */}
-        <div className="absolute inset-0 p-6 flex flex-col justify-end">
-          {/* Stats Badge */}
+        <div className="absolute inset-0 p-6 flex flex-col justify-end z-20">
           <motion.div
             initial={{ x: -50, opacity: 0 }}
             animate={{ x: isHovered ? 0 : -50, opacity: isHovered ? 1 : 0 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-4 left-4 flex gap-2"
+            className="absolute top-4 left-4 flex gap-2 z-30"
           >
             <span className="px-3 py-1 rounded-full text-xs font-medium bg-black/50 backdrop-blur-sm text-white">
               {project.stats.users} users
@@ -374,7 +381,7 @@ function ProjectCard({
             y: isHovered ? 0 : -20,
           }}
           transition={{ duration: 0.4, type: "spring" }}
-          className="absolute top-4 right-4 w-12 h-12 rounded-full flex items-center justify-center"
+          className="absolute top-4 right-4 w-12 h-12 rounded-full flex items-center justify-center z-30"
           style={{ backgroundColor: project.color }}
         >
           <ExternalLink className="w-5 h-5 text-white" />
