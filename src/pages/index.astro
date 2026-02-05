@@ -1,18 +1,20 @@
 ---
 export const prerender = true;
-import Layout from '../layouts/Layout.astro';
-import { Navbar } from '../components/landing/Navbar';
-import { Hero } from '../components/landing/Hero';
-import { Services } from '../components/landing/Services';
-import { Work } from '../components/landing/Work';
-import { Testimonials } from '../components/landing/Testimonials';
-import { CTA } from '../components/landing/CTA';
-import { Footer } from '../components/landing/Footer';
-import { FloatingCTA } from '../components/landing/FloatingCTA';
+import Layout from "../layouts/Layout.astro";
+import { Navbar } from "../components/landing/Navbar";
+import { Hero } from "../components/landing/Hero";
+import { Services } from "../components/landing/Services";
+import { Work } from "../components/landing/Work";
+import { Testimonials } from "../components/landing/Testimonials";
+import { CTA } from "../components/landing/CTA";
+import { Footer } from "../components/landing/Footer";
+import { FloatingCTA } from "../components/landing/FloatingCTA";
 
 // SEO Configuration
-const title = "OpenOrbit | Award-Winning Software Development Agency - Web Apps, Mobile Apps & AI";
-const description = "OpenOrbit is a premium software development agency delivering custom web applications, mobile apps, cloud solutions, and AI integration. 150+ successful projects, 98% client satisfaction. Enterprise-grade solutions for startups to Fortune 500 companies. Get a free consultation today.";
+const title =
+  "OpenOrbit | Award-Winning Software Development Agency - Web Apps, Mobile Apps & AI";
+const description =
+  "OpenOrbit is a premium software development agency delivering custom web applications, mobile apps, cloud solutions, and AI integration. 150+ successful projects, 98% client satisfaction. Enterprise-grade solutions for startups to Fortune 500 companies. Get a free consultation today.";
 
 const keywords = [
   "software development agency San Francisco",
@@ -24,20 +26,16 @@ const keywords = [
   "startup MVP development",
   "mobile app development company USA",
   "cloud migration services",
-  "DevOps consulting services"
+  "DevOps consulting services",
 ];
 ---
 
-<Layout 
-  title={title} 
-  description={description}
-  keywords={keywords}
->
-  <main 
+<Layout title={title} description={description} keywords={keywords}>
+  <div
     class="relative min-h-screen bg-[#070A12] text-[#F4F6FF]"
-    itemscope 
+    itemscope
     itemtype="https://schema.org/WebPage"
-    role="main"
+    role="none"
   >
     <Navbar client:load />
     <article itemscope itemtype="https://schema.org/Service">
@@ -49,6 +47,5 @@ const keywords = [
     </article>
     <Footer client:visible />
     <FloatingCTA client:visible />
-  </main>
+  </div>
 </Layout>
-
