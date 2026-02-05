@@ -69,16 +69,16 @@ export function Hero() {
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.85]);
 
   const stats = [
-    { value: 150, suffix: "+", label: "Projects" },
-    { value: 98, suffix: "%", label: "Satisfaction" },
-    { value: 12, suffix: "+", label: "Years" },
-    { value: 50, suffix: "+", label: "Team" },
+    { suffix: "+", label: "Projects" },
+    { suffix: "%", label: "Client Satisfaction" },
+    { suffix: "+", label: "Years" },
+    { suffix: "", label: "Missed deadlines" },
   ];
 
-  const { count: projectsCount, ref: projectsRef } = useCounter(150);
-  const { count: satisfactionCount, ref: satisfactionRef } = useCounter(98);
-  const { count: yearsCount, ref: yearsRef } = useCounter(12);
-  const { count: teamCount, ref: teamRef } = useCounter(50);
+  const { count: projectsCount, ref: projectsRef } = useCounter(10);
+  const { count: satisfactionCount, ref: satisfactionRef } = useCounter(100);
+  const { count: yearsCount, ref: yearsRef } = useCounter(2);
+  const { count: teamCount, ref: teamRef } = useCounter(0);
 
   const countValues = [projectsCount, satisfactionCount, yearsCount, teamCount];
   const countRefs = [projectsRef, satisfactionRef, yearsRef, teamRef];
@@ -331,7 +331,7 @@ export function Hero() {
                   Fast Delivery
                 </div>
                 <div className="absolute -bottom-4 -right-4 px-4 py-2 rounded-full bg-[#00D9FF] text-white text-sm font-medium shadow-lg shadow-[#00D9FF]/30 font-[family-name:var(--font-dm-sans)]">
-                  Award Winning
+                  Founder-lead
                 </div>
               </div>
             </motion.div>
