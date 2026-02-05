@@ -23,6 +23,10 @@ export default defineConfig({
       },
     }),
   ],
+  image: {
+    domains: ["images.unsplash.com"],
+    remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
+  },
   output: "static",
   site: "https://openorbit.io",
   compressHTML: true,
@@ -33,6 +37,16 @@ export default defineConfig({
     build: {
       cssCodeSplit: true,
       minify: true,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'lucide': ['lucide-react']
+          }
+        }
+      }
+    },
+    optimizeDeps: {
+      include: ["lucide-react"],
     },
   },
 });

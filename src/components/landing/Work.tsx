@@ -281,9 +281,12 @@ function ProjectCard({
           style={{ scale: imageScale, y: imageY }}
           className="absolute inset-0"
         >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${project.image})` }}
+          <img
+            src={project.image}
+            alt={`${project.title} - ${project.category}`}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover"
           />
         </motion.div>
 

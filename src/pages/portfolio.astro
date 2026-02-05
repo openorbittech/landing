@@ -2,6 +2,9 @@
 export const prerender = true;
 import Layout from "../layouts/Layout.astro";
 import { PortfolioPage } from "../components/landing/PortfolioPage";
+import { Navbar } from "../components/landing/Navbar";
+import { FloatingCTA } from "../components/landing/FloatingCTA";
+import Footer from "../components/landing/Footer.astro";
 
 // SEO Configuration for Portfolio
 const title =
@@ -30,6 +33,9 @@ const keywords = [
     itemtype="https://schema.org/CollectionPage"
     role="none"
   >
+    <Navbar client:load />
     <PortfolioPage client:load />
+    <Footer />
+    <FloatingCTA client:visible />
   </div>
 </Layout>

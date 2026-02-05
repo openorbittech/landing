@@ -1,8 +1,5 @@
 "use client";
 
-import { Navbar } from "./Navbar";
-import { Footer } from "./Footer";
-import { FloatingCTA } from "./FloatingCTA";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowLeft, ArrowRight, ExternalLink, ArrowUpRight } from "lucide-react";
@@ -109,7 +106,7 @@ const projects = [
 function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
   const cardRef = useRef(null);
   const isEven = index % 2 === 0;
-  
+
   const { scrollYProgress } = useScroll({
     target: cardRef,
     offset: ["start end", "center center"],
@@ -122,9 +119,8 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
     <motion.div
       ref={cardRef}
       style={{ x, opacity }}
-      className={`grid lg:grid-cols-2 gap-8 lg:gap-16 items-center py-20 ${
-        index !== projects.length - 1 ? "border-b border-white/10" : ""
-      }`}
+      className={`grid lg:grid-cols-2 gap-8 lg:gap-16 items-center py-20 ${index !== projects.length - 1 ? "border-b border-white/10" : ""
+        }`}
     >
       {/* Image */}
       <div className={`relative ${isEven ? "lg:order-1" : "lg:order-2"}`}>
@@ -133,26 +129,29 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           transition={{ duration: 0.3 }}
           className="relative aspect-[16/10] rounded-2xl overflow-hidden group"
         >
-          <div 
-            className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-            style={{ backgroundImage: `url(${project.image})` }}
+          <img
+            src={project.image}
+            alt={project.title}
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
-          <div 
+          <div
             className="absolute inset-0 transition-opacity duration-300"
-            style={{ 
+            style={{
               background: `linear-gradient(to top, ${project.color}60, transparent)`,
               opacity: 0.6,
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-          
+
           {/* Hover Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileHover={{ opacity: 1, y: 0 }}
             className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
           >
-            <div 
+            <div
               className="w-16 h-16 rounded-full flex items-center justify-center"
               style={{ backgroundColor: project.color }}
             >
@@ -162,9 +161,9 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         </motion.div>
 
         {/* Floating Badge */}
-        <div 
+        <div
           className="absolute -top-4 -right-4 px-4 py-2 rounded-full text-sm font-medium"
-          style={{ 
+          style={{
             backgroundColor: project.color,
             color: "white",
           }}
@@ -184,7 +183,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 font-[family-name:var(--font-space-grotesk)]">
             {project.title}
           </h2>
-          
+
           <p className="text-[#A7B0C8] text-lg mb-6 leading-relaxed">
             {project.description}
           </p>
@@ -223,7 +222,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
               <span
                 key={tag}
                 className="px-3 py-1 rounded-full text-sm"
-                style={{ 
+                style={{
                   backgroundColor: `${project.color}20`,
                   color: project.color,
                 }}
@@ -251,7 +250,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 
 export function PortfolioPage() {
   const containerRef = useRef(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
@@ -264,16 +263,15 @@ export function PortfolioPage() {
   );
 
   return (
-    <motion.main 
+    <motion.main
       style={{ backgroundColor }}
       className="min-h-screen bg-[#070A12] text-[#F4F6FF] overflow-x-hidden"
     >
-      <Navbar />
-      
+
       {/* Hero Section */}
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-10" />
-        
+
         <div className="container mx-auto px-6 relative z-10">
           {/* Back Link */}
           <motion.div
@@ -282,8 +280,8 @@ export function PortfolioPage() {
             transition={{ duration: 0.5 }}
             className="mb-12"
           >
-            <a 
-              href="/" 
+            <a
+              href="/"
               className="inline-flex items-center gap-2 text-[#A7B0C8] hover:text-white transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -335,7 +333,7 @@ export function PortfolioPage() {
       {/* Projects Section */}
       <section ref={containerRef} className="py-20 relative">
         <div className="absolute inset-0 grid-pattern opacity-5" />
-        
+
         <div className="container mx-auto px-6 relative z-10">
           {projects.map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} />
@@ -370,9 +368,6 @@ export function PortfolioPage() {
           </motion.div>
         </div>
       </section>
-
-      <Footer />
-      <FloatingCTA />
     </motion.main>
   );
 }

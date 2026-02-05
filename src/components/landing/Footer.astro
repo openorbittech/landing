@@ -1,0 +1,220 @@
+---
+import {
+    Twitter,
+    Linkedin,
+    Github,
+    Instagram,
+    ArrowUpRight,
+    Mail,
+} from "lucide-react";
+
+const footerLinks = {
+    services: [
+        { label: "Web Development", href: "#services" },
+        { label: "Mobile Apps", href: "#services" },
+        { label: "Cloud Solutions", href: "#services" },
+        { label: "AI & Automation", href: "#services" },
+    ],
+    company: [
+        { label: "About", href: "/about" },
+        { label: "Work", href: "/portfolio" },
+        { label: "Contact", href: "#contact" },
+    ],
+    resources: [{ label: "Blog", href: "/blog" }],
+};
+
+const socialLinks = [
+    { icon: Twitter, href: "https://x.com/openorbittech", label: "Twitter" },
+    {
+        icon: Linkedin,
+        href: "https://linkedin.com/company/openorbit-tech",
+        label: "LinkedIn",
+    },
+    { icon: Github, href: "https://github.com/openorbittech", label: "GitHub" },
+    {
+        icon: Instagram,
+        href: "https://instagram.com/openorbittech",
+        label: "Instagram",
+    },
+];
+---
+
+<footer
+    role="contentinfo"
+    aria-label="Site footer with navigation and contact information"
+    itemscope
+    itemtype="https://schema.org/WPFooter"
+    class="relative bg-[#070A12] border-t border-white/5"
+>
+    {/* Background Pattern */}
+    <div class="absolute inset-0 grid-pattern opacity-10"></div>
+
+    <div class="container mx-auto px-6 relative z-10">
+        {/* Main Footer Content */}
+        <div
+            class="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12"
+        >
+            {/* Brand Column */}
+            <div class="lg:col-span-2">
+                <a href="/" class="flex items-center gap-2 mb-6">
+                    <div
+                        class="w-10 h-10 rounded-full bg-gradient-to-br from-[#4F6DFF] to-[#3D5AD8] flex items-center justify-center"
+                    >
+                        <span class="text-white font-bold text-lg">O</span>
+                    </div>
+                    <span
+                        class="text-2xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)]"
+                    >
+                        OpenOrbit
+                    </span>
+                </a>
+                <p
+                    class="text-[#A7B0C8] mb-6 max-w-sm leading-relaxed font-[family-name:var(--font-dm-sans)]"
+                >
+                    We build scalable software solutions that drive business
+                    growth. From concept to deployment, we deliver excellence.
+                </p>
+
+                {/* Contact */}
+                <div class="space-y-3">
+                    <a
+                        href="mailto:contact@openorbit.tech"
+                        class="flex items-center gap-2 text-[#A7B0C8] hover:text-[#4F6DFF] transition-colors font-[family-name:var(--font-dm-sans)]"
+                    >
+                        <Mail className="w-4 h-4" />
+                        contact@openorbit.tech
+                    </a>
+                </div>
+
+                {/* Social Links */}
+                <div class="flex gap-4 mt-6">
+                    {
+                        socialLinks.map((social) => (
+                            <a
+                                href={social.href}
+                                class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-[#4F6DFF]/20 transition-all hover:-translate-y-1 hover:scale-110 active:scale-95"
+                                aria-label={social.label}
+                            >
+                                <social.icon className="w-5 h-5 text-[#A7B0C8]" />
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+
+            {/* Services Links */}
+            <div>
+                <h4
+                    class="text-white font-bold mb-4 font-[family-name:var(--font-space-grotesk)]"
+                >
+                    Services
+                </h4>
+                <ul class="space-y-3">
+                    {
+                        footerLinks.services.map((link) => (
+                            <li>
+                                <a
+                                    href={link.href}
+                                    class="text-[#A7B0C8] hover:text-white transition-colors text-sm font-[family-name:var(--font-dm-sans)]"
+                                >
+                                    {link.label}
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+
+            {/* Company Links */}
+            <div>
+                <h4
+                    class="text-white font-bold mb-4 font-[family-name:var(--font-space-grotesk)]"
+                >
+                    Company
+                </h4>
+                <ul class="space-y-3">
+                    {
+                        footerLinks.company.map((link) => (
+                            <li>
+                                <a
+                                    href={link.href}
+                                    class="text-[#A7B0C8] hover:text-white transition-colors text-sm font-[family-name:var(--font-dm-sans)]"
+                                >
+                                    {link.label}
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+
+            {/* Resources Links */}
+            <div>
+                <h4
+                    class="text-white font-bold mb-4 font-[family-name:var(--font-space-grotesk)]"
+                >
+                    Resources
+                </h4>
+                <ul class="space-y-3">
+                    {
+                        footerLinks.resources.map((link) => (
+                            <li>
+                                <a
+                                    href={link.href}
+                                    class="text-[#A7B0C8] hover:text-white transition-colors text-sm font-[family-name:var(--font-dm-sans)]"
+                                >
+                                    {link.label}
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div
+            class="py-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+            <p
+                class="text-sm text-[#A7B0C8] font-[family-name:var(--font-dm-sans)]"
+            >
+                © {new Date().getFullYear()} OpenOrbit. All rights reserved.
+            </p>
+        </div>
+    </div>
+
+    {/* Back to Top Button */}
+    <button
+        id="back-to-top"
+        class="fixed bottom-8 right-8 w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-[#4F6DFF]/20 transition-all hover:-translate-y-1 z-40"
+    >
+        <ArrowUpRight className="w-5 h-5 text-white -rotate-45" />
+    </button>
+</footer>
+
+<script>
+    const backToTop = document.getElementById("back-to-top");
+    if (backToTop) {
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // Show/hide based on scroll
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 500) {
+                backToTop.style.opacity = "1";
+                backToTop.style.pointerEvents = "auto";
+            } else {
+                backToTop.style.opacity = "0";
+                backToTop.style.pointerEvents = "none";
+            }
+        });
+
+        // Initial state
+        if (window.scrollY <= 500) {
+            backToTop.style.opacity = "0";
+            backToTop.style.pointerEvents = "none";
+        }
+    }
+</script>
