@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -12,16 +12,28 @@ const navLinks = [
 ];
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { scrollY } = useScroll();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const backgroundColor = useTransform(
+    scrollY,
+    [0, 50],
+    ["rgba(11, 15, 28, 0)", "rgba(11, 15, 28, 0.8)"]
+  );
+
+  const backdropFilter = useTransform(
+    scrollY,
+    [0, 50],
+    ["blur(0px)", "blur(20px)"]
+  );
+
+  const borderBottomColor = useTransform(
+    scrollY,
+    [0, 50],
+    ["rgba(79, 109, 255, 0)", "rgba(79, 109, 255, 0.15)"]
+  );
+
+  const padding = useTransform(scrollY, [0, 50], ["1.5rem 0", "1rem 0"]);
 
   return (
     <>
@@ -29,9 +41,15 @@ export function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "glass-strong py-4" : "bg-transparent py-6"
-        }`}
+        style={{
+          backgroundColor,
+          backdropFilter,
+          WebkitBackdropFilter: backdropFilter,
+          borderBottom: "1px solid",
+          borderBottomColor,
+          padding,
+        }}
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       >
         <div className="container mx-auto px-6 flex items-center justify-between">
           {/* Logo */}

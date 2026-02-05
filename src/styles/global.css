@@ -240,7 +240,7 @@ body {
   background: rgba(11, 15, 28, 0.8);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(79, 109, 255, 0.15);
+  border-bottom: 1px solid rgba(79, 109, 255, 0.15);
 }
 
 /* Glow Effects */
