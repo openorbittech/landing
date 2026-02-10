@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
 import {
   Code2,
   Smartphone,
@@ -67,7 +67,7 @@ const services = [
     description: "Beautiful interfaces that users love.",
     features: ["User Research", "Wireframing", "Design Systems"],
     color: "#E74C3C",
-    size: "medium",
+    size: "small",
   },
   {
     icon: Globe,
@@ -75,7 +75,7 @@ const services = [
     description: "Decentralized apps and smart contracts.",
     features: ["Smart Contracts", "dApps", "DeFi"],
     color: "#8E44AD",
-    size: "small",
+    size: "medium",
   },
   {
     icon: Cpu,
@@ -83,7 +83,7 @@ const services = [
     description: "Connected devices and embedded systems.",
     features: ["Hardware", "Firmware", "Cloud"],
     color: "#2ECC71",
-    size: "medium",
+    size: "small",
   },
 ];
 
@@ -92,24 +92,6 @@ export function Services() {
   const headerRef = useRef(null);
   const isInView = useInView(headerRef, { once: true, margin: "-100px" });
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  const x = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["0%", isMobile ? "0%" : "-15%"]
-  );
 
   return (
     <section
@@ -164,7 +146,6 @@ export function Services() {
 
         {/* Bento Grid Layout */}
         <motion.div
-          style={{ x }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(200px,auto)]"
         >
           {services.map((service, index) => (
