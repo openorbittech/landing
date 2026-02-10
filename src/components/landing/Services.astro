@@ -1,0 +1,316 @@
+---
+import {
+    Code2,
+    Smartphone,
+    Cloud,
+    Database,
+    Bot,
+    Palette,
+    ArrowUpRight,
+    Globe,
+    Cpu,
+} from "lucide-react";
+
+const services = [
+    {
+        icon: Code2,
+        title: "Web Development",
+        description:
+            "Custom web apps with React, Next.js, Node.js. Scalable, fast, SEO-friendly.",
+        features: [
+            "React & Next.js",
+            "Node.js Backend",
+            "API Development",
+            "Performance",
+        ],
+        color: "#4F6DFF",
+        size: "large",
+    },
+    {
+        icon: Smartphone,
+        title: "Mobile Apps",
+        description: "Native & cross-platform apps for iOS & Android.",
+        features: ["React Native", "iOS & Android", "Flutter"],
+        color: "#FF6B6B",
+        size: "small",
+    },
+    {
+        icon: Cloud,
+        title: "Cloud Solutions",
+        description: "Scalable cloud infrastructure & DevOps.",
+        features: ["AWS & Azure", "Kubernetes", "Serverless"],
+        color: "#00D9FF",
+        size: "medium",
+    },
+    {
+        icon: Database,
+        title: "Data Engineering",
+        description: "Transform data into actionable insights.",
+        features: ["Data Pipelines", "Big Data", "Analytics"],
+        color: "#9B59B6",
+        size: "small",
+    },
+    {
+        icon: Bot,
+        title: "AI & Automation",
+        description: "Leverage AI for competitive advantage.",
+        features: ["Machine Learning", "Process Automation", "Chatbots"],
+        color: "#F39C12",
+        size: "large",
+    },
+    {
+        icon: Palette,
+        title: "UI/UX Design",
+        description: "Beautiful interfaces that users love.",
+        features: ["User Research", "Wireframing", "Design Systems"],
+        color: "#E74C3C",
+        size: "small",
+    },
+    {
+        icon: Globe,
+        title: "Web3 & Blockchain",
+        description: "Decentralized apps and smart contracts.",
+        features: ["Smart Contracts", "dApps", "DeFi"],
+        color: "#8E44AD",
+        size: "medium",
+    },
+    {
+        icon: Cpu,
+        title: "IoT Solutions",
+        description: "Connected devices and embedded systems.",
+        features: ["Hardware", "Firmware", "Cloud"],
+        color: "#2ECC71",
+        size: "small",
+    },
+];
+---
+
+<section
+    id="services"
+    aria-label="Our Services - Software Development Solutions"
+    itemscope
+    itemtype="https://schema.org/ItemList"
+    class="relative py-32 overflow-hidden bg-[#070A12]"
+>
+    {/* Background Effects */}
+    <div class="absolute inset-0">
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-[#4F6DFF]/10 rounded-full"
+        >
+        </div>
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-[#FF6B6B]/10 rounded-full"
+        >
+        </div>
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10">
+        {/* Section Header */}
+        <div
+            class="max-w-4xl mb-20 reveal-on-scroll"
+            data-animation="fade-left"
+        >
+            <div class="flex items-center gap-4 mb-6">
+                <div
+                    class="h-px flex-1 bg-gradient-to-r from-[#4F6DFF] to-transparent"
+                >
+                </div>
+                <span
+                    class="text-sm font-medium text-[#4F6DFF] uppercase tracking-widest"
+                >
+                    What We Do
+                </span>
+            </div>
+
+            <h2
+                class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)] mb-6 reveal-on-scroll"
+                data-animation="fade-up"
+                data-delay="0.2"
+            >
+                <span class="block">End-to-End</span>
+                <span class="gradient-text">Solutions</span>
+            </h2>
+
+            <p
+                class="text-xl text-[#A7B0C8] max-w-2xl leading-relaxed font-[family-name:var(--font-dm-sans)] reveal-on-scroll"
+                data-animation="fade-up"
+                data-delay="0.4"
+            >
+                From concept to deployment, we deliver complete digital
+                solutions that drive business growth.
+            </p>
+        </div>
+
+        {/* Bento Grid Layout */}
+        <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(200px,auto)]"
+        >
+            {
+                services.map((service, index) => {
+                    const Icon = service.icon;
+                    const spanClass =
+                        service.size === "large"
+                            ? "md:col-span-2 md:row-span-2"
+                            : service.size === "medium"
+                              ? "md:col-span-2"
+                              : "";
+
+                    return (
+                        <div
+                            class={`relative group ${spanClass} reveal-on-scroll`}
+                            data-animation="fade-up-scale"
+                            data-delay={index * 0.1}
+                        >
+                            <div
+                                class="service-card relative h-full p-6 rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 group-hover:-translate-y-2"
+                                style={`
+                background: linear-gradient(135deg, ${service.color}08 0%, #0B0F1C 100%);
+                border: 1px solid ${service.color}20;
+                --hover-shadow-color: ${service.color}20;
+              `}
+                            >
+                                {/* Background Glow on Hover */}
+                                <div
+                                    class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                                    style={`background: radial-gradient(circle at 50% 0%, ${service.color}20, transparent 70%);`}
+                                />
+
+                                {/* Icon */}
+                                <div
+                                    class="relative z-10 w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+                                    style={`background-color: ${service.color}20`}
+                                >
+                                    <Icon
+                                        className="w-7 h-7"
+                                        style={{ color: service.color }}
+                                    />
+                                </div>
+
+                                {/* Content */}
+                                <div class="relative z-10">
+                                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 font-[family-name:var(--font-space-grotesk)] transition-transform duration-300 group-hover:-translate-y-1">
+                                        {service.title}
+                                    </h3>
+
+                                    <p class="text-[#A7B0C8] mb-4 leading-relaxed font-[family-name:var(--font-dm-sans)] transition-all duration-300 opacity-70 group-hover:opacity-100 group-hover:-translate-y-0.5">
+                                        {service.description}
+                                    </p>
+
+                                    {/* Features */}
+                                    <div class="flex flex-wrap gap-2">
+                                        {service.features.map((feature) => (
+                                            <span
+                                                class="px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 hover:scale-110"
+                                                style={`
+                        background-color: ${service.color}20;
+                        color: service.color;
+                      `}
+                                            >
+                                                {feature}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Arrow indicator */}
+                                <div class="absolute bottom-4 right-4 opacity-0 -translate-x-5 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
+                                    <ArrowUpRight
+                                        className="w-6 h-6"
+                                        style={{ color: service.color }}
+                                    />
+                                </div>
+
+                                {/* Large number */}
+                                <div
+                                    class="absolute bottom-2 right-6 text-7xl font-bold font-[family-name:var(--font-space-grotesk)] pointer-events-none opacity-[0.05] group-hover:opacity-20 transition-all duration-500 group-hover:scale-110 group-hover:translate-x-2"
+                                    style={`color: ${service.color}`}
+                                >
+                                    {String(index + 1).padStart(2, "0")}
+                                </div>
+                            </div>
+                        </div>
+                    );
+                })
+            }
+        </div>
+
+        {/* Bottom CTA */}
+        <div
+            class="mt-20 text-center reveal-on-scroll"
+            data-animation="fade-up"
+        >
+            <p
+                class="text-[#A7B0C8] mb-6 text-lg font-[family-name:var(--font-dm-sans)]"
+            >
+                Need something custom? We adapt to your unique requirements.
+            </p>
+            <a
+                href="#contact"
+                class="group btn-primary inline-flex items-center gap-2 text-lg transition-all duration-300 hover:scale-105 active:scale-95"
+            >
+                Discuss Your Project
+                <ArrowUpRight
+                    className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+                />
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const el = entry.target as HTMLElement;
+                const delay = el.getAttribute("data-delay") || "0";
+
+                setTimeout(
+                    () => {
+                        el.classList.add("is-visible");
+                    },
+                    parseFloat(delay) * 1000,
+                );
+
+                observer.unobserve(el);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll(".reveal-on-scroll").forEach((el) => {
+        observer.observe(el);
+    });
+</script>
+
+<style>
+    .reveal-on-scroll {
+        opacity: 0;
+        will-change: transform, opacity;
+    }
+
+    [data-animation="fade-up"] {
+        transform: translateY(30px);
+    }
+
+    [data-animation="fade-left"] {
+        transform: translateX(-30px);
+    }
+
+    [data-animation="fade-up-scale"] {
+        transform: translateY(30px) scale(0.95);
+    }
+
+    .reveal-on-scroll.is-visible {
+        opacity: 1;
+        transform: translate(0) scale(1);
+        transition: all 0.8s cubic-bezier(0.21, 0.47, 0.32, 0.98);
+    }
+
+    .service-card:hover {
+        box-shadow: 0 30px 60px var(--hover-shadow-color);
+    }
+</style>
