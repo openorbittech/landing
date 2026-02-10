@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { ArrowRight, Play, Pause, ChevronDown, Sparkles } from "lucide-react";
+import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
 
 // Animated counter hook
 const useCounter = (target: number, duration: number = 2) => {
@@ -58,7 +58,6 @@ const useCounter = (target: number, duration: number = 2) => {
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -82,17 +81,6 @@ export function Hero() {
 
   const countValues = [projectsCount, satisfactionCount, yearsCount, teamCount];
   const countRefs = [projectsRef, satisfactionRef, yearsRef, teamRef];
-
-  const toggleVideo = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
 
   return (
     <section
@@ -136,20 +124,6 @@ export function Hero() {
           className="absolute inset-0"
         />
       </div>
-
-      {/* Video Controls */}
-      <motion.button
-        onClick={toggleVideo}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        className="absolute bottom-32 right-8 z-20 w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-[#4F6DFF]/30 transition-colors"
-      >
-        {isPlaying ? (
-          <Pause className="w-5 h-5 text-white" />
-        ) : (
-          <Play className="w-5 h-5 text-white" />
-        )}
-      </motion.button>
 
       {/* Floating decorative elements */}
       <motion.div
@@ -240,10 +214,9 @@ export function Hero() {
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 1 }}
-                className="text-xl text-[#A7B0C8] max-w-lg mb-8 leading-relaxed font-[family-name:var(--font-dm-sans)]"
+                className="text-xl text-[#A7B0C8] max-w-lg mb-8 leading-normal font-[family-name:var(--font-dm-sans)]"
               >
-                Award-winning software agency crafting digital experiences that
-                drive growth and innovation.
+                Founder-led technical studio delivering elite software solutions with senior-level expertise and zero agency overhead.
               </motion.p>
 
               {/* CTAs */}
