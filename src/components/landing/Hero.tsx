@@ -193,8 +193,8 @@ export function Hero() {
               </motion.div>
 
               {/* Main Headline with character animation */}
-              <div className="mb-6">
-                <motion.h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)] leading-none">
+              <h1 className="mb-6">
+                <motion.span className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)] leading-none block">
                   {"We Build".split("").map((char, i) => (
                     <motion.span
                       key={i}
@@ -210,30 +210,30 @@ export function Hero() {
                       {char === " " ? "\u00A0" : char}
                     </motion.span>
                   ))}
-                </motion.h1>
+                </motion.span>
 
-                <motion.div
+                <motion.span
                   initial={{ clipPath: "inset(0 100% 0 0)" }}
                   animate={{ clipPath: "inset(0 0% 0 0)" }}
                   transition={{ duration: 1, delay: 0.5 }}
-                  className="mt-2"
+                  className="mt-2 block"
                 >
                   <span className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)] gradient-text">
                     Digital Dreams
                   </span>
-                </motion.div>
+                </motion.span>
 
-                <motion.div
+                <motion.span
                   initial={{ y: 50, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
-                  className="mt-2"
+                  className="mt-2 block"
                 >
                   <span className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)] text-white/80">
                     Into Reality
                   </span>
-                </motion.div>
-              </div>
+                </motion.span>
+              </h1>
 
               {/* Subheadline */}
               <motion.p
