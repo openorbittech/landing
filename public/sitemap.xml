@@ -16,7 +16,7 @@
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://openorbit.io/og-image.jpg</image:loc>
-      <image:title>OpenOrbit - Award-Winning Software Development Agency</image:title>
+      <image:title>OpenOrbit - High-impact Software Development Agency</image:title>
       <image:caption>Premium software development services for web apps, mobile apps, and cloud solutions</image:caption>
     </image:image>
   </url>
@@ -33,7 +33,7 @@
     <image:image>
       <image:loc>https://openorbit.io/portfolio-hero.jpg</image:loc>
       <image:title>Software Development Portfolio - 150+ Projects</image:title>
-      <image:caption>Explore our award-winning software development projects</image:caption>
+      <image:caption>Explore our high-impact software development projects</image:caption>
     </image:image>
   </url>
   

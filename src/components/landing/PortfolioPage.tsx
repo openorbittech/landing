@@ -301,7 +301,7 @@ export function PortfolioPage() {
                 <span className="gradient-text"> Portfolio</span>
               </h1>
               <p className="text-xl text-[#A7B0C8] max-w-2xl leading-relaxed">
-                Award-winning projects that transformed businesses and delighted users. Each project is a testament to our commitment to excellence.
+                high-impact projects that transformed businesses and delighted users. Each project is a testament to our commitment to excellence.
               </p>
             </motion.div>
           </div>
