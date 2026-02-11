@@ -6,7 +6,16 @@ import { ArrowUpRight, ExternalLink, Eye } from "lucide-react";
 
 interface ProjectCardStats { text: string; icon?: React.ReactNode | string; color?: string; }
 
-interface Projects { title: string; category: string; description: string; image: string; tags: string[]; color: string; size: string; stats: ProjectCardStats[]; }
+interface Projects {
+  title: string;
+  category: string;
+  description: string;
+  image: string;
+  tags: string[];
+  color: string;
+  size: "large" | "tall" | "wide" | "small";
+  stats: ProjectCardStats[];
+}
 
 const projects: Projects[] = [
   {
@@ -19,115 +28,116 @@ const projects: Projects[] = [
     color: "#39adff",
     size: "large",
     stats: [
-      { text: "Near-Zero Latency", color: "#4F6DFF" },
-      { text: "Real-Time Sync", color: "#2ECC71" }
+      { text: "Near-Zero Latency" },
+      { text: "Real-Time Sync" }
     ],
   },
   {
-    title: "HealthSync",
-    category: "Healthcare App",
+    title: "MentIQ",
+    category: "SaaS Retention & Analytics Platform",
     description:
-      "Telemedicine platform connecting patients with providers.",
+      "AI-powered retention platform helping SaaS companies predict churn early, uncover real adoption depth, and automate proactive customer success workflows.",
     image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
-    tags: ["React Native", "GraphQL", "TensorFlow"],
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    tags: ["AI", "Predictive Analytics"],
+    color: "#00D9FF",
+    size: "tall",
+    stats: [
+      { text: "Up to 50% Churn Reduction" },
+      // { text: "30–60 Day Early Churn Prediction" }
+    ],
+
+  },
+  {
+    title: "Axton Protocol",
+    category: "Crypto Website",
+    description:
+      "A zero-slippage Over-The-Counter trading platform for blockchain assets with anonymized transactions, real-time yield generation, and a unified DeFi ecosystem.",
+    image:
+      "https://images.pexels.com/photos/8369648/pexels-photo-8369648.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    tags: ["Next.js", "Framer Motion", "Tailwind CSS", "TypeScript", "Web3"],
     color: "#FF6B6B",
     size: "tall",
     stats: [
-      { text: "25K+ Users" },
-      { text: "150% Growth" }
+      { text: "web3" },
     ],
-  },
-  {
-    title: "RetailPro",
-    category: "E-commerce",
-    description:
-      "Enterprise e-commerce with AI-powered recommendations.",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-    tags: ["Next.js", "Python", "Redis"],
-    color: "#00D9FF",
-    size: "medium",
-    stats: [
-      { text: "100K+ Users" },
-      { text: "200% Growth" }
-    ],
-  },
-  {
-    title: "DataVault",
-    category: "Data Analytics",
-    description:
-      "Big data platform processing 10TB+ daily.",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-    tags: ["Apache Spark", "Kafka", "Kubernetes"],
-    color: "#9B59B6",
-    size: "medium",
-    stats: [
-      { text: "Enterprise Clients" },
-      { text: "10TB+ Daily Processing" }
-    ],
-  },
-  {
-    title: "SmartCity",
-    category: "IoT Platform",
-    description:
-      "Smart city management and monitoring system.",
-    image:
-      "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80",
-    tags: ["IoT", "React", "Node.js"],
-    color: "#2ECC71",
-    size: "wide",
-    stats: [
-      { text: "100+ Deployments" },
-      { text: "400% Growth" }
-    ],
-  },
-  {
-    title: "ArtChain",
-    category: "Web3 dApp",
-    description:
-      "NFT marketplace for digital artists.",
-    image:
-      "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&q=80",
-    tags: ["Solidity", "React", "Ethereum"],
-    color: "#F39C12",
-    size: "small",
-    stats: [
-      { text: "10K+ Users" },
-      { text: "500% Growth" }
-    ],
-  },
-  {
-    title: "EduTech",
-    category: "EdTech Platform",
-    description:
-      "Online learning platform with AI tutors.",
-    image:
-      "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80",
-    tags: ["React", "Python", "OpenAI"],
-    color: "#E74C3C",
-    size: "medium",
-    stats: [
-      { text: "75K+ Users" },
-      { text: "250% Growth" }
-    ],
-  },
-  {
-    title: "LogiChain",
-    category: "Supply Chain",
-    description:
-      "Blockchain-based supply chain tracking.",
-    image:
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
-    tags: ["Blockchain", "IoT", "React"],
-    color: "#8E44AD",
-    size: "medium",
-    stats: [
-      { text: "50+ Clients" },
-      { text: "180% Growth" }
-    ],
-  },
+  }
+
+  // {
+  //   title: "DataVault",
+  //   category: "Data Analytics",
+  //   description:
+  //     "Big data platform processing 10TB+ daily.",
+  //   image:
+  //     "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+  //   tags: ["Apache Spark", "Kafka", "Kubernetes"],
+  //   color: "#9B59B6",
+  //   size: "small",
+  //   stats: [
+  //     { text: "Enterprise Clients" },
+  //     { text: "10TB+ Daily Processing" }
+  //   ],
+  // },
+  // {
+  //   title: "SmartCity",
+  //   category: "IoT Platform",
+  //   description:
+  //     "Smart city management and monitoring system.",
+  //   image:
+  //     "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80",
+  //   tags: ["IoT", "React", "Node.js"],
+  //   color: "#2ECC71",
+  //   size: "wide",
+  //   stats: [
+  //     { text: "100+ Deployments" },
+  //     { text: "400% Growth" }
+  //   ],
+  // },
+  // {
+  //   title: "ArtChain",
+  //   category: "Web3 dApp",
+  //   description:
+  //     "NFT marketplace for digital artists.",
+  //   image:
+  //     "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&q=80",
+  //   tags: ["Solidity", "React", "Ethereum"],
+  //   color: "#F39C12",
+  //   size: "small",
+  //   stats: [
+  //     { text: "10K+ Users" },
+  //     { text: "500% Growth" }
+  //   ],
+  // },
+  // {
+  //   title: "EduTech",
+  //   category: "EdTech Platform",
+  //   description:
+  //     "Online learning platform with AI tutors.",
+  //   image:
+  //     "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80",
+  //   tags: ["React", "Python", "OpenAI"],
+  //   color: "#E74C3C",
+  //   size: "small",
+  //   stats: [
+  //     { text: "75K+ Users" },
+  //     { text: "250% Growth" }
+  //   ],
+  // },
+  // {
+  //   title: "LogiChain",
+  //   category: "Supply Chain",
+  //   description:
+  //     "Blockchain-based supply chain tracking.",
+  //   image:
+  //     "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
+  //   tags: ["Blockchain", "IoT", "React"],
+  //   color: "#8E44AD",
+  //   size: "small",
+  //   stats: [
+  //     { text: "50+ Clients" },
+  //     { text: "180% Growth" }
+  //   ],
+  // },
 ];
 
 
@@ -349,7 +359,7 @@ function ProjectCard({
 
         <motion.div
           animate={{
-            opacity: isHovered ? 0.6 : 0.18,
+            opacity: isHovered ? 0.6 : 0.4,
           }}
           transition={{ duration: 0.4 }}
           className="absolute inset-0 bg-black z-10"
@@ -362,7 +372,7 @@ function ProjectCard({
               initial={{ x: -50, opacity: 0 }}
               animate={{ x: isHovered ? 0 : -50, opacity: isHovered ? 1 : 0 }}
               transition={{ duration: 0.3 }}
-              className="absolute top-4 left-4 flex flex-wrap gap-2 z-30"
+              className="hidden absolute top-4 left-4 md:flex flex-wrap gap-2 z-30"
             >
               {project.stats.map((stat, i) => (
                 <span
