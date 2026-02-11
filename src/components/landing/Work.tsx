@@ -4,97 +4,133 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { ArrowUpRight, ExternalLink, Eye } from "lucide-react";
 
-const projects = [
+interface ProjectCardStats { text: string; icon?: React.ReactNode | string; color?: string; }
+
+interface Projects { title: string; category: string; description: string; image: string; tags: string[]; color: string; size: string; stats: ProjectCardStats[]; }
+
+const projects: Projects[] = [
   {
-    title: "FinFlow",
-    category: "Fintech Platform",
+    title: "Athleon",
+    category: "Sports Performance Platform",
     description:
-      "A comprehensive financial management platform serving 50K+ users.",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-    tags: ["React", "Node.js", "PostgreSQL", "AWS"],
-    color: "#4F6DFF",
+      "A precision training platform for Olympic shooters enabling real-time shot tracking, live remote monitoring, and competitive duel sessions.",
+    image: "/work/athleon.png",
+    tags: ["Tauri", "Cross-Platform"],
+    color: "#39adff",
     size: "large",
-    stats: { users: "50K+", growth: "300%" },
+    stats: [
+      { text: "Near-Zero Latency", color: "#4F6DFF" },
+      { text: "Real-Time Sync", color: "#2ECC71" }
+    ],
   },
   {
     title: "HealthSync",
     category: "Healthcare App",
-    description: "Telemedicine platform connecting patients with providers.",
+    description:
+      "Telemedicine platform connecting patients with providers.",
     image:
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
     tags: ["React Native", "GraphQL", "TensorFlow"],
     color: "#FF6B6B",
     size: "tall",
-    stats: { users: "25K+", growth: "150%" },
+    stats: [
+      { text: "25K+ Users" },
+      { text: "150% Growth" }
+    ],
   },
   {
     title: "RetailPro",
     category: "E-commerce",
-    description: "Enterprise e-commerce with AI-powered recommendations.",
+    description:
+      "Enterprise e-commerce with AI-powered recommendations.",
     image:
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
     tags: ["Next.js", "Python", "Redis"],
     color: "#00D9FF",
     size: "medium",
-    stats: { users: "100K+", growth: "200%" },
+    stats: [
+      { text: "100K+ Users" },
+      { text: "200% Growth" }
+    ],
   },
   {
     title: "DataVault",
     category: "Data Analytics",
-    description: "Big data platform processing 10TB+ daily.",
+    description:
+      "Big data platform processing 10TB+ daily.",
     image:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
     tags: ["Apache Spark", "Kafka", "Kubernetes"],
     color: "#9B59B6",
     size: "medium",
-    stats: { users: "Enterprise", growth: "N/A" },
+    stats: [
+      { text: "Enterprise Clients" },
+      { text: "10TB+ Daily Processing" }
+    ],
   },
   {
     title: "SmartCity",
     category: "IoT Platform",
-    description: "Smart city management and monitoring system.",
+    description:
+      "Smart city management and monitoring system.",
     image:
       "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80",
     tags: ["IoT", "React", "Node.js"],
     color: "#2ECC71",
     size: "wide",
-    stats: { users: "100+", growth: "400%" },
+    stats: [
+      { text: "100+ Deployments" },
+      { text: "400% Growth" }
+    ],
   },
   {
     title: "ArtChain",
     category: "Web3 dApp",
-    description: "NFT marketplace for digital artists.",
+    description:
+      "NFT marketplace for digital artists.",
     image:
       "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&q=80",
     tags: ["Solidity", "React", "Ethereum"],
     color: "#F39C12",
     size: "small",
-    stats: { users: "10K+", growth: "500%" },
+    stats: [
+      { text: "10K+ Users" },
+      { text: "500% Growth" }
+    ],
   },
   {
     title: "EduTech",
     category: "EdTech Platform",
-    description: "Online learning platform with AI tutors.",
+    description:
+      "Online learning platform with AI tutors.",
     image:
       "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80",
     tags: ["React", "Python", "OpenAI"],
     color: "#E74C3C",
     size: "medium",
-    stats: { users: "75K+", growth: "250%" },
+    stats: [
+      { text: "75K+ Users" },
+      { text: "250% Growth" }
+    ],
   },
   {
     title: "LogiChain",
     category: "Supply Chain",
-    description: "Blockchain-based supply chain tracking.",
+    description:
+      "Blockchain-based supply chain tracking.",
     image:
       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
     tags: ["Blockchain", "IoT", "React"],
     color: "#8E44AD",
     size: "medium",
-    stats: { users: "50+", growth: "180%" },
+    stats: [
+      { text: "50+ Clients" },
+      { text: "180% Growth" }
+    ],
   },
 ];
+
+
 
 export function Work() {
   const containerRef = useRef(null);
@@ -292,7 +328,7 @@ function ProjectCard({
         {/* Gradient Overlay */}
         <motion.div
           animate={{
-            opacity: isHovered ? 1 : 0.,
+            opacity: isHovered ? 1 : 0,
             background: isHovered
               ? `linear-gradient(to top, black 0%, ${project.color}60 50%, transparent 100%)`
               : `linear-gradient(to top, ${project.color}80, transparent)`,
@@ -301,10 +337,19 @@ function ProjectCard({
           className="absolute inset-0 z-10"
         />
 
-        {/* Dark Vignette Overlay */}
+        {/* Dark Vignette Overlay - Upward Inner Shadow for Visibility */}
+        {/* <motion.div
+          animate={{
+            opacity: isHovered ? 0.6 : 1,
+            background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 30%, transparent 60%)",
+          }}
+          transition={{ duration: 0.4 }}
+          className="absolute inset-0 z-10"
+        /> */}
+
         <motion.div
           animate={{
-            opacity: isHovered ? 0.6 : 0.3,
+            opacity: isHovered ? 0.6 : 0.18,
           }}
           transition={{ duration: 0.4 }}
           className="absolute inset-0 bg-black z-10"
@@ -312,37 +357,49 @@ function ProjectCard({
 
         {/* Content */}
         <div className="absolute inset-0 p-6 flex flex-col justify-end z-20">
-          <motion.div
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: isHovered ? 0 : -50, opacity: isHovered ? 1 : 0 }}
-            transition={{ duration: 0.3 }}
-            className="absolute top-4 left-4 flex gap-2 z-30"
-          >
-            <span className="px-3 py-1 rounded-full text-xs font-medium bg-black/50 backdrop-blur-sm text-white">
-              {project.stats.users} users
-            </span>
-            {project.stats.growth !== "N/A" && (
-              <span className="px-3 py-1 rounded-full text-xs font-medium bg-green-500/30 backdrop-blur-sm text-green-400">
-                ↑{project.stats.growth}
-              </span>
-            )}
-          </motion.div>
+          {project.stats && project.stats.length > 0 && (
+            <motion.div
+              initial={{ x: -50, opacity: 0 }}
+              animate={{ x: isHovered ? 0 : -50, opacity: isHovered ? 1 : 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute top-4 left-4 flex flex-wrap gap-2 z-30"
+            >
+              {project.stats.map((stat, i) => (
+                <span
+                  key={i}
+                  className={`px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm flex items-center gap-1.5 ${!stat.color ? "bg-black/50 text-white" : ""}`}
+                  style={stat.color ? {
+                    backgroundColor: `${stat.color}24`,
+                    color: stat.color
+                  } : {}}
+                >
+                  {stat.icon && (
+                    <span className="opacity-90" style={{ color: stat.color || "inherit" }}>
+                      {typeof stat.icon === "string" ? stat.icon : stat.icon}
+                    </span>
+                  )}
+                  {stat.text}
+                </span>
+              ))}
+            </motion.div>
+          )}
 
           {/* Category */}
           <motion.span
-            animate={{ y: isHovered ? 0 : 10, opacity: isHovered ? 1 : 0.7 }}
+            animate={{ y: isHovered ? 0 : 30, opacity: isHovered ? 1 : 0.8 }}
             transition={{ duration: 0.3 }}
             className="text-sm font-medium mb-2"
-            style={{ color: project.color }}
+            style={{ color: project.color, textShadow: "0 2px 4px rgba(0,0,0,0.5)" }}
           >
             {project.category}
           </motion.span>
 
           {/* Title */}
           <motion.h3
-            animate={{ y: isHovered ? 0 : 10 }}
+            animate={{ y: isHovered ? 0 : 30 }}
             transition={{ duration: 0.3 }}
             className="text-2xl md:text-3xl font-bold text-white mb-2 font-[family-name:var(--font-space-grotesk)]"
+            style={{ textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}
           >
             {project.title}
           </motion.h3>
