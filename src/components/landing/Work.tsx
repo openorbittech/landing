@@ -170,8 +170,7 @@ export function Work() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-[#A7B0C8] max-w-md mt-6 md:mt-0 md:text-right font-[family-name:var(--font-dm-sans)]"
           >
-            Award-winning projects that transformed businesses and delighted
-            users.
+            High impact projects that transformed businesses and delighted users.
           </motion.p>
         </div>
 
@@ -293,9 +292,9 @@ function ProjectCard({
         {/* Gradient Overlay */}
         <motion.div
           animate={{
-            opacity: isHovered ? 1 : 0.7,
+            opacity: isHovered ? 1 : 0.,
             background: isHovered
-              ? `linear-gradient(to top, black 0%, ${project.color}40 50%, transparent 100%)`
+              ? `linear-gradient(to top, black 0%, ${project.color}60 50%, transparent 100%)`
               : `linear-gradient(to top, ${project.color}80, transparent)`,
           }}
           transition={{ duration: 0.4 }}

@@ -35,16 +35,14 @@ export function CTA() {
 
     try {
       // Use Formspree for static sites (replace FORMSPREE_ID with your actual ID)
-      const response = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ID", {
+      const response = await fetch("https://formspree.io/f/xvzbzrvz", {
         method: "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email,
-          subject: "Newsletter Signup",
-          message: "New newsletter signup from website",
+          email
         }),
       });
 
