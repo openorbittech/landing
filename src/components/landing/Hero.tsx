@@ -318,6 +318,8 @@ export function Hero() {
           </div>
         </div>
 
+        <div className="h-24"></div>
+
         {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}

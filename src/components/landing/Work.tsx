@@ -443,7 +443,7 @@ function ProjectCard({
         </div>
 
         {/* Hover Icon */}
-        <motion.div
+        {/* <motion.div
           initial={{ scale: 0, y: -20 }}
           animate={{
             scale: isHovered ? 1 : 0,
@@ -454,7 +454,7 @@ function ProjectCard({
           style={{ backgroundColor: project.color }}
         >
           <ExternalLink className="w-5 h-5 text-white" />
-        </motion.div>
+        </motion.div> */}
 
         {/* View Count */}
         <motion.div

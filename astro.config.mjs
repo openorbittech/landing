@@ -28,7 +28,7 @@ export default defineConfig({
     remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
   },
   output: "static",
-  site: "https://openorbit.io",
+  site: "https://openorbit.tech",
   compressHTML: true,
   build: {
     inlineStylesheets: "auto",

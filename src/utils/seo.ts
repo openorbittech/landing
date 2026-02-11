@@ -27,7 +27,7 @@ export const defaultKeywords = [
     "software engineering services",
 ];
 
-export const siteUrl = "https://openorbit.io";
+export const siteUrl = "https://openorbit.tech";
 export const siteName = "OpenOrbit";
 
 export interface SEOProps {
@@ -100,7 +100,7 @@ export function generateSEOData(props: SEOProps) {
             {
                 "@type": "ContactPoint",
                 contactType: "sales",
-                email: "hello@openorbit.io",
+                email: "contact@openorbit.tech",
                 availableLanguage: ["English"],
                 contactOption: "TollFree",
                 areaServed: "Worldwide",
@@ -108,17 +108,17 @@ export function generateSEOData(props: SEOProps) {
             {
                 "@type": "ContactPoint",
                 contactType: "technical support",
-                email: "support@openorbit.io",
+                email: "contact@openorbit.tech",
                 availableLanguage: ["English"],
             },
         ],
         sameAs: [
-            "https://twitter.com/openorbit",
-            "https://linkedin.com/company/openorbit",
-            "https://github.com/openorbit",
-            "https://facebook.com/openorbit",
-            "https://instagram.com/openorbit",
-            "https://www.crunchbase.com/organization/openorbit",
+            "https://x.com/OpenOrbitTech",
+            "https://linkedin.com/company/openorbit-tech",
+            "https://github.com/openorbittech/",
+            "https://instagram.com/openorbittech",
+            // TODO: Add other social media links
+            // "https://www.crunchbase.com/organization/openorbit",
         ],
         hasOfferCatalog: {
             "@type": "OfferCatalog",
@@ -161,13 +161,13 @@ export function generateSEOData(props: SEOProps) {
                 },
             ],
         },
-        aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: "4.9",
-            reviewCount: "150",
-            bestRating: "5",
-            worstRating: "1",
-        },
+        // aggregateRating: {
+        //     "@type": "AggregateRating",
+        //     ratingValue: "4.9",
+        //     reviewCount: "150",
+        //     bestRating: "5",
+        //     worstRating: "1",
+        // },
         makesOffer: [
             {
                 "@type": "Offer",
@@ -186,18 +186,18 @@ export function generateSEOData(props: SEOProps) {
         name: `${siteName} - Software Development Agency`,
         image: image,
         url: siteUrl,
-        telephone: "+1-415-555-0123",
-        email: "hello@openorbit.io",
-        priceRange: "$$$",
+        // telephone: "+91-9876543210",
+        email: "contact@openorbit.tech",
+        // priceRange: "$$$",
         currenciesAccepted: "USD, EUR, GBP",
-        paymentAccepted: "Credit Card, Wire Transfer, Cryptocurrency",
+        paymentAccepted: "Credit Card, Wire Transfer, Cryptocurrency, UPI",
         openingHoursSpecification: [
             {
                 "@type": "OpeningHoursSpecification",
                 dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
                 opens: "09:00",
                 closes: "18:00",
-                timeZone: "America/Los_Angeles",
+                timeZone: "Asia/Kolkata",
             },
         ],
         areaServed: [
