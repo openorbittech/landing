@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
+import HeroLottie from "./HeroLottie";
 
 // Animated counter hook
 const useCounter = (target: number, duration: number = 2) => {
@@ -169,7 +170,7 @@ export function Hero() {
               {/* Main Headline with character animation */}
               <h1 className="mb-6">
                 <motion.span className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)] leading-none block">
-                  {"We Build".split("").map((char, i) => (
+                  {"Turning".split("").map((char, i) => (
                     <motion.span
                       key={i}
                       initial={{ y: 100, opacity: 0 }}
@@ -193,9 +194,11 @@ export function Hero() {
                   className="mt-2 block"
                 >
                   <span className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)] gradient-text">
-                    Digital Dreams
+                    Ideas
                   </span>
                 </motion.span>
+
+                {/* Engineering Your Ideas into Scalable Systems. */}
 
                 <motion.span
                   initial={{ y: 50, opacity: 0 }}
@@ -204,7 +207,7 @@ export function Hero() {
                   className="mt-2 block"
                 >
                   <span className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)] text-white/80">
-                    Into Reality
+                    Into Systems
                   </span>
                 </motion.span>
               </h1>
@@ -247,67 +250,71 @@ export function Hero() {
             </div>
 
             {/* Right Stats Panel */}
-            <motion.div
-              initial={{ x: 100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="hidden lg:block"
-            >
-              <div className="relative">
-                {/* Glass panel */}
-                <div className="glass rounded-3xl p-8 relative overflow-hidden">
-                  {/* Animated background gradient */}
-                  <motion.div
-                    animate={{
-                      y: [-10, 10, -10],
-                    }}
-                    transition={{
-                      duration: 10,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className="absolute -top-20 -right-20 w-40 h-40 bg-[#4F6DFF]/20 blur-[50px]"
-                  />
+            {/* TODO: COMMENTED FOR NOW */}
+            {false && (
+              <motion.div
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="hidden lg:block"
+              >
+                <div className="relative">
+                  {/* Glass panel */}
+                  <div className="glass rounded-3xl p-8 relative overflow-hidden">
+                    {/* Animated background gradient */}
+                    <motion.div
+                      animate={{
+                        y: [-10, 10, -10],
+                      }}
+                      transition={{
+                        duration: 10,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                      className="absolute -top-20 -right-20 w-40 h-40 bg-[#4F6DFF]/20 blur-[50px]"
+                    />
 
-                  <div className="grid grid-cols-2 gap-6 relative z-10">
-                    {stats.map((stat, index) => (
-                      <motion.div
-                        key={stat.label}
-                        initial={{ y: 50, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{
-                          duration: 0.5,
-                          delay: 1 + index * 0.1,
-                          ease: [0.21, 0.47, 0.32, 0.98],
-                        }}
-                        whileHover={{
-                          y: -5,
-                          transition: { duration: 0.2 },
-                        }}
-                        className="text-center p-4 rounded-2xl bg-white/5 border border-white/10"
-                        ref={countRefs[index]}
-                      >
-                        <div className="text-4xl font-bold text-white mb-1 font-[family-name:var(--font-space-grotesk)] gradient-text">
-                          {countValues[index]}
-                          {stat.suffix}
-                        </div>
-                        <div className="text-sm text-[#A7B0C8] font-[family-name:var(--font-dm-sans)]">
-                          {stat.label}
-                        </div>
-                      </motion.div>
-                    ))}
+                    <div className="grid grid-cols-2 gap-6 relative z-10">
+                      {stats.map((stat, index) => (
+                        <motion.div
+                          key={stat.label}
+                          initial={{ y: 50, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          transition={{
+                            duration: 0.5,
+                            delay: 1 + index * 0.1,
+                            ease: [0.21, 0.47, 0.32, 0.98],
+                          }}
+                          whileHover={{
+                            y: -5,
+                            transition: { duration: 0.2 },
+                          }}
+                          className="text-center p-4 rounded-2xl bg-white/5 border border-white/10"
+                          ref={countRefs[index]}
+                        >
+                          <div className="text-4xl font-bold text-white mb-1 font-[family-name:var(--font-space-grotesk)] gradient-text">
+                            {countValues[index]}
+                            {stat.suffix}
+                          </div>
+                          <div className="text-sm text-[#A7B0C8] font-[family-name:var(--font-dm-sans)]">
+                            {stat.label}
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Floating badges */}
+                  <div className="absolute -top-4 -left-4 px-4 py-2 rounded-full bg-[#4F6DFF] text-white text-sm font-medium shadow-lg shadow-[#4F6DFF]/30 font-[family-name:var(--font-dm-sans)]">
+                    Fast Delivery
+                  </div>
+                  <div className="absolute -bottom-4 -right-4 px-4 py-2 rounded-full bg-[#00D9FF] text-white text-sm font-medium shadow-lg shadow-[#00D9FF]/30 font-[family-name:var(--font-dm-sans)]">
+                    Founder-lead
                   </div>
                 </div>
-
-                {/* Floating badges */}
-                <div className="absolute -top-4 -left-4 px-4 py-2 rounded-full bg-[#4F6DFF] text-white text-sm font-medium shadow-lg shadow-[#4F6DFF]/30 font-[family-name:var(--font-dm-sans)]">
-                  Fast Delivery
-                </div>
-                <div className="absolute -bottom-4 -right-4 px-4 py-2 rounded-full bg-[#00D9FF] text-white text-sm font-medium shadow-lg shadow-[#00D9FF]/30 font-[family-name:var(--font-dm-sans)]">
-                  Founder-lead
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            )}
+            <HeroLottie />
           </div>
         </div>
 
