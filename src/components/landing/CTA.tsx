@@ -258,7 +258,10 @@ export function CTA() {
             >
               Prefer to talk?{" "}
               <a
-                href="mailto:hello@openorbit.io?subject=Schedule a Call - Project Inquiry"
+                // href="mailto:contact@openorbit.io?subject=Schedule a Call - Project Inquiry"
+                href="https://calendly.com/openorbittech/30min"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block text-white underline underline-offset-4 hover:text-[#4F6DFF] transition-colors"
               >
                 Schedule a call
