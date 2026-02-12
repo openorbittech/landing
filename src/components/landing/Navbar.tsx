@@ -57,6 +57,9 @@ export function Navbar() {
             <img
               src="/logod/openorbitlogo.svg"
               alt="OpenOrbit Logo"
+              width="200"
+              height="40"
+              decoding="async"
               className="h-10 w-auto"
             />
           </a>
@@ -98,6 +101,8 @@ export function Navbar() {
             whileTap={{ scale: 0.9 }}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden p-2 text-white"
+            aria-label="Toggle Mobile Menu"
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </motion.button>

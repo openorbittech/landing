@@ -37,6 +37,9 @@ const socialLinks = [
         label: "Instagram",
     },
 ];
+
+import { Image } from "astro:assets";
+import logo from "@/assets/LogoWhiteNBlack.png";
 ---
 
 <footer
@@ -60,9 +63,10 @@ const socialLinks = [
                     <div
                         class="w-12 h-12 rounded-full bg-black flex items-center justify-center overflow-hidden"
                     >
-                        <img
-                            src="/logod/openorbitsmall.png"
-                            alt="OpenOrbit"
+                        <Image
+                            src={logo}
+                            alt="logo"
+                            aria-hidden="true"
                             class="w-12 h-12 object-contain"
                         />
                     </div>
@@ -192,8 +196,12 @@ const socialLinks = [
     <button
         id="back-to-top"
         class="fixed bottom-8 right-8 w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-[#4F6DFF]/20 transition-all hover:-translate-y-1 z-40"
+        aria-label="Back to top"
     >
-        <ArrowUpRight className="w-5 h-5 text-white -rotate-45" />
+        <ArrowUpRight
+            className="w-5 h-5 text-white -rotate-45"
+            aria-hidden="true"
+        />
     </button>
 </footer>
 

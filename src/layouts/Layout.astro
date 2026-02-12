@@ -209,8 +209,6 @@ const { allKeywords, jsonLdScript } = generateSEOData({
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalUrl} />
 
-    <!-- Alternate URLs for internationalization -->
-
     <!-- Robots and Indexing -->
     {
       noindex ? (
@@ -232,35 +230,6 @@ const { allKeywords, jsonLdScript } = generateSEOData({
     />
     <meta name="slurp" content="index, follow" />
     <meta name="duckduckbot" content="index, follow" />
-
-    <!-- Geo Meta Tags for Local SEO -->
-    <meta name="geo.region" content="US-CA" />
-    <meta name="geo.placename" content="San Francisco" />
-    <meta name="geo.position" content="37.7749;-122.4194" />
-    <meta name="ICBM" content="37.7749, -122.4194" />
-
-    <!-- Dublin Core Metadata -->
-    <meta name="DC.title" content={title} />
-    <meta name="DC.creator" content={author} />
-    <meta name="DC.subject" content="Software Development" />
-    <meta name="DC.description" content={description} />
-    <meta name="DC.publisher" content={siteName} />
-    <meta name="DC.type" content="Service" />
-    <meta name="DC.format" content="text/html" />
-    <meta name="DC.language" content="en" />
-
-    <!-- Content Classification -->
-    <meta name="category" content="Technology" />
-    <meta name="classification" content="Software Development Services" />
-    <meta name="rating" content="general" />
-    <meta name="revisit-after" content="7 days" />
-    <meta name="distribution" content="global" />
-    <meta name="coverage" content="Worldwide" />
-    <meta name="target" content="all" />
-    <meta name="audience" content="all" />
-    <meta name="doc-type" content="Web Page" />
-    <meta name="doc-class" content="Complete" />
-    <meta name="doc-rights" content="Copyrighted Work" />
 
     <!-- Publisher Information -->
     <meta name="publisher" content={siteName} />
@@ -292,13 +261,6 @@ const { allKeywords, jsonLdScript } = generateSEOData({
     <meta name="HandheldFriendly" content="true" />
 
     <!-- Security -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io; media-src 'self'; frame-src 'self';"
-    />
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
 
     <!-- Performance Hints -->
