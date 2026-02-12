@@ -269,6 +269,20 @@ const { allKeywords, jsonLdScript } = generateSEOData({
     <!-- JSON-LD Structured Data -->
     <Fragment set:html={jsonLdScript} />
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtag/js?id=G-Z0DG1HSWKM"></script>
+
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-Z0DG1HSWKM");
+    </script>
+
     <!-- Performance: Defer non-critical CSS -->
     <style>
       /* Critical CSS inline for above-the-fold content */

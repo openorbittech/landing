@@ -6,6 +6,8 @@ import sitemap from "@astrojs/sitemap";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
+import partytown from "@astrojs/partytown";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -21,13 +23,8 @@ export default defineConfig({
       changefreq: "weekly",
       priority: 0.7,
       lastmod: new Date(),
-      // i18n: {
-      //   defaultLocale: "en",
-      //   locales: {
-      //     en: "en-US",
-      //   },
-      // },
     }),
+    partytown()
   ],
   image: {
     domains: ["images.unsplash.com"],
