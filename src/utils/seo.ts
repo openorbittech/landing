@@ -1,31 +1,4 @@
-export const defaultKeywords = [
-    "software development agency",
-    "custom software development",
-    "web application development",
-    "mobile app development",
-    "enterprise software solutions",
-    "cloud solutions",
-    "AI integration",
-    "machine learning development",
-    "blockchain development",
-    "IoT solutions",
-    "digital transformation",
-    "SaaS development",
-    "MVP development",
-    "React development",
-    "Next.js development",
-    "Node.js development",
-    "full stack development",
-    "API development",
-    "DevOps services",
-    "UI UX design",
-    "software consulting",
-    "agile development",
-    "custom web development",
-    "mobile development company",
-    "app development agency",
-    "software engineering services",
-];
+
 
 export const siteUrl = "https://openorbit.tech";
 export const siteName = "OpenOrbit";
@@ -40,7 +13,6 @@ export interface SEOProps {
     publishDate?: string;
     modifiedDate?: string;
     section: string;
-    keywords: string[];
     structuredData?: any;
 }
 
@@ -55,11 +27,8 @@ export function generateSEOData(props: SEOProps) {
         publishDate,
         modifiedDate,
         section,
-        keywords,
         structuredData = [],
     } = props;
-
-    const allKeywords = [...defaultKeywords, ...keywords].join(", ");
 
     // Comprehensive Organization Schema
     const organizationSchema = {
@@ -83,18 +52,18 @@ export function generateSEOData(props: SEOProps) {
             height: 630,
         },
         description: description,
-        foundingDate: "2012",
-        founders: [
-            {
-                "@type": "Person",
-                name: "OpenOrbit Team",
-            },
-        ],
+        foundingDate: "2026",
+        // founders: [
+        //     {
+        //         "@type": "Person",
+        //         name: "OpenOrbit Team",
+        //     },
+        // ],
         address: {
             "@type": "PostalAddress",
-            addressCountry: "US",
-            addressLocality: "San Francisco",
-            addressRegion: "CA",
+            addressCountry: "IN",
+            addressLocality: "Bangalore",
+            addressRegion: "KA",
         },
         contactPoint: [
             {
@@ -161,13 +130,6 @@ export function generateSEOData(props: SEOProps) {
                 },
             ],
         },
-        // aggregateRating: {
-        //     "@type": "AggregateRating",
-        //     ratingValue: "4.9",
-        //     reviewCount: "150",
-        //     bestRating: "5",
-        //     worstRating: "1",
-        // },
         makesOffer: [
             {
                 "@type": "Offer",
@@ -200,12 +162,10 @@ export function generateSEOData(props: SEOProps) {
                 timeZone: "Asia/Kolkata",
             },
         ],
-        areaServed: [
-            {
-                "@type": "Place",
-                name: "Global",
-            },
-        ],
+        "areaServed": [
+            { "@type": "Country", "name": "United States" },
+            { "@type": "Country", "name": "United Kingdom" }
+        ]
     };
 
     // WebSite Schema
@@ -220,14 +180,14 @@ export function generateSEOData(props: SEOProps) {
             "@id": `${siteUrl}/#organization`,
         },
         potentialAction: [
-            {
-                "@type": "SearchAction",
-                target: {
-                    "@type": "EntryPoint",
-                    urlTemplate: `${siteUrl}/search?q={search_term_string}`,
-                },
-                "query-input": "required name=search_term_string",
-            },
+            // {
+            //     "@type": "SearchAction",
+            //     target: {
+            //         "@type": "EntryPoint",
+            //         urlTemplate: `${siteUrl}/search?q={search_term_string}`,
+            //     },
+            //     "query-input": "required name=search_term_string",
+            // },
         ],
     };
 
@@ -241,7 +201,7 @@ export function generateSEOData(props: SEOProps) {
         headline: title,
         description: description,
         image: image,
-        inLanguage: "en-US",
+        inLanguage: "en",
         isPartOf: {
             "@id": `${siteUrl}/#website`,
         },
@@ -268,20 +228,20 @@ export function generateSEOData(props: SEOProps) {
     };
 
     // FAQ Schema
-    const faqSchema = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: [
-            {
-                "@type": "Question",
-                name: "What services does OpenOrbit offer?",
-                acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "OpenOrbit offers comprehensive software development services including web application development, mobile app development, cloud solutions, and AI integration.",
-                },
-            },
-        ],
-    };
+    // const faqSchema = {
+    //     "@context": "https://schema.org",
+    //     "@type": "FAQPage",
+    //     mainEntity: [
+    //         {
+    //             "@type": "Question",
+    //             name: "What services does OpenOrbit offer?",
+    //             acceptedAnswer: {
+    //                 "@type": "Answer",
+    //                 text: "OpenOrbit offers comprehensive software development services including web application development, mobile app development, cloud solutions, and AI integration.",
+    //             },
+    //         },
+    //     ],
+    // };
 
     // Service Schema
     const serviceSchema = {
@@ -304,13 +264,12 @@ export function generateSEOData(props: SEOProps) {
         localBusinessSchema,
         websiteSchema,
         webpageSchema,
-        faqSchema,
+        // faqSchema,
         serviceSchema,
         ...(Array.isArray(structuredData) ? structuredData : [structuredData]),
     ].filter(Boolean);
 
     return {
-        allKeywords,
         jsonLdScript: `<script type="application/ld+json">${JSON.stringify(allSchemas)}</script>`,
     };
 }

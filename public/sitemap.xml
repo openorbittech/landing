@@ -5,17 +5,13 @@
   
   <!-- Homepage - Highest Priority -->
   <url>
-    <loc>https://openorbit.io</loc>
-    <xhtml:link rel="alternate" hreflang="en-us" href="https://openorbit.io" />
-    <xhtml:link rel="alternate" hreflang="en-gb" href="https://openorbit.io" />
-    <xhtml:link rel="alternate" hreflang="en-ca" href="https://openorbit.io" />
-    <xhtml:link rel="alternate" hreflang="en-au" href="https://openorbit.io" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://openorbit.io" />
+    <loc>https://openorbit.tech</loc>
+
     <lastmod>2026-02-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://openorbit.io/og-image.jpg</image:loc>
+      <image:loc>https://openorbit.tech/og-image.jpg</image:loc>
       <image:title>OpenOrbit - High-impact Software Development Agency</image:title>
       <image:caption>Premium software development services for web apps, mobile apps, and cloud solutions</image:caption>
     </image:image>
@@ -23,58 +19,23 @@
   
   <!-- Portfolio Page - High Priority -->
   <url>
-    <loc>https://openorbit.io/portfolio</loc>
-    <xhtml:link rel="alternate" hreflang="en-us" href="https://openorbit.io/portfolio" />
-    <xhtml:link rel="alternate" hreflang="en-gb" href="https://openorbit.io/portfolio" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://openorbit.io/portfolio" />
+    <loc>https://openorbit.tech/portfolio</loc>
+    <xhtml:link rel="alternate" hreflang="en-us" href="https://openorbit.tech/portfolio" />
+    <xhtml:link rel="alternate" hreflang="en-gb" href="https://openorbit.tech/portfolio" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://openorbit.tech/portfolio" />
     <lastmod>2026-02-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://openorbit.io/portfolio-hero.jpg</image:loc>
+      <image:loc>https://openorbit.tech/portfolio-hero.jpg</image:loc>
       <image:title>Software Development Portfolio - 150+ Projects</image:title>
       <image:caption>Explore our high-impact software development projects</image:caption>
     </image:image>
   </url>
   
-  <!-- Services Section (Anchor Link) -->
-  <url>
-    <loc>https://openorbit.io/#services</loc>
-    <lastmod>2026-02-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- Work/Projects Section (Anchor Link) -->
-  <url>
-    <loc>https://openorbit.io/#work</loc>
-    <lastmod>2026-02-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- Testimonials Section (Anchor Link) -->
-  <url>
-    <loc>https://openorbit.io/#testimonials</loc>
-    <lastmod>2026-02-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <!-- Contact Section (Anchor Link) -->
-  <url>
-    <loc>https://openorbit.io/#contact</loc>
-    <lastmod>2026-02-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <!-- Process Section (Anchor Link) -->
-  <url>
-    <loc>https://openorbit.io/#process</loc>
-    <lastmod>2026-02-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+  <!-- Work/Projects Section (Anchor Link) - REMOVED -->
+  <!-- Testimonials Section (Anchor Link) - REMOVED -->
+  <!-- Contact Section (Anchor Link) - REMOVED -->
+  <!-- Process Section (Anchor Link) - REMOVED -->
 
 </urlset>

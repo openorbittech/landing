@@ -20,7 +20,7 @@ interface Props {
 const {
   title = "OpenOrbit | High-impact Software Development Agency",
   description = "OpenOrbit: Premium software development agency delivering web apps, mobile apps, cloud solutions & AI integration. 98% client satisfaction. Enterprise-grade solutions for startups to enterprises.",
-  image = "https://openorbit.io/og-image.jpg",
+  image = "https://openorbit.tech/og-image.jpg",
   canonicalUrl = Astro.url.href,
   noindex = false,
   structuredData = [],
@@ -210,11 +210,6 @@ const { allKeywords, jsonLdScript } = generateSEOData({
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Alternate URLs for internationalization -->
-    <link rel="alternate" hreflang="en-us" href={canonicalUrl} />
-    <link rel="alternate" hreflang="en-gb" href={canonicalUrl} />
-    <link rel="alternate" hreflang="en-ca" href={canonicalUrl} />
-    <link rel="alternate" hreflang="en-au" href={canonicalUrl} />
-    <link rel="alternate" hreflang="x-default" href={siteUrl} />
 
     <!-- Robots and Indexing -->
     {
@@ -237,19 +232,6 @@ const { allKeywords, jsonLdScript } = generateSEOData({
     />
     <meta name="slurp" content="index, follow" />
     <meta name="duckduckbot" content="index, follow" />
-
-    <!-- Search Engine Verification -->
-    <meta
-      name="google-site-verification"
-      content="YOUR_GOOGLE_VERIFICATION_CODE"
-    />
-    <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" />
-    <meta name="yandex-verification" content="YOUR_YANDEX_VERIFICATION_CODE" />
-    <meta name="p:domain_verify" content="YOUR_PINTEREST_VERIFICATION_CODE" />
-    <meta
-      name="facebook-domain-verification"
-      content="YOUR_FACEBOOK_VERIFICATION_CODE"
-    />
 
     <!-- Geo Meta Tags for Local SEO -->
     <meta name="geo.region" content="US-CA" />
@@ -283,7 +265,7 @@ const { allKeywords, jsonLdScript } = generateSEOData({
     <!-- Publisher Information -->
     <meta name="publisher" content={siteName} />
     <meta name="web_author" content="OpenOrbit Development Team" />
-    <meta name="reply-to" content="hello@openorbit.io" />
+    <meta name="reply-to" content="contact@openorbit.tech" />
     <meta name="owner" content={siteName} />
     <meta name="url" content={siteUrl} />
     <meta name="identifier-URL" content={siteUrl} />
