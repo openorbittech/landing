@@ -3,6 +3,12 @@ import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 
+import { dirname, resolve } from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [
@@ -15,12 +21,12 @@ export default defineConfig({
       changefreq: "weekly",
       priority: 0.7,
       lastmod: new Date(),
-      i18n: {
-        defaultLocale: "en",
-        locales: {
-          en: "en-US",
-        },
-      },
+      // i18n: {
+      //   defaultLocale: "en",
+      //   locales: {
+      //     en: "en-US",
+      //   },
+      // },
     }),
   ],
   image: {
@@ -34,17 +40,24 @@ export default defineConfig({
     inlineStylesheets: "auto",
   },
   vite: {
+    resolve: {
+      alias: {
+        "@": resolve(__dirname, "src"),
+      },
+    },
+
     build: {
       cssCodeSplit: true,
       minify: true,
       rollupOptions: {
         output: {
           manualChunks: {
-            'lucide': ['lucide-react']
-          }
-        }
-      }
+            lucide: ["lucide-react"],
+          },
+        },
+      },
     },
+
     optimizeDeps: {
       include: ["lucide-react"],
     },

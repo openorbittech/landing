@@ -1,0 +1,277 @@
+---
+import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
+import AnimatedMeshGradientOverlay from "@/components/landing/sub/MeshAnimation";
+import { Image } from "astro:assets";
+import heroImage from "@/assets/herobg.jpeg";
+---
+
+<section
+    id="hero"
+    aria-label="Hero section - OpenOrbit Software Development Agency"
+    class="relative min-h-screen w-full overflow-hidden flex items-center justify-center"
+>
+    {/* Hero Background */}
+    <div class="absolute inset-0 z-0" aria-hidden="true">
+        <Image
+            src={heroImage}
+            alt="Software development background"
+            class="absolute w-full h-full object-cover scale-110"
+            quality={80}
+            loading="eager"
+        />
+
+        {/* Image Overlay */}
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-[#070A12]/90 via-[#0B0F1C]/70 to-[#070A12]/90"
+        >
+        </div>
+
+        {/* Animated mesh gradient overlay */}
+        <AnimatedMeshGradientOverlay client:visible />
+    </div>
+
+    {/* Floating decorative circle */}
+    <div
+        class="floating-circle-2 absolute bottom-40 right-20 w-32 h-32 border border-[#4F6DFF]/10 rounded-full hidden lg:block"
+    >
+    </div>
+
+    {/* Content */}
+    <div class="hero-content relative z-10 container mx-auto px-6 pt-32 pb-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                {/* Left Content */}
+                <div class="text-left">
+                    {/* Badge */}
+                    <div
+                        class="animate-fade-in-up inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6"
+                        style="animation-delay: 0ms;"
+                    >
+                        <Sparkles className="w-4 h-4 text-[#4F6DFF]" />
+                        <span
+                            class="text-sm font-medium text-[#A7B0C8] font-[family-name:var(--font-dm-sans)]"
+                        >
+                            Now accepting new projects for Q1 2026
+                        </span>
+                    </div>
+
+                    {/* Main Headline */}
+                    <h1 class="mb-6">
+                        <span
+                            class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)] leading-none block overflow-hidden"
+                        >
+                            <span class="inline-block animate-slide-up-text"
+                                >Turning</span
+                            >
+                        </span>
+
+                        <span class="mt-2 block overflow-hidden">
+                            <span
+                                class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)] gradient-text inline-block animate-slide-in-right"
+                                style="animation-delay: 500ms;"
+                            >
+                                Ideas
+                            </span>
+                        </span>
+
+                        <span class="mt-2 block overflow-hidden">
+                            <span
+                                class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)] text-white/80 inline-block animate-fade-in-up"
+                                style="animation-delay: 800ms;"
+                            >
+                                Into Systems
+                            </span>
+                        </span>
+                    </h1>
+
+                    {/* Subheadline */}
+                    <p
+                        class="text-xl text-[#A7B0C8] max-w-lg mb-8 leading-normal font-[family-name:var(--font-dm-sans)] animate-fade-in-up"
+                        style="animation-delay: 1000ms;"
+                    >
+                        Founder-led technical studio delivering elite software
+                        solutions with senior-level expertise and zero agency
+                        overhead.
+                    </p>
+
+                    {/* CTAs */}
+                    <div
+                        class="flex flex-wrap gap-4 animate-fade-in-up"
+                        style="animation-delay: 1200ms;"
+                    >
+                        <a
+                            href="#contact"
+                            class="btn-primary flex items-center gap-2 text-lg group transition-transform hover:scale-105 active:scale-95"
+                        >
+                            Start Your Project
+                            <ArrowRight className="w-5 h-5" />
+                        </a>
+                        <a
+                            href="/portfolio"
+                            class="btn-secondary flex items-center gap-2 text-lg transition-transform hover:scale-105 active:scale-95"
+                        >
+                            View Our Work
+                        </a>
+                    </div>
+                </div>
+
+                {/* Right Stats Panel / Lottie */}
+                <div
+                    class="w-[600px] h-[600px] lg:block hidden relative group animate-fade-in"
+                    style="animation-delay: 500ms;"
+                >
+                    <div id="lottie-container" class="absolute inset-0"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="h-24"></div>
+
+        {/* Scroll Indicator */}
+        <div
+            class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer animate-fade-in"
+            style="animation-delay: 2000ms;"
+        >
+            <div class="flex flex-col items-center animate-bounce-slow">
+                <span
+                    class="text-xs uppercase tracking-widest text-[#A7B0C8] mb-2 font-[family-name:var(--font-dm-sans)]"
+                >
+                    Scroll to explore
+                </span>
+                <ChevronDown className="w-6 h-6 text-[#4F6DFF]" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import lottie from "lottie-web";
+    import animationData from "../../assets/LottieHeroAnimation.json";
+
+    // Lottie Animation
+    const container = document.getElementById("lottie-container");
+    if (container) {
+        lottie.loadAnimation({
+            container: container,
+            renderer: "svg",
+            loop: true,
+            autoplay: true,
+            animationData: animationData,
+        });
+    }
+
+    // Scroll Opacity/Scale Effect
+    const heroSection = document.getElementById("hero");
+    const heroContent = document.querySelector(
+        ".hero-content",
+    ) as HTMLElement | null;
+
+    if (heroSection && heroContent) {
+        window.addEventListener("scroll", () => {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const progress = Math.min(scrollY / (windowHeight * 0.8), 1);
+
+            // Opacity: 1 -> 0
+            const opacity = 1 - progress;
+            // Scale: 1 -> 0.85
+            const scale = 1 - progress * 0.15;
+
+            heroContent.style.opacity = opacity.toString();
+            heroContent.style.transform = `scale(${scale})`;
+        });
+    }
+</script>
+
+<style>
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideUpText {
+        from {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideInRight {
+        from {
+            clip-path: inset(0 100% 0 0);
+        }
+        to {
+            clip-path: inset(0 0% 0 0);
+        }
+    }
+
+    @keyframes float2 {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(30px);
+        }
+    }
+
+    @keyframes bounceSlow {
+        0%,
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        50% {
+            transform: translateY(15px);
+            opacity: 0.3;
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .animate-fade-in-up {
+        opacity: 0;
+        animation: fadeInUp 0.8s cubic-bezier(0.21, 0.47, 0.32, 0.98) forwards;
+    }
+
+    .animate-slide-up-text {
+        animation: slideUpText 0.5s cubic-bezier(0.21, 0.47, 0.32, 0.98)
+            forwards;
+    }
+
+    .animate-slide-in-right {
+        clip-path: inset(0 100% 0 0);
+        animation: slideInRight 1s cubic-bezier(0.21, 0.47, 0.32, 0.98) forwards;
+    }
+
+    .animate-bounce-slow {
+        animation: bounceSlow 2s infinite;
+    }
+
+    .animate-fade-in {
+        opacity: 0;
+        animation: fadeIn 1s forwards;
+    }
+
+    .floating-circle-2 {
+        animation: float2 25s linear infinite;
+    }
+</style>

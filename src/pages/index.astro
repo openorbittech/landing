@@ -2,7 +2,7 @@
 export const prerender = true;
 import Layout from "../layouts/Layout.astro";
 import { Navbar } from "../components/landing/Navbar";
-import { Hero } from "../components/landing/Hero";
+import Hero from "../components/landing/Hero.astro";
 import Services from "../components/landing/Services.astro";
 import { Work } from "../components/landing/Work";
 // import { Testimonials } from "../components/landing/Testimonials";
@@ -39,7 +39,7 @@ const keywords = [
   >
     <Navbar client:load />
     <article itemscope itemtype="https://schema.org/Service">
-      <Hero client:visible />
+      <Hero />
       <Services />
       <Work client:visible />
       <!-- <Testimonials client:visible /> -->
