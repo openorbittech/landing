@@ -32,7 +32,7 @@ const {
   section = "Technology",
 } = Astro.props;
 
-const { allKeywords, jsonLdScript } = generateSEOData({
+const { jsonLdScript } = generateSEOData({
   title,
   description,
   image,
@@ -42,7 +42,6 @@ const { allKeywords, jsonLdScript } = generateSEOData({
   publishDate,
   modifiedDate,
   section,
-  keywords,
   structuredData,
 });
 ---
@@ -101,7 +100,6 @@ const { allKeywords, jsonLdScript } = generateSEOData({
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <meta name="keywords" content={allKeywords} />
     <meta name="author" content={author} />
     <meta
       name="copyright"

@@ -3,6 +3,7 @@ import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
 import AnimatedMeshGradientOverlay from "@/components/landing/sub/MeshAnimation";
 import { Image } from "astro:assets";
 import heroImage from "@/assets/herobg.jpeg";
+import HeroLottie from "@/components/landing/sub/HeroLottie";
 ---
 
 <section
@@ -119,7 +120,7 @@ import heroImage from "@/assets/herobg.jpeg";
                     class="w-[600px] h-[600px] lg:block hidden relative group animate-fade-in"
                     style="animation-delay: 500ms;"
                 >
-                    <div id="lottie-container" class="absolute inset-0"></div>
+                    <HeroLottie client:visible />
                 </div>
             </div>
         </div>
@@ -144,21 +145,6 @@ import heroImage from "@/assets/herobg.jpeg";
 </section>
 
 <script>
-    import lottie from "lottie-web";
-    import animationData from "../../assets/LottieHeroAnimation.json";
-
-    // Lottie Animation
-    const container = document.getElementById("lottie-container");
-    if (container) {
-        lottie.loadAnimation({
-            container: container,
-            renderer: "svg",
-            loop: true,
-            autoplay: true,
-            animationData: animationData,
-        });
-    }
-
     // Scroll Opacity/Scale Effect
     const heroSection = document.getElementById("hero");
     const heroContent = document.querySelector(
