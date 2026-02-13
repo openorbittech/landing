@@ -34,7 +34,7 @@ export default defineConfig({
   site: "https://openorbit.tech",
   compressHTML: true,
   build: {
-    inlineStylesheets: "auto",
+    inlineStylesheets: "always",
   },
   vite: {
     resolve: {
