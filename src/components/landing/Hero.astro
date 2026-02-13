@@ -153,18 +153,33 @@ import HeroLottie from "@/components/landing/sub/HeroLottie";
     ) as HTMLElement | null;
 
     if (heroSection && heroContent) {
+        let windowHeight = window.innerHeight;
+        let ticking = false;
+
+        window.addEventListener("resize", () => {
+            windowHeight = window.innerHeight;
+        });
+
         window.addEventListener("scroll", () => {
-            const scrollY = window.scrollY;
-            const windowHeight = window.innerHeight;
-            const progress = Math.min(scrollY / (windowHeight * 0.8), 1);
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+                    const progress = Math.min(
+                        scrollY / (windowHeight * 0.8),
+                        1,
+                    );
 
-            // Opacity: 1 -> 0
-            const opacity = 1 - progress;
-            // Scale: 1 -> 0.85
-            const scale = 1 - progress * 0.15;
+                    // Opacity: 1 -> 0
+                    const opacity = 1 - progress;
+                    // Scale: 1 -> 0.85
+                    const scale = 1 - progress * 0.15;
 
-            heroContent.style.opacity = opacity.toString();
-            heroContent.style.transform = `scale(${scale})`;
+                    heroContent.style.opacity = opacity.toString();
+                    heroContent.style.transform = `scale(${scale})`;
+                    ticking = false;
+                });
+                ticking = true;
+            }
         });
     }
 </script>
