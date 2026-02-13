@@ -325,18 +325,24 @@ const { jsonLdScript } = generateSEOData({
       /* Skip to main content link for accessibility */
       .skip-link {
         position: absolute;
-        top: -40px;
-        left: 0;
-        background: var(--primary);
-        color: white;
-        padding: 8px;
+        top: -100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        color: var(--background);
+        padding: 12px 24px;
         text-decoration: none;
-        z-index: 100;
-        transition: top 0.3s;
+        font-weight: 700;
+        z-index: 9999;
+        transition: top 0.3s ease;
+        border-radius: 0 0 8px 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       }
 
       .skip-link:focus {
         top: 0;
+        outline: 3px solid var(--primary);
+        outline-offset: 2px;
       }
     </style>
   </head>
