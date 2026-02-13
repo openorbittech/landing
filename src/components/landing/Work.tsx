@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { m, useScroll, useTransform, useInView, LazyMotion, domAnimation, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { ArrowUpRight, ExternalLink, Eye } from "lucide-react";
 
@@ -168,88 +168,90 @@ export function Work() {
   );
 
   return (
-    <motion.section
-      ref={containerRef}
-      id="work"
-      aria-label="Our Portfolio - Featured Software Projects"
-      itemScope
-      itemType="https://schema.org/CreativeWork"
-      style={{ backgroundColor }}
-      className="relative py-32 overflow-hidden"
-    >
-      {/* Background Grid */}
-      <div className="absolute inset-0 grid-pattern opacity-10" />
+    <LazyMotion features={domAnimation}>
+      <m.section
+        ref={containerRef}
+        id="work"
+        aria-label="Our Portfolio - Featured Software Projects"
+        itemScope
+        itemType="https://schema.org/CreativeWork"
+        style={{ backgroundColor }}
+        className="relative py-32 overflow-hidden"
+      >
+        {/* Background Grid */}
+        <div className="absolute inset-0 grid-pattern opacity-10" />
 
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Section Header */}
-        <div
-          className="flex flex-col md:flex-row md:items-end md:justify-between mb-20"
-          ref={headerRef}
-        >
-          <div className="max-w-2xl">
-            <motion.div
-              initial={{ x: -100, opacity: 0 }}
+        <div className="container mx-auto px-6 relative z-10">
+          {/* Section Header */}
+          <div
+            className="flex flex-col md:flex-row md:items-end md:justify-between mb-20"
+            ref={headerRef}
+          >
+            <div className="max-w-2xl">
+              <m.div
+                initial={{ x: -100, opacity: 0 }}
+                animate={isInView ? { x: 0, opacity: 1 } : {}}
+                transition={{ duration: 0.8 }}
+                className="flex items-center gap-4 mb-6"
+              >
+                <div className="h-px w-16 bg-gradient-to-r from-[#4F6DFF] to-transparent" />
+                <span className="text-sm font-medium text-[#4F6DFF] uppercase tracking-widest">
+                  Selected Work
+                </span>
+              </m.div>
+
+              <m.h2
+                initial={{ y: 100, opacity: 0 }}
+                animate={isInView ? { y: 0, opacity: 1 } : {}}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)]"
+              >
+                <span className="block">Our</span>
+                <span className="gradient-text">Portfolio</span>
+              </m.h2>
+            </div>
+
+            <m.p
+              initial={{ x: 50, opacity: 0 }}
               animate={isInView ? { x: 0, opacity: 1 } : {}}
-              transition={{ duration: 0.8 }}
-              className="flex items-center gap-4 mb-6"
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-[#A7B0C8] max-w-md mt-6 md:mt-0 md:text-right font-[family-name:var(--font-dm-sans)]"
             >
-              <div className="h-px w-16 bg-gradient-to-r from-[#4F6DFF] to-transparent" />
-              <span className="text-sm font-medium text-[#4F6DFF] uppercase tracking-widest">
-                Selected Work
-              </span>
-            </motion.div>
-
-            <motion.h2
-              initial={{ y: 100, opacity: 0 }}
-              animate={isInView ? { y: 0, opacity: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)]"
-            >
-              <span className="block">Our</span>
-              <span className="gradient-text">Portfolio</span>
-            </motion.h2>
+              High impact projects that transformed businesses and delighted users.
+            </m.p>
           </div>
 
-          <motion.p
-            initial={{ x: 50, opacity: 0 }}
-            animate={isInView ? { x: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-[#A7B0C8] max-w-md mt-6 md:mt-0 md:text-right font-[family-name:var(--font-dm-sans)]"
+          {/* Masonry Gallery */}
+          <m.div
+            style={{ x }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[200px]"
           >
-            High impact projects that transformed businesses and delighted users.
-          </motion.p>
+            {projects.map((project, index) => (
+              <ProjectCard key={project.title} project={project} index={index} />
+            ))}
+          </m.div>
+
+          {/* View All CTA */}
+          <m.div
+            initial={{ y: 50, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mt-16 text-center"
+          >
+            <m.a
+              href="/portfolio"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-colors"
+            >
+              View All Projects
+              <ArrowUpRight className="w-5 h-5" />
+            </m.a>
+          </m.div>
         </div>
-
-        {/* Masonry Gallery */}
-        <motion.div
-          style={{ x }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[200px]"
-        >
-          {projects.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} />
-          ))}
-        </motion.div>
-
-        {/* View All CTA */}
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mt-16 text-center"
-        >
-          <motion.a
-            href="/portfolio"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-colors"
-          >
-            View All Projects
-            <ArrowUpRight className="w-5 h-5" />
-          </motion.a>
-        </motion.div>
-      </div>
-    </motion.section>
+      </m.section>
+    </LazyMotion>
   );
 }
 
@@ -286,7 +288,7 @@ function ProjectCard({
   const imageY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{
         opacity: 0,
@@ -311,7 +313,7 @@ function ProjectCard({
       onMouseLeave={() => setIsHovered(false)}
       className={`relative group ${getSpanClass()} cursor-pointer`}
     >
-      <motion.div
+      <m.div
         animate={{
           y: isHovered ? -5 : 0,
         }}
@@ -322,7 +324,7 @@ function ProjectCard({
         }}
       >
         {/* Image with parallax */}
-        <motion.div
+        <m.div
           style={{ scale: imageScale, y: imageY }}
           className="absolute inset-0"
         >
@@ -333,10 +335,10 @@ function ProjectCard({
             decoding="async"
             className="w-full h-full object-cover"
           />
-        </motion.div>
+        </m.div>
 
         {/* Gradient Overlay */}
-        <motion.div
+        <m.div
           animate={{
             opacity: isHovered ? 1 : 0,
             background: isHovered
@@ -357,7 +359,7 @@ function ProjectCard({
           className="absolute inset-0 z-10"
         /> */}
 
-        <motion.div
+        <m.div
           animate={{
             opacity: isHovered ? 0.6 : 0.4,
           }}
@@ -368,7 +370,7 @@ function ProjectCard({
         {/* Content */}
         <div className="absolute inset-0 p-6 flex flex-col justify-end z-20">
           {project.stats && project.stats.length > 0 && (
-            <motion.div
+            <m.div
               initial={{ x: -50, opacity: 0 }}
               animate={{ x: isHovered ? 0 : -50, opacity: isHovered ? 1 : 0 }}
               transition={{ duration: 0.3 }}
@@ -391,41 +393,41 @@ function ProjectCard({
                   {stat.text}
                 </span>
               ))}
-            </motion.div>
+            </m.div>
           )}
 
           {/* Category */}
-          <motion.span
+          <m.span
             animate={{ y: isHovered ? 0 : 30, opacity: isHovered ? 1 : 0.8 }}
             transition={{ duration: 0.3 }}
             className="text-sm font-medium mb-2"
             style={{ color: project.color, textShadow: "0 2px 4px rgba(0,0,0,0.5)" }}
           >
             {project.category}
-          </motion.span>
+          </m.span>
 
           {/* Title */}
-          <motion.h3
+          <m.h3
             animate={{ y: isHovered ? 0 : 30 }}
             transition={{ duration: 0.3 }}
             className="text-2xl md:text-3xl font-bold text-white mb-2 font-[family-name:var(--font-space-grotesk)]"
             style={{ textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}
           >
             {project.title}
-          </motion.h3>
+          </m.h3>
 
           {/* Description */}
-          <motion.p
+          <m.p
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: isHovered ? 0 : 20, opacity: isHovered ? 1 : 0 }}
             transition={{ duration: 0.3 }}
             className="text-white/80 text-sm mb-4 line-clamp-2 font-[family-name:var(--font-dm-sans)]"
           >
             {project.description}
-          </motion.p>
+          </m.p>
 
           {/* Tags */}
-          <motion.div
+          <m.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: isHovered ? 0 : 20, opacity: isHovered ? 1 : 0 }}
             transition={{ duration: 0.3, delay: 0.1 }}
@@ -439,7 +441,7 @@ function ProjectCard({
                 {tag}
               </span>
             ))}
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Hover Icon */}
@@ -457,7 +459,7 @@ function ProjectCard({
         </motion.div> */}
 
         {/* View Count */}
-        <motion.div
+        <m.div
           initial={{ x: 50, opacity: 0 }}
           animate={{ x: isHovered ? 0 : 50, opacity: isHovered ? 1 : 0 }}
           transition={{ duration: 0.3 }}
@@ -465,8 +467,8 @@ function ProjectCard({
         >
           <Eye className="w-4 h-4" />
           <span>{3500 + index * 200}</span>
-        </motion.div>
-      </motion.div>
-    </motion.div>
+        </m.div>
+      </m.div>
+    </m.div>
   );
 }

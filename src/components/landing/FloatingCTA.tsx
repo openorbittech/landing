@@ -1,6 +1,4 @@
-"use client";
-
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence, LazyMotion, domAnimation } from "framer-motion";
 import { useState, useEffect } from "react";
 import { ArrowRight, X, CheckCircle2 } from "lucide-react";
 
@@ -22,7 +20,7 @@ export function FloatingCTA() {
       setIsVisible(scrollY > 500);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -31,8 +29,7 @@ export function FloatingCTA() {
     setIsSubmitting(true);
 
     try {
-      // Use Formspree for static sites (replace YOUR_FORMSPREE_ID with your actual ID)
-      const response = await fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
+      const response = await fetch('https://formspree.io/f/xvzbzrvz', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -72,18 +69,18 @@ export function FloatingCTA() {
   };
 
   return (
-    <>
+    <LazyMotion features={domAnimation}>
       {/* Floating Button */}
       <AnimatePresence>
         {isVisible && (
-          <motion.div
+          <m.div
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
             transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="fixed bottom-8 right-8 z-50"
           >
-            <motion.button
+            <m.button
               onClick={() => setIsOpen(true)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -91,8 +88,8 @@ export function FloatingCTA() {
             >
               Get a quote
               <ArrowRight className="w-4 h-4" />
-            </motion.button>
-          </motion.div>
+            </m.button>
+          </m.div>
         )}
       </AnimatePresence>
 
@@ -101,7 +98,7 @@ export function FloatingCTA() {
         {isOpen && (
           <>
             {/* Backdrop */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -111,7 +108,7 @@ export function FloatingCTA() {
             />
 
             {/* Modal */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.9, y: 50 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 50 }}
@@ -128,7 +125,7 @@ export function FloatingCTA() {
 
               {isSubmitted ? (
                 // Success State
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="flex flex-col items-center justify-center py-12"
@@ -142,7 +139,7 @@ export function FloatingCTA() {
                   <p className="text-[#A7B0C8] text-center">
                     We&apos;ll be in touch within 24 hours.
                   </p>
-                </motion.div>
+                </m.div>
               ) : (
                 // Form State
                 <>
@@ -220,7 +217,7 @@ export function FloatingCTA() {
                     </div>
 
                     {/* Submit Button */}
-                    <motion.button
+                    <m.button
                       type="submit"
                       disabled={isSubmitting}
                       whileHover={{ scale: 1.02 }}
@@ -229,7 +226,7 @@ export function FloatingCTA() {
                     >
                       {isSubmitting ? (
                         <>
-                          <motion.div
+                          <m.div
                             animate={{ rotate: 360 }}
                             transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                             className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
@@ -242,7 +239,7 @@ export function FloatingCTA() {
                           <ArrowRight className="w-5 h-5" />
                         </>
                       )}
-                    </motion.button>
+                    </m.button>
 
                     <p className="text-xs text-[#A7B0C8] text-center">
                       We respect your privacy. No spam, ever.
@@ -250,10 +247,10 @@ export function FloatingCTA() {
                   </form>
                 </>
               )}
-            </motion.div>
+            </m.div>
           </>
         )}
       </AnimatePresence>
-    </>
+    </LazyMotion>
   );
 }
