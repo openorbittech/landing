@@ -1,0 +1,364 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Navbar } from "../components/landing/Navbar";
+import { CTA } from "../components/landing/CTA";
+import Footer from "../components/landing/Footer.astro";
+import { CheckCircle2, Users, Target, Zap, Globe } from "lucide-react";
+
+const title = "About OpenOrbit | Building the Future of Digital Solutions";
+const description =
+    "OpenOrbit is a founder-led technical studio delivering elite software solutions. We turn complex ideas into scalable, high-performance systems.";
+
+const values = [
+    {
+        icon: Target,
+        title: "Precision & Excellence",
+        description:
+            "We don't just write code; we craft systems. Every line is optimized for performance, scalability, and maintainability.",
+        color: "#4F6DFF",
+    },
+    {
+        icon: Zap,
+        title: "Velocity without Technical Debt",
+        description:
+            "We move fast, but we never break things. Our agile processes comply with the highest standards of engineering.",
+        color: "#FF6B6B",
+    },
+    {
+        icon: Users,
+        title: "Transparent Collaboration",
+        description:
+            "No hidden costs, no jargon. We function as an extension of your team, keeping you in the loop at every stage.",
+        color: "#00D9FF",
+    },
+    {
+        icon: Globe,
+        title: "Global Impact",
+        description:
+            "Our solutions are designed to scale globally, handling traffic and data from users all around the world.",
+        color: "#9B59B6",
+    },
+];
+
+import { Image } from "astro:assets";
+import teamImage from "@/assets/about.jpg";
+---
+
+<Layout title={title} description={description}>
+    <div
+        class="relative min-h-screen bg-[#070A12] text-[#F4F6FF] overflow-x-hidden"
+    >
+        <Navbar client:load />
+
+        {/* Hero Section */}
+        <section class="relative pt-32 pb-20 overflow-hidden">
+            {/* Background Gradients */}
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-[#4F6DFF]/10 rounded-full blur-[120px] opacity-50"
+                >
+                </div>
+                <div
+                    class="absolute bottom-0 right-0 w-[800px] h-[800px] bg-[#7B61FF]/5 rounded-full blur-[100px] opacity-30"
+                >
+                </div>
+            </div>
+
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="max-w-4xl mx-auto text-center">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 animate-fade-in-up"
+                    >
+                        <span class="w-2 h-2 rounded-full bg-[#4F6DFF]"></span>
+                        <span
+                            class="text-sm font-medium text-[#A7B0C8] font-[family-name:var(--font-dm-sans)]"
+                            >Our Story & Mission</span
+                        >
+                    </div>
+
+                    <h1
+                        class="text-5xl md:text-7xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)] mb-8 leading-tight animate-fade-in-up"
+                        style="animation-delay: 100ms;"
+                    >
+                        We Build <span class="gradient-text"
+                            >Digital Legacies</span
+                        >
+                    </h1>
+
+                    <p
+                        class="text-xl text-[#A7B0C8] max-w-2xl mx-auto leading-relaxed font-[family-name:var(--font-dm-sans)] animate-fade-in-up"
+                        style="animation-delay: 200ms;"
+                    >
+                        OpenOrbit isn't just a dev shop. We are a collective of
+                        senior engineers and designers dedicated to solving the
+                        most complex challenges in software.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        {/* Mission Section */}
+        <section class="py-20 relative">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div
+                        class="relative reveal-on-scroll"
+                        data-animation="fade-right"
+                    >
+                        <div
+                            class="aspect-video rounded-2xl overflow-hidden relative group bg-[#4F6DFF]/10"
+                        >
+                            <div class="absolute">
+                                <Image
+                                    src={teamImage}
+                                    alt="Team"
+                                    class="object-cover object-center w-full h-full mix-blend-luminosity opacity-80 group-hover:mix-blend-normal group-hover:opacity-100 transition-all duration-500"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reveal-on-scroll" data-animation="fade-left">
+                        <h2
+                            class="text-3xl md:text-4xl font-bold font-[family-name:var(--font-space-grotesk)] mb-6"
+                        >
+                            Driven by <span class="text-[#4F6DFF]">Purpose</span
+                            >
+                        </h2>
+                        <p
+                            class="text-[#A7B0C8] text-lg mb-6 leading-relaxed font-[family-name:var(--font-dm-sans)]"
+                        >
+                            We started OpenOrbit with a simple premise: great
+                            software shouldn't be complicated to build. Too many
+                            projects fail due to bloat, miscommunication, and
+                            lack of technical foresight.
+                        </p>
+                        <p
+                            class="text-[#A7B0C8] text-lg mb-8 leading-relaxed font-[family-name:var(--font-dm-sans)]"
+                        >
+                            Our mission is to democratize elite-level
+                            engineering for startups and enterprises alike. We
+                            bring the rigor of big tech with the agility of a
+                            startup.
+                        </p>
+
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <CheckCircle2
+                                    className="w-6 h-6 text-[#4F6DFF] shrink-0 mt-1"
+                                />
+                                <span class="text-[#E2E8F0]"
+                                    >Founder-led approach ensures business
+                                    alignment</span
+                                >
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <CheckCircle2
+                                    className="w-6 h-6 text-[#4F6DFF] shrink-0 mt-1"
+                                />
+                                <span class="text-[#E2E8F0]"
+                                    >Zero agency fluff, 100% technical execution</span
+                                >
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <CheckCircle2
+                                    className="w-6 h-6 text-[#4F6DFF] shrink-0 mt-1"
+                                />
+                                <span class="text-[#E2E8F0]"
+                                    >Long-term partnership mindset</span
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {/* Values Grid */}
+        <section class="py-20 bg-[#0B0F1C]/50">
+            <div class="container mx-auto px-6">
+                <div
+                    class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll"
+                    data-animation="fade-up"
+                >
+                    <h2
+                        class="text-3xl md:text-5xl font-bold font-[family-name:var(--font-space-grotesk)] mb-6"
+                    >
+                        Our Core <span class="gradient-text">Values</span>
+                    </h2>
+                    <p
+                        class="text-[#A7B0C8] text-lg font-[family-name:var(--font-dm-sans)]"
+                    >
+                        The principles that guide every commit, every design
+                        decision, and every client interaction.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                    {
+                        values.map((value, index) => (
+                            <div
+                                class="glass p-8 rounded-2xl border border-white/5 hover:border-[#4F6DFF]/30 transition-all duration-300 hover:transform hover:-translate-y-1 group reveal-on-scroll"
+                                data-animation="fade-up"
+                                data-delay={index * 0.1}
+                            >
+                                <div
+                                    class="w-12 h-12 rounded-lg flex items-center justify-center mb-6 transition-colors duration-300"
+                                    style={`background-color: ${value.color}20`}
+                                >
+                                    <value.icon
+                                        className="w-6 h-6"
+                                        style={{ color: value.color }}
+                                    />
+                                </div>
+                                <h3 class="text-2xl font-bold mb-4 font-[family-name:var(--font-space-grotesk)]">
+                                    {value.title}
+                                </h3>
+                                <p class="text-[#A7B0C8] leading-relaxed font-[family-name:var(--font-dm-sans)]">
+                                    {value.description}
+                                </p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+
+        {/* Founder/Team Note */}
+        <section class="py-20 pb-32">
+            <div class="container mx-auto px-6">
+                <div
+                    class="glass p-10 md:p-16 rounded-3xl border border-[#4F6DFF]/20 relative overflow-hidden text-center max-w-4xl mx-auto reveal-on-scroll"
+                    data-animation="zoom-in"
+                >
+                    <div
+                        class="absolute inset-0 bg-gradient-to-b from-[#4F6DFF]/5 to-transparent pointer-events-none"
+                    >
+                    </div>
+
+                    <h2
+                        class="text-3xl md:text-4xl font-bold mb-8 font-[family-name:var(--font-space-grotesk)]"
+                    >
+                        &ldquo;We don't just build software. We build <br
+                        /><span class="text-[#4F6DFF]"
+                            >your competitive advantage.</span
+                        >&rdquo;
+                    </h2>
+
+                    <p
+                        class="text-[#A7B0C8] text-lg mb-10 max-w-2xl mx-auto leading-relaxed italic font-[family-name:var(--font-dm-sans)]"
+                    >
+                        In a world where every company is a software company,
+                        the quality of your digital infrastructure determines
+                        your success. We are here to ensure you win.
+                    </p>
+
+                    <div class="inline-flex items-center gap-4">
+                        {
+                            /* <div class="w-12 h-12 rounded-full bg-gray-700 overflow-hidden">
+                       <Image src={founderImage} alt="Founder" class="w-full h-full object-cover" />
+                    </div> */
+                        }
+                        <div class="text-left flex flex-col items-center">
+                            <div class="font-bold text-white">
+                                The OpenOrbit Team
+                            </div>
+                            <div class="text-sm text-[#4F6DFF]">
+                                Senior Engineers & Designers
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <CTA client:visible />
+        <Footer />
+    </div>
+</Layout>
+
+<script>
+    // Reveal on Scroll Observer
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const el = entry.target as HTMLElement;
+                const delay = el.getAttribute("data-delay") || "0";
+
+                setTimeout(
+                    () => {
+                        el.classList.add("is-visible");
+                    },
+                    parseFloat(delay) * 1000,
+                );
+
+                observer.unobserve(el);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll(".reveal-on-scroll").forEach((el) => {
+        observer.observe(el);
+    });
+</script>
+
+<style>
+    /* Styling utilities reusing or mimicking global styles if not available */
+    .glass {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .gradient-text {
+        background: linear-gradient(135deg, #ffffff 0%, #a7b0c8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Animation Classes */
+    .animate-fade-in-up {
+        opacity: 0;
+        animation: fadeInUp 0.8s cubic-bezier(0.21, 0.47, 0.32, 0.98) forwards;
+    }
+
+    .reveal-on-scroll {
+        opacity: 0;
+        will-change: transform, opacity;
+        transition: all 0.8s cubic-bezier(0.21, 0.47, 0.32, 0.98);
+    }
+
+    [data-animation="fade-up"] {
+        transform: translateY(30px);
+    }
+    [data-animation="fade-right"] {
+        transform: translateX(-30px);
+    }
+    [data-animation="fade-left"] {
+        transform: translateX(30px);
+    }
+    [data-animation="zoom-in"] {
+        transform: scale(0.95);
+    }
+
+    .reveal-on-scroll.is-visible {
+        opacity: 1;
+        transform: translate(0) scale(1);
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
