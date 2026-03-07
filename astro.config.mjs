@@ -26,13 +26,13 @@ export default defineConfig({
     }),
     partytown()
   ],
-  image: {
-    domains: ["images.unsplash.com", "images.pexels.com"],
-    remotePatterns: [
-      { protocol: "https", hostname: "images.unsplash.com" },
-      { protocol: "https", hostname: "images.pexels.com" }
-    ],
-  },
+  // image: {
+  //   domains: ["images.unsplash.com", "images.pexels.com"],
+  //   remotePatterns: [
+  //     // { protocol: "https", hostname: "images.unsplash.com" },
+  //     { protocol: "https", hostname: "images.pexels.com" }
+  //   ],
+  // },
   output: "static",
   site: "https://openorbit.tech",
   compressHTML: true,
