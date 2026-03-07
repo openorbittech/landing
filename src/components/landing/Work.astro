@@ -1,0 +1,449 @@
+---
+import { ArrowUpRight, ExternalLink, Eye } from "lucide-react";
+
+interface ProjectCardStats {
+    text: string;
+    icon?: any; // Lucide icons are functions
+    color?: string;
+}
+
+interface Project {
+    title: string;
+    category: string;
+    description: string;
+    image: string;
+    tags: string[];
+    color: string;
+    size: "large" | "tall" | "wide" | "small";
+    stats: ProjectCardStats[];
+}
+
+const projects: Project[] = [
+    {
+        title: "Athleon",
+        category: "Sports Performance Platform",
+        description:
+            "A precision training platform for Olympic shooters enabling real-time shot tracking, live remote monitoring, and competitive duel sessions.",
+        image: "/work/athleon.png",
+        tags: ["Tauri", "Cross-Platform"],
+        color: "#39adff",
+        size: "large",
+        stats: [{ text: "Near-Zero Latency" }, { text: "Real-Time Sync" }],
+    },
+    {
+        title: "MentIQ",
+        category: "SaaS Retention & Analytics Platform",
+        description:
+            "AI-powered retention platform helping SaaS companies predict churn early, uncover real adoption depth, and automate proactive customer success workflows.",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+        tags: ["AI", "Predictive Analytics"],
+        color: "#00D9FF",
+        size: "tall",
+        stats: [{ text: "Up to 50% Churn Reduction" }],
+    },
+    {
+        title: "Axton Protocol",
+        category: "Crypto Website",
+        description:
+            "A zero-slippage Over-The-Counter trading platform for blockchain assets with anonymized transactions, real-time yield generation, and a unified DeFi ecosystem.",
+        image: "https://images.pexels.com/photos/8369648/pexels-photo-8369648.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        tags: [
+            "Next.js",
+            "Framer Motion",
+            "Tailwind CSS",
+            "TypeScript",
+            "Web3",
+        ],
+        color: "#FF6B6B",
+        size: "tall",
+        stats: [{ text: "web3" }],
+    },
+];
+---
+
+<section
+    id="work"
+    aria-label="Our Portfolio - Featured Software Projects"
+    itemscope
+    itemtype="https://schema.org/CreativeWork"
+    class="relative py-32 overflow-hidden work-section transition-colors duration-700"
+    style="background-color: #070A12;"
+>
+    {/* Background Grid */}
+    <div class="absolute inset-0 grid-pattern opacity-10"></div>
+
+    <div class="container mx-auto px-6 relative z-10">
+        {/* Section Header */}
+        <div
+            class="flex flex-col md:flex-row md:items-end md:justify-between mb-20 section-header reveal-on-scroll"
+            data-animation="fade-up"
+        >
+            <div class="max-w-2xl">
+                <div
+                    class="flex items-center gap-4 mb-6 reveal-item"
+                    data-animation="fade-left"
+                >
+                    <div
+                        class="h-px w-16 bg-gradient-to-r from-[#4F6DFF] to-transparent"
+                    >
+                    </div>
+                    <span
+                        class="text-sm font-medium text-[#4F6DFF] uppercase tracking-widest"
+                    >
+                        Selected Work
+                    </span>
+                </div>
+
+                <h2
+                    class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)] reveal-item"
+                    data-animation="fade-up"
+                    data-delay="0.2"
+                >
+                    <span class="block">Our</span>
+                    <span class="gradient-text">Portfolio</span>
+                </h2>
+            </div>
+
+            <p
+                class="text-[#A7B0C8] max-w-md mt-6 md:mt-0 md:text-right font-[family-name:var(--font-dm-sans)] reveal-item"
+                data-animation="fade-right"
+                data-delay="0.4"
+            >
+                High impact projects that transformed businesses and delighted
+                users.
+            </p>
+        </div>
+
+        {/* Masonry Gallery */}
+        <div
+            class="gallery-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[200px] transition-transform duration-75 ease-out"
+        >
+            {
+                projects.map((project, index) => (
+                    <div
+                        class={`project-card-wrapper relative group ${
+                            project.size === "large"
+                                ? "md:col-span-2 md:row-span-2"
+                                : project.size === "wide"
+                                  ? "md:col-span-2"
+                                  : project.size === "tall"
+                                    ? "md:row-span-2"
+                                    : ""
+                        } cursor-pointer reveal-on-scroll`}
+                        data-animation="fade-up-scale"
+                        data-delay={index * 0.1}
+                        data-color={project.color}
+                    >
+                        <div
+                            class="project-card relative h-full rounded-2xl overflow-hidden transition-all duration-500"
+                            data-parallax
+                        >
+                            {/* Image with parallax */}
+                            <div class="absolute inset-0 pointer-events-none overflow-hidden">
+                                <img
+                                    src={project.image}
+                                    alt={`${project.title} - ${project.category}`}
+                                    loading="lazy"
+                                    decoding="async"
+                                    class="parallax-image w-full h-[120%] object-cover absolute top-[-10%] left-0 scale-110 transition-transform duration-75 ease-out"
+                                />
+                            </div>
+
+                            {/* Gradient Overlay */}
+                            <div
+                                class="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                                style={`background: linear-gradient(to top, black 0%, ${project.color}60 50%, transparent 100%)`}
+                            />
+
+                            <div class="absolute inset-0 bg-black opacity-40 group-hover:opacity-60 transition-opacity duration-500 z-10" />
+
+                            {/* Content */}
+                            <div class="absolute inset-0 p-6 flex flex-col justify-end z-20">
+                                {project.stats && project.stats.length > 0 && (
+                                    <div class="hidden absolute top-4 left-4 md:flex flex-wrap gap-2 z-30 opacity-0 group-hover:opacity-100 -translate-x-10 group-hover:translate-x-0 transition-all duration-300">
+                                        {project.stats.map((stat) => (
+                                            <span
+                                                class={`px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm flex items-center gap-1.5 ${!stat.color ? "bg-black/50 text-white" : ""}`}
+                                                style={
+                                                    stat.color
+                                                        ? {
+                                                              backgroundColor: `${stat.color}24`,
+                                                              color: stat.color,
+                                                          }
+                                                        : {}
+                                                }
+                                            >
+                                                {stat.text}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
+
+                                {/* Category */}
+                                <span
+                                    class="text-sm font-medium mb-2 translate-y-8 group-hover:translate-y-0 opacity-80 group-hover:opacity-100 transition-all duration-300"
+                                    style={`color: ${project.color}; text-shadow: 0 2px 4px rgba(0,0,0,0.5);`}
+                                >
+                                    {project.category}
+                                </span>
+
+                                {/* Title */}
+                                <h3
+                                    class="text-2xl md:text-3xl font-bold text-white mb-2 font-[family-name:var(--font-space-grotesk)] translate-y-8 group-hover:translate-y-0 transition-all duration-300"
+                                    style="text-shadow: 0 2px 10px rgba(0,0,0,0.5);"
+                                >
+                                    {project.title}
+                                </h3>
+
+                                {/* Description */}
+                                <p class="text-white/80 text-sm mb-4 line-clamp-2 font-[family-name:var(--font-dm-sans)] opacity-0 translate-y-5 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                                    {project.description}
+                                </p>
+
+                                {/* Tags */}
+                                <div class="flex flex-wrap gap-2 opacity-0 translate-y-5 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 delay-75">
+                                    {project.tags.slice(0, 3).map((tag) => (
+                                        <span class="px-2 py-1 rounded text-xs bg-white/10 backdrop-blur-sm text-white/90">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* View Count */}
+                            <div class="absolute bottom-4 right-4 flex items-center gap-1 text-xs text-white/60 font-[family-name:var(--font-dm-sans)] opacity-0 translate-x-10 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 z-20">
+                                <Eye className="w-4 h-4" />
+                                <span>{3500 + index * 200}</span>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+
+        {/* View All CTA */}
+        <div
+            class="mt-16 text-center reveal-on-scroll"
+            data-animation="fade-up"
+        >
+            <a
+                href="/portfolio"
+                class="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all duration-300 hover:scale-105 active:scale-95"
+            >
+                View All Projects
+                <ArrowUpRight className="w-5 h-5" />
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .reveal-on-scroll {
+        opacity: 0;
+        will-change: transform, opacity;
+    }
+
+    [data-animation="fade-up"] {
+        transform: translateY(30px);
+    }
+
+    [data-animation="fade-left"] {
+        transform: translateX(-30px);
+    }
+
+    [data-animation="fade-right"] {
+        transform: translateX(30px);
+    }
+
+    [data-animation="fade-up-scale"] {
+        transform: translateY(30px) scale(0.95);
+    }
+
+    .reveal-on-scroll.is-visible {
+        opacity: 1;
+        transform: translate(0) scale(1);
+        transition: all 0.8s cubic-bezier(0.21, 0.47, 0.32, 0.98);
+    }
+
+    .project-card:hover {
+        box-shadow: 0 30px 60px var(--hover-shadow-color);
+    }
+</style>
+
+<script>
+    function setupWorkAnimations() {
+        const section = document.querySelector(".work-section") as HTMLElement;
+        const gallery = document.querySelector(
+            ".gallery-container",
+        ) as HTMLElement;
+        const parallaxImages = document.querySelectorAll(
+            ".parallax-image",
+        ) as NodeListOf<HTMLElement>;
+        const cards = document.querySelectorAll(
+            ".project-card",
+        ) as NodeListOf<HTMLElement>;
+
+        if (!section || !gallery) return;
+
+        // Set-up hover shadow colors
+        document
+            .querySelectorAll(".project-card-wrapper")
+            .forEach((wrapper) => {
+                const color = (wrapper as HTMLElement).dataset.color;
+                const card = wrapper.querySelector(
+                    ".project-card",
+                ) as HTMLElement;
+                if (card && color) {
+                    card.style.setProperty(
+                        "--hover-shadow-color",
+                        `${color}30`,
+                    );
+                }
+            });
+
+        // Intersection Observer for reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const el = entry.target as HTMLElement;
+                    const delay = el.getAttribute("data-delay") || "0";
+
+                    setTimeout(
+                        () => {
+                            el.classList.add("is-visible");
+                        },
+                        parseFloat(delay) * 1000,
+                    );
+
+                    observer.unobserve(el);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll(".reveal-on-scroll").forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Scroll-bound animations (background color shift, gallery horizontal shift, parallax)
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        function updateAnimations() {
+            const rect = section.getBoundingClientRect();
+            const scrollHeight = window.innerHeight + rect.height;
+            const progress = Math.min(
+                Math.max((window.innerHeight - rect.top) / scrollHeight, 0),
+                1,
+            );
+
+            const isMobile = window.innerWidth < 768;
+
+            // 1. Background Color Shift
+            // Range: [0, 0.3, 0.6, 1] -> ["#070A12", "#0B0F1C", "#0F0B1C", "#070A12"]
+            let bgColor = "#070A12";
+            if (progress < 0.3) {
+                bgColor = lerpColor("#070A12", "#0B0F1C", progress / 0.3);
+            } else if (progress < 0.6) {
+                bgColor = lerpColor(
+                    "#0B0F1C",
+                    "#0F0B1C",
+                    (progress - 0.3) / 0.3,
+                );
+            } else {
+                bgColor = lerpColor(
+                    "#0F0B1C",
+                    "#070A12",
+                    (progress - 0.6) / 0.4,
+                );
+            }
+            section.style.backgroundColor = bgColor;
+
+            // 2. Horizontal Gallery Shift
+            if (!isMobile) {
+                const xShift = progress * -5;
+                gallery.style.transform = `translateX(${xShift}%)`;
+            } else {
+                gallery.style.transform = `none`;
+            }
+
+            // 3. Image Parallax
+            parallaxImages.forEach((img) => {
+                const card = img.closest(".project-card");
+                if (!card) return;
+                const cardRect = card.getBoundingClientRect();
+                const cardProgress = Math.min(
+                    Math.max(
+                        (window.innerHeight - cardRect.top) /
+                            (window.innerHeight + cardRect.height),
+                        0,
+                    ),
+                    1,
+                );
+
+                const scale = 1.2 - cardProgress * 0.2; // 1.2 to 1.0
+                const yTranslate = -10 + cardProgress * 20; // -10% to 10%
+
+                img.style.transform = `translateY(${yTranslate}%) scale(${scale})`;
+            });
+
+            ticking = false;
+        }
+
+        function lerpColor(a: string, b: string, amount: number) {
+            const ah = parseInt(a.replace(/#/g, ""), 16),
+                ar = ah >> 16,
+                ag = (ah >> 8) & 0xff,
+                ab = ah & 0xff,
+                bh = parseInt(b.replace(/#/g, ""), 16),
+                br = bh >> 16,
+                bg = (bh >> 8) & 0xff,
+                bb = bh & 0xff,
+                rr = ar + amount * (br - ar),
+                rg = ag + amount * (bg - ag),
+                rb = ab + amount * (bb - ab);
+
+            return (
+                "#" +
+                (
+                    (1 << 24) +
+                    (Math.round(rr) << 16) +
+                    (Math.round(rg) << 8) +
+                    Math.round(rb)
+                )
+                    .toString(16)
+                    .slice(1)
+            );
+        }
+
+        window.addEventListener("scroll", () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateAnimations();
+                });
+                ticking = true;
+            }
+        });
+
+        // Initial call
+        updateAnimations();
+
+        // Resize handler
+        window.addEventListener("resize", () => {
+            updateAnimations();
+        });
+    }
+
+    // Initialize on page load and swaps
+    document.addEventListener("astro:page-load", setupWorkAnimations);
+    // Fallback for initial load
+    if (document.readyState === "complete") {
+        setupWorkAnimations();
+    } else {
+        window.addEventListener("load", setupWorkAnimations);
+    }
+</script>
