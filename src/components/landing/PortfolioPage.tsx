@@ -113,13 +113,17 @@ interface Project {
 //   },
 // ];
 
+import mentiqImg from "@/assets/work/mentiq.jpeg";
+import athleonImg from "@/assets/work/athleon.png";
+import axtonImg from "@/assets/work/axton.png";
+
 const projects: Project[] = [
   {
     title: "Athleon",
     category: "Sports Performance Platform",
     description:
       "A precision training platform for Olympic shooters enabling real-time shot tracking, live remote monitoring, and competitive duel sessions.",
-    image: "/work/athleon.png",
+    image: athleonImg.src,
     tags: ["Tauri", "Cross-Platform"],
     color: "#39adff",
     client: "Confidential (Sports Technology)",
@@ -130,8 +134,7 @@ const projects: Project[] = [
     category: "SaaS Retention & Analytics Platform",
     description:
       "AI-powered retention platform helping SaaS companies predict churn early, uncover real adoption depth, and automate proactive customer success workflows.",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    image: mentiqImg.src,
     tags: ["AI", "Predictive Analytics"],
     color: "#00D9FF",
     client: "Early-Stage SaaS Startup",
@@ -142,8 +145,7 @@ const projects: Project[] = [
     category: "Crypto Website",
     description:
       "A zero-slippage Over-The-Counter trading platform for blockchain assets with anonymized transactions, real-time yield generation, and a unified DeFi ecosystem.",
-    image:
-      "https://images.pexels.com/photos/8369648/pexels-photo-8369648.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    image: axtonImg.src,
     tags: ["Next.js", "Framer Motion", "Tailwind CSS", "TypeScript", "Web3"],
     color: "#FF6B6B",
     client: "Blockchain Infrastructure Company",
