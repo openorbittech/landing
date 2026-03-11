@@ -7,6 +7,8 @@ import { Menu, X } from "lucide-react";
 const navLinks = [
   { href: "/#services", label: "Services" },
   { href: "/#work", label: "Work" },
+  { href: "/#contact", label: "Contact" },
+  { href: "/about", label: "About" },
 ];
 
 export function Navbar() {
@@ -34,8 +36,8 @@ export function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${scrolled
-            ? "bg-[#0B0F1C]/80 backdrop-blur-xl border-[#4F6DFF]/15 py-4"
-            : "bg-transparent border-transparent py-6"
+          ? "bg-[#0B0F1C]/80 backdrop-blur-xl border-[#4F6DFF]/15 py-4"
+          : "bg-transparent border-transparent py-6"
           }`}
       >
         <div className="container mx-auto px-6 flex items-center justify-between">
