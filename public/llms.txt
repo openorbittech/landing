@@ -1,0 +1,14 @@
+# OpenOrbit
+> Custom web, mobile, and AI solutions for startups and enterprises.
+
+OpenOrbit is a software development company specializing in creating high-impact web, mobile, and AI solutions. Specializing in custom web applications, intuitive mobile apps for iOS and Android, and advanced AI integration.
+
+## Core Information
+
+- [Homepage](https://openorbit.tech/): High-impact software development, web, mobile, and AI solutions.
+- [About Us](https://openorbit.tech/about): Our mission, values, and the team behind OpenOrbit.
+- [Portfolio](https://openorbit.tech/portfolio): Showcase of successful web, mobile, and AI projects.
+
+## Legal
+
+- [Privacy Policy](https://openorbit.tech/privacy-policy): How we collect, use, and protect your data.
