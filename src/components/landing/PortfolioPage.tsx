@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight, ExternalLink, ArrowUpRight } from "lucide-react";
 
 interface Project {
@@ -67,13 +67,24 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
   const cardRef = useRef(null);
   const isEven = index % 2 === 0;
 
+  const [isLarge, setIsLarge] = useState(false);
+
+  useEffect(() => {
+    const checkSize = () => setIsLarge(window.innerWidth >= 1024);
+    checkSize();
+    window.addEventListener("resize", checkSize);
+    return () => window.removeEventListener("resize", checkSize);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: cardRef,
     offset: ["start end", "center center"],
+    // Disable scroll tracking on small devices to save resources
+    layoutEffect: false 
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], [isEven ? -100 : 100, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+  const x = useTransform(scrollYProgress, [0, 1], [isLarge ? (isEven ? -100 : 100) : 0, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [isLarge ? 0 : 1, 1]);
 
   return (
     <motion.div
@@ -139,7 +150,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       {/* Content */}
       <div className={`${isEven ? "lg:order-2" : "lg:order-1"}`}>
         <motion.div
-          initial={{ x: isEven ? 50 : -50, opacity: 0 }}
+          initial={isLarge ? { x: isEven ? 50 : -50, opacity: 0 } : { opacity: 1, x: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
