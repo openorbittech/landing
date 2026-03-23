@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { ArrowLeft, ArrowRight, ExternalLink, ArrowUpRight } from "lucide-react";
 
 interface Project {
+  id: string;
   title: string;
   category: string;
   description: string;
@@ -13,112 +14,16 @@ interface Project {
   color: string;
   client: string;
   duration: string;
+  link?: string;
 }
 
-// const projects: Project[] = [
-//   {
-//     title: "FinFlow",
-//     category: "Fintech Platform",
-//     description: "A comprehensive financial management platform serving 50K+ users with real-time analytics and automated reporting.",
-//     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
-//     tags: ["React", "Node.js", "PostgreSQL", "AWS"],
-//     color: "#4F6DFF",
-//     client: "FinFlow Inc.",
-//     duration: "6 months",
-//     team: "8 developers",
-//   },
-//   {
-//     title: "HealthSync",
-//     category: "Healthcare App",
-//     description: "Telemedicine platform connecting patients with healthcare providers. Features video consultations and health tracking.",
-//     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80",
-//     tags: ["React Native", "GraphQL", "TensorFlow", "GCP"],
-//     color: "#FF6B6B",
-//     stats: { users: "25K+", growth: "150%", consultations: "100K+" },
-//     client: "HealthSync",
-//     duration: "4 months",
-//     team: "6 developers",
-//   },
-//   {
-//     title: "RetailPro",
-//     category: "E-commerce Solution",
-//     description: "Enterprise e-commerce platform with AI-powered recommendations and omnichannel inventory management.",
-//     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80",
-//     tags: ["Next.js", "Python", "Redis", "Docker"],
-//     color: "#00D9FF",
-//     stats: { users: "100K+", growth: "200%", conversion: "65%" },
-//     client: "RetailPro",
-//     duration: "8 months",
-//     team: "10 developers",
-//   },
-//   {
-//     title: "DataVault",
-//     category: "Data Analytics",
-//     description: "Big data analytics platform processing 10TB+ daily with real-time dashboards and predictive insights.",
-//     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
-//     tags: ["Apache Spark", "Kafka", "Elasticsearch", "Kubernetes"],
-//     color: "#9B59B6",
-//     stats: { users: "Enterprise", data: "10TB+", latency: "<50ms" },
-//     client: "DataVault",
-//     duration: "12 months",
-//     team: "12 developers",
-//   },
-//   {
-//     title: "SmartCity",
-//     category: "IoT Platform",
-//     description: "Smart city management and monitoring system with real-time traffic, energy, and environmental sensors.",
-//     image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=1200&q=80",
-//     tags: ["IoT", "React", "Node.js", "MQTT"],
-//     color: "#2ECC71",
-//     stats: { users: "100+", sensors: "10K+", cities: "5" },
-//     client: "SmartCity Solutions",
-//     duration: "10 months",
-//     team: "9 developers",
-//   },
-//   {
-//     title: "ArtChain",
-//     category: "Web3 dApp",
-//     description: "NFT marketplace for digital artists with smart contract automation and crypto payments.",
-//     image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=80",
-//     tags: ["Solidity", "React", "Ethereum", "Web3.js"],
-//     color: "#F39C12",
-//     stats: { users: "10K+", nfts: "50K+", volume: "$2M" },
-//     client: "ArtChain",
-//     duration: "5 months",
-//     team: "5 developers",
-//   },
-//   {
-//     title: "EduTech",
-//     category: "EdTech Platform",
-//     description: "Online learning platform with AI tutors, interactive courses, and progress tracking.",
-//     image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=1200&q=80",
-//     tags: ["React", "Python", "OpenAI", "AWS"],
-//     color: "#E74C3C",
-//     stats: { users: "75K+", courses: "500+", completion: "85%" },
-//     client: "EduTech Solutions",
-//     duration: "7 months",
-//     team: "7 developers",
-//   },
-//   {
-//     title: "LogiChain",
-//     category: "Supply Chain",
-//     description: "Blockchain-based supply chain tracking with transparency and real-time shipment monitoring.",
-//     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&q=80",
-//     tags: ["Blockchain", "IoT", "React", "Hyperledger"],
-//     color: "#8E44AD",
-//     stats: { users: "50+", shipments: "1M+", partners: "100+" },
-//     client: "LogiChain",
-//     duration: "9 months",
-//     team: "8 developers",
-//   },
-// ];
-
 import mentiqImg from "@/assets/work/mentiq.jpeg";
-import athleonImg from "@/assets/work/athleon.png";
-import axtonImg from "@/assets/work/axton.png";
+import athleonImg from "@/assets/work/athleon.webp";
+import axtonImg from "@/assets/work/axton.webp";
 
 const projects: Project[] = [
   {
+    id: "athleon",
     title: "Athleon",
     category: "Sports Performance Platform",
     description:
@@ -126,10 +31,12 @@ const projects: Project[] = [
     image: athleonImg.src,
     tags: ["Tauri", "Cross-Platform"],
     color: "#39adff",
-    client: "Confidential (Sports Technology)",
-    duration: "6 Months",
+    client: "Athleon Kinetic Sports Systems",
+    duration: "3 Months",
+    link: "https://athleon.in",
   },
   {
+    id: "mentiq",
     title: "MentIQ",
     category: "SaaS Retention & Analytics Platform",
     description:
@@ -139,17 +46,20 @@ const projects: Project[] = [
     color: "#00D9FF",
     client: "Early-Stage SaaS Startup",
     duration: "4 Months",
+    link: "https://www.trymentiq.com/",
   },
   {
+    id: "axton",
     title: "Axton Protocol",
     category: "Crypto Website",
     description:
       "A zero-slippage Over-The-Counter trading platform for blockchain assets with anonymized transactions, real-time yield generation, and a unified DeFi ecosystem.",
     image: axtonImg.src,
     tags: ["Next.js", "Framer Motion", "Tailwind CSS", "TypeScript", "Web3"],
-    color: "#FF6B6B",
-    client: "Blockchain Infrastructure Company",
-    duration: "3 Months",
+    color: "#53917f",
+    client: "Axton Protocol",
+    duration: "2 Week",
+    link: "https://axtonmarkets.com/",
   }
 ];
 
@@ -168,8 +78,9 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
   return (
     <motion.div
       ref={cardRef}
+      id={project.id}
       style={{ x, opacity }}
-      className={`grid lg:grid-cols-2 gap-8 lg:gap-16 items-center py-20 ${index !== projects.length - 1 ? "border-b border-white/10" : ""
+      className={`grid lg:grid-cols-2 gap-8 lg:gap-16 items-center py-20 scroll-mt-32 ${index !== projects.length - 1 ? "border-b border-white/10" : ""
         }`}
     >
       {/* Image */}
@@ -201,12 +112,15 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
             whileHover={{ opacity: 1, y: 0 }}
             className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
           >
-            <div
-              className="w-16 h-16 rounded-full flex items-center justify-center"
+            <a
+              href={project.link || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-16 h-16 rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-lg"
               style={{ backgroundColor: project.color }}
             >
               <ExternalLink className="w-6 h-6 text-white" />
-            </div>
+            </a>
           </motion.div>
         </motion.div>
 
