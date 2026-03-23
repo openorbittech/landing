@@ -80,7 +80,6 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
     target: cardRef,
     offset: ["start end", "center center"],
     // Disable scroll tracking on small devices to save resources
-    layoutEffect: false 
   });
 
   const x = useTransform(scrollYProgress, [0, 1], [isLarge ? (isEven ? -100 : 100) : 0, 0]);
@@ -119,9 +118,10 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 
           {/* Hover Button */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileHover={{ opacity: 1, y: 0 }}
-            className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+            initial={isLarge ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
+            whileHover={isLarge ? { opacity: 1, y: 0 } : {}}
+            className={`absolute inset-0 flex items-center justify-center transition-opacity ${isLarge ? "opacity-0 group-hover:opacity-100" : "opacity-100"
+              }`}
           >
             <a
               href={project.link || "#"}
