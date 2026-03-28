@@ -3,6 +3,12 @@
   "framework": "astro",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "routes": [
+    {
+      "src": "/yandex_72eb23e0042d6f1e.html",
+      "dest": "/yandex_72eb23e0042d6f1e.html"
+    }
+  ],
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
