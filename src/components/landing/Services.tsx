@@ -1,342 +1,205 @@
 "use client";
 
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import {
-  Code2,
-  Smartphone,
-  Cloud,
-  Database,
-  Bot,
-  Palette,
-  ArrowUpRight,
-  Globe,
-  Cpu,
-} from "lucide-react";
+import { motion } from "framer-motion";
 
-const services = [
+/* ── Mini Visuals ─────────────────────────────────────────── */
+
+const CodeVisual = () => (
+  <div className="code-window">
+    <div className="code-line">
+      <span className="code-num">01</span>
+      <span>
+        <span className="code-keyword">const</span> deploy ={" "}
+        <span className="code-func">async</span> () =&gt; {"{"}
+      </span>
+    </div>
+    <div className="code-line">
+      <span className="code-num">02</span>
+      <span className="pl-4">
+        await infra.<span className="code-func">provision</span>(
+        <span className="code-string">'global'</span>);
+      </span>
+    </div>
+    <div className="code-line">
+      <span className="code-num">03</span>
+      <span className="pl-4">
+        <span className="code-keyword">return</span> app.
+        <span className="code-func">scale</span>(
+        <span className="code-string">'auto'</span>);
+        <span className="cursor-blink"></span>
+      </span>
+    </div>
+    <div className="code-line">
+      <span className="code-num">04</span>
+      <span>{"}"}</span>
+    </div>
+  </div>
+);
+
+const MobileVisual = () => (
+  <div className="phone-frame">
+    <div className="phone-notch"></div>
+    <div className="phone-list">
+      <div className="phone-row accent"></div>
+      <div className="phone-row" style={{ width: "80%" }}></div>
+      <div className="phone-row" style={{ width: "60%" }}></div>
+      <div className="phone-row" style={{ width: "90%" }}></div>
+    </div>
+  </div>
+);
+
+const AIVisual = () => (
+  <div className="ai-network">
+    <svg>
+      <line x1="15" y1="15" x2="50" y2="60" />
+      <line x1="85" y1="15" x2="50" y2="60" />
+    </svg>
+    <div className="ai-node n1"></div>
+    <div className="ai-node n2"></div>
+    <div className="ai-node n3"></div>
+  </div>
+);
+
+const DataVisual = () => (
+  <div className="w-full max-w-[260px]">
+    <div className="data-pipe mb-5"></div>
+    <div className="flex items-end gap-1 h-16">
+      {["40%", "70%", "50%", "90%", "60%", "80%", "45%"].map((h, i) => (
+        <div
+          key={i}
+          className="bar"
+          style={{ height: h, animationDelay: `${i * 0.15}s` }}
+        ></div>
+      ))}
+    </div>
+  </div>
+);
+
+const Web3Visual = () => (
+  <div className="chain">
+    {["A", "B", "C", "D"].map((b, i) => (
+      <div key={i} className="flex items-center gap-1.5">
+        <div
+          className="block"
+          style={{ animationDelay: `${i * 0.4}s` }}
+        >
+          {b}
+        </div>
+        {i < 3 && <div className="chain-link"></div>}
+      </div>
+    ))}
+  </div>
+);
+
+/* ── Card Data ────────────────────────────────────────────── */
+
+const cards = [
   {
-    icon: Code2,
-    title: "Web Development",
-    description:
-      "Custom web apps with React, Next.js, Node.js. Scalable, fast, SEO-friendly.",
-    features: [
-      "React & Next.js",
-      "Node.js Backend",
-      "API Development",
-      "Performance",
-    ],
-    color: "#4F6DFF",
-    size: "large",
+    eyebrow: "01 / Engineering",
+    title: "Web & Cloud Engineering",
+    desc: "React, Next.js and Node backends designed for global scale, fast loading, and clean architecture.",
+    span: "col-span-6 md:col-span-3 lg:col-span-2",
+    visual: <CodeVisual />,
   },
   {
-    icon: Smartphone,
+    eyebrow: "02 / Mobile",
     title: "Mobile Apps",
-    description: "Native & cross-platform apps for iOS & Android.",
-    features: ["React Native", "iOS & Android", "Flutter"],
-    color: "#FF6B6B",
-    size: "small",
+    desc: "Native-quality iOS and Android experiences in React Native and Flutter.",
+    span: "col-span-6 md:col-span-3 lg:col-span-2",
+    visual: <MobileVisual />,
   },
   {
-    icon: Cloud,
-    title: "Cloud Solutions",
-    description: "Scalable cloud infrastructure & DevOps.",
-    features: ["AWS & Azure", "Kubernetes", "Serverless"],
-    color: "#00D9FF",
-    size: "medium",
-  },
-  {
-    icon: Database,
-    title: "Data Engineering",
-    description: "Transform data into actionable insights.",
-    features: ["Data Pipelines", "Big Data", "Analytics"],
-    color: "#9B59B6",
-    size: "small",
-  },
-  {
-    icon: Bot,
+    eyebrow: "03 / Intelligence",
     title: "AI & Automation",
-    description: "Leverage AI for competitive advantage.",
-    features: ["Machine Learning", "Process Automation", "Chatbots"],
-    color: "#F39C12",
-    size: "large",
+    desc: "LLM agents, predictive models, and autonomous workflows that remove manual overhead.",
+    span: "col-span-6 md:col-span-3 lg:col-span-2",
+    visual: <AIVisual />,
   },
   {
-    icon: Palette,
-    title: "UI/UX Design",
-    description: "Beautiful interfaces that users love.",
-    features: ["User Research", "Wireframing", "Design Systems"],
-    color: "#E74C3C",
-    size: "medium",
+    eyebrow: "04 / Data",
+    title: "Data Pipelines",
+    desc: "Real-time ingestion, warehousing, and analytics infrastructure your team can actually query.",
+    span: "col-span-6 md:col-span-3 lg:col-span-3",
+    visual: <DataVisual />,
   },
   {
-    icon: Globe,
+    eyebrow: "05 / Decentralized",
     title: "Web3 & Blockchain",
-    description: "Decentralized apps and smart contracts.",
-    features: ["Smart Contracts", "dApps", "DeFi"],
-    color: "#8E44AD",
-    size: "small",
-  },
-  {
-    icon: Cpu,
-    title: "IoT Solutions",
-    description: "Connected devices and embedded systems.",
-    features: ["Hardware", "Firmware", "Cloud"],
-    color: "#2ECC71",
-    size: "medium",
+    desc: "Smart contracts, dApps, and DeFi tooling built with security and auditability first.",
+    span: "col-span-6 md:col-span-3 lg:col-span-3",
+    visual: <Web3Visual />,
   },
 ];
 
-export function Services() {
-  const containerRef = useRef(null);
-  const headerRef = useRef(null);
-  const isInView = useInView(headerRef, { once: true, margin: "-100px" });
+/* ── Capability Card ──────────────────────────────────────── */
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
-
+function CapabilityCard({
+  eyebrow,
+  title,
+  desc,
+  span,
+  visual,
+}: {
+  eyebrow: string;
+  title: string;
+  desc: string;
+  span: string;
+  visual: React.ReactNode;
+}) {
   return (
-    <section
-      ref={containerRef}
-      id="services"
-      aria-label="Our Services - Software Development Solutions"
-      itemScope
-      itemType="https://schema.org/ItemList"
-      className="relative py-32 overflow-hidden bg-[#070A12]"
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-10%" }}
+      transition={{ duration: 0.5 }}
+      whileHover={{ y: -4 }}
+      className={`glass-panel rounded-2xl border border-black/5 hover:border-blue-500/30 transition-all p-6 md:p-8 flex flex-col justify-between min-h-[260px] ${span}`}
     >
-      {/* Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-[#4F6DFF]/10 rounded-full" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-[#FF6B6B]/10 rounded-full" />
+      <div>
+        <p className="text-[10px] font-mono tracking-[0.18em] uppercase text-blue-600 mb-3">
+          {eyebrow}
+        </p>
+        <h4 className="text-xl md:text-2xl font-semibold text-gray-900 tracking-tight mb-2">
+          {title}
+        </h4>
+        <p className="text-gray-600 text-sm leading-relaxed max-w-md">
+          {desc}
+        </p>
       </div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Section Header */}
-        <div className="max-w-4xl mb-20" ref={headerRef}>
-          <motion.div
-            initial={{ x: -100, opacity: 0 }}
-            animate={isInView ? { x: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.8 }}
-            className="flex items-center gap-4 mb-6"
-          >
-            <div className="h-px flex-1 bg-gradient-to-r from-[#4F6DFF] to-transparent" />
-            <span className="text-sm font-medium text-[#4F6DFF] uppercase tracking-widest">
-              What We Do
-            </span>
-          </motion.div>
-
-          <motion.h2
-            initial={{ y: 100, opacity: 0 }}
-            animate={isInView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)] mb-6"
-          >
-            <span className="block">End-to-End</span>
-            <span className="gradient-text">Solutions</span>
-          </motion.h2>
-
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={isInView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl text-[#A7B0C8] max-w-2xl leading-relaxed font-[family-name:var(--font-dm-sans)]"
-          >
-            From concept to deployment, we deliver complete digital solutions
-            that drive business growth.
-          </motion.p>
-        </div>
-
-        {/* Bento Grid Layout */}
-        <motion.div
-          style={{ x }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(200px,auto)]"
-        >
-          {services.map((service, index) => (
-            <ServiceCard key={service.title} service={service} index={index} />
-          ))}
-        </motion.div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mt-20 text-center"
-        >
-          <motion.p
-            className="text-[#A7B0C8] mb-6 text-lg font-[family-name:var(--font-dm-sans)]"
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            Need something custom? We adapt to your unique requirements.
-          </motion.p>
-          <motion.a
-            href="#contact"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="btn-primary inline-flex items-center gap-2 text-lg"
-          >
-            Discuss Your Project
-            <ArrowUpRight className="w-5 h-5" />
-          </motion.a>
-        </motion.div>
-      </div>
-    </section>
+      <div className="mt-8 flex items-end justify-end w-full">{visual}</div>
+    </motion.div>
   );
 }
 
-function ServiceCard({
-  service,
-  index,
-}: {
-  service: (typeof services)[0];
-  index: number;
-}) {
-  const [isHovered, setIsHovered] = useState(false);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+/* ── Services Section ─────────────────────────────────────── */
 
-  const spanClass =
-    service.size === "large"
-      ? "md:col-span-2 md:row-span-2"
-      : service.size === "medium"
-        ? "md:col-span-2"
-        : "";
-
+export function Services() {
   return (
-    <motion.div
-      ref={ref}
-      initial={{
-        opacity: 0,
-        y: 50,
-        scale: 0.9,
-      }}
-      animate={
-        isInView
-          ? {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-            }
-          : {}
-      }
-      transition={{
-        duration: 0.6,
-        delay: index * 0.1,
-        ease: [0.21, 0.47, 0.32, 0.98],
-      }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className={`relative group ${spanClass}`}
+    <section
+      id="services"
+      aria-label="Our Services - Core Capabilities"
+      className="w-full px-6 py-32 z-10 relative max-w-7xl mx-auto"
     >
-      <motion.div
-        animate={{
-          y: isHovered ? -5 : 0,
-        }}
-        transition={{ duration: 0.4 }}
-        className="relative h-full p-6 rounded-2xl overflow-hidden cursor-pointer"
-        style={{
-          background: `linear-gradient(135deg, ${service.color}08 0%, #0B0F1C 100%)`,
-          border: `1px solid ${service.color}20`,
-          boxShadow: isHovered ? `0 30px 60px ${service.color}20` : "none",
-        }}
-      >
-        {/* Animated Background */}
-        <motion.div
-          animate={{
-            opacity: isHovered ? 1 : 0,
-            scale: isHovered ? 1.5 : 1,
-          }}
-          transition={{ duration: 0.5 }}
-          className="absolute inset-0"
-          style={{
-            background: `radial-gradient(circle at 50% 0%, ${service.color}20, transparent 70%)`,
-          }}
-        />
-
-        {/* Icon */}
-        <motion.div
-          animate={{
-            scale: isHovered ? 1.1 : 1,
-          }}
-          transition={{ duration: 0.3 }}
-          className="relative z-10 w-14 h-14 rounded-xl flex items-center justify-center mb-4"
-          style={{ backgroundColor: `${service.color}20` }}
-        >
-          <service.icon className="w-7 h-7" style={{ color: service.color }} />
-        </motion.div>
-
-        {/* Content */}
-        <div className="relative z-10">
-          <motion.h3
-            className="text-xl md:text-2xl font-bold text-white mb-2 font-[family-name:var(--font-space-grotesk)]"
-            animate={{ y: isHovered ? -5 : 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            {service.title}
-          </motion.h3>
-
-          <motion.p
-            animate={{ y: isHovered ? -3 : 0, opacity: isHovered ? 1 : 0.7 }}
-            transition={{ duration: 0.3 }}
-            className="text-[#A7B0C8] mb-4 leading-relaxed font-[family-name:var(--font-dm-sans)]"
-          >
-            {service.description}
-          </motion.p>
-
-          {/* Features */}
-          <div className="flex flex-wrap gap-2">
-            {service.features.map((feature, i) => (
-              <motion.span
-                key={feature}
-                initial={{ scale: 0, opacity: 0 }}
-                animate={isInView ? { scale: 1, opacity: 1 } : {}}
-                transition={{ delay: 0.2 + i * 0.05 }}
-                whileHover={{ scale: 1.1, backgroundColor: service.color }}
-                className="px-3 py-1 rounded-full text-xs font-medium transition-colors"
-                style={{
-                  backgroundColor: `${service.color}20`,
-                  color: service.color,
-                }}
-              >
-                {feature}
-              </motion.span>
-            ))}
-          </div>
+      {/* Header */}
+      <div className="max-w-2xl mb-16">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel text-[11px] font-mono text-blue-600 mb-5 border border-blue-500/20">
+          CORE CAPABILITIES
         </div>
+        <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-5 text-gray-900">
+          Everything your product needs to ship.
+        </h2>
+        <p className="text-gray-600 text-base md:text-lg leading-relaxed">
+          A senior-led team covering the full stack — from interface to
+          infrastructure, prototype to production.
+        </p>
+      </div>
 
-        {/* Arrow indicator */}
-        <motion.div
-          animate={{
-            x: isHovered ? 0 : -20,
-            opacity: isHovered ? 1 : 0,
-          }}
-          transition={{ duration: 0.3 }}
-          className="absolute bottom-4 right-4"
-        >
-          <ArrowUpRight className="w-6 h-6" style={{ color: service.color }} />
-        </motion.div>
-
-        {/* Large number */}
-        <motion.div
-          animate={{
-            opacity: isHovered ? 0.2 : 0.05,
-            scale: isHovered ? 1.1 : 1,
-          }}
-          transition={{ duration: 0.3 }}
-          className="absolute bottom-2 right-6 text-7xl font-bold font-[family-name:var(--font-space-grotesk)] pointer-events-none"
-          style={{ color: service.color }}
-        >
-          {String(index + 1).padStart(2, "0")}
-        </motion.div>
-      </motion.div>
-    </motion.div>
+      {/* Grid */}
+      <div className="grid grid-cols-6 gap-4">
+        {cards.map((c, i) => (
+          <CapabilityCard key={i} {...c} />
+        ))}
+      </div>
+    </section>
   );
 }

@@ -3,12 +3,13 @@ export const prerender = true;
 import Layout from '../layouts/Layout.astro';
 import { Navbar } from '../components/landing/Navbar';
 import { Hero } from '../components/landing/Hero';
+import { Marquee } from '../components/landing/Marquee';
 import { Services } from '../components/landing/Services';
+import { Process } from '../components/landing/Process';
 import { Work } from '../components/landing/Work';
 import { Testimonials } from '../components/landing/Testimonials';
 import { CTA } from '../components/landing/CTA';
 import { Footer } from '../components/landing/Footer';
-import { FloatingCTA } from '../components/landing/FloatingCTA';
 
 // SEO Configuration
 const title = "OpenOrbit | Award-Winning Software Development Agency - Web Apps, Mobile Apps & AI";
@@ -34,7 +35,7 @@ const keywords = [
   keywords={keywords}
 >
   <main 
-    class="relative min-h-screen bg-[#070A12] text-[#F4F6FF]"
+    class="relative min-h-screen bg-[#FAFAFA] text-gray-900"
     itemscope 
     itemtype="https://schema.org/WebPage"
     role="main"
@@ -42,13 +43,13 @@ const keywords = [
     <Navbar client:load />
     <article itemscope itemtype="https://schema.org/Service">
       <Hero client:visible />
+      <Marquee client:visible />
       <Services client:visible />
+      <Process client:visible />
       <Work client:visible />
       <Testimonials client:visible />
       <CTA client:visible />
     </article>
     <Footer client:visible />
-    <FloatingCTA client:visible />
   </main>
 </Layout>
-
