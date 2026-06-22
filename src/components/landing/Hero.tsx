@@ -1,60 +1,60 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 export function Hero() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.querySelectorAll(".reveal").forEach((r, i) => {
+              setTimeout(() => r.classList.add("visible"), i * 100);
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="hero"
-      aria-label="Hero section - OpenOrbit Software Development"
-      className="relative min-h-[85vh] flex flex-col justify-center items-center text-center px-6 pt-32 pb-16 z-10"
+      ref={ref}
+      className="snap-section min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-20 py-32 border-b border-slate-900/5"
     >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-4xl mx-auto flex flex-col items-center"
-      >
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel text-[11px] font-mono text-blue-600 mb-8 border border-blue-500/20 shadow-[0_0_20px_rgba(59,130,246,0.1)]">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-          </span>
-          FOUNDER-LED TECHNICAL STUDIO
-        </div>
-
-        {/* Main Headline */}
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] mb-6 text-gray-900">
-          Turning Ideas<br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-emerald-500 to-green-600 drop-shadow-[0_0_30px_rgba(16,185,129,0.2)]">
-            Into Systems.
-          </span>
+      <div className="max-w-4xl">
+        <p className="eyebrow mb-6 reveal">Elite Technical Studio</p>
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-8 reveal stagger-1">
+          Turning ideas into <span className="text-green-500">functional systems</span>.
         </h1>
-
-        {/* Subtitle */}
-        <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
-          Founder-led technical studio delivering elite software solutions with
-          senior-level expertise and zero agency overhead. From concept to
-          deployment, we build digital infrastructure that scales.
+        <p className="text-lg md:text-xl text-slate-600 max-w-2xl leading-relaxed mb-10 reveal stagger-2">
+          Founder-led software solutions with senior-level expertise. We build web, mobile, and AI products with zero agency overhead. Fully autonomous, high-velocity delivery.
         </p>
-
-        {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="flex flex-wrap items-center gap-4 reveal stagger-3">
+          <a
+            href="#work"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-500 text-white text-sm font-semibold hover:bg-green-600 transition-all hover:scale-[1.03] hover:shadow-lg hover:shadow-green-500/25"
+          >
+            View Our Work
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </a>
           <a
             href="#contact"
-            className="moving-border-btn rounded-full px-8 py-3.5 text-[15px] font-semibold text-gray-900 transition-transform hover:scale-105 w-full sm:w-auto shadow-sm inline-block text-center"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-slate-900/10 text-slate-900 text-sm font-semibold hover:bg-green-50 transition-all"
           >
-            Start Your Project
-          </a>
-          <a
-            href="#services"
-            className="rounded-full px-8 py-3.5 text-[15px] font-semibold text-gray-800 glass-panel hover:bg-gray-50 transition-all w-full sm:w-auto border border-black/10 inline-block text-center"
-          >
-            Explore Services
+            Discuss Your Project
           </a>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

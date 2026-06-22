@@ -3,53 +3,36 @@ export const prerender = true;
 import Layout from '../layouts/Layout.astro';
 import { Navbar } from '../components/landing/Navbar';
 import { Hero } from '../components/landing/Hero';
-import { Marquee } from '../components/landing/Marquee';
 import { Services } from '../components/landing/Services';
-import { Process } from '../components/landing/Process';
 import { Work } from '../components/landing/Work';
-import { Testimonials } from '../components/landing/Testimonials';
+import { WhyUs } from '../components/landing/WhyUs';
 import { CTA } from '../components/landing/CTA';
 import { Footer } from '../components/landing/Footer';
+import { DotIsland } from '../components/landing/DotIsland';
 
-// SEO Configuration
-const title = "OpenOrbit | Award-Winning Software Development Agency - Web Apps, Mobile Apps & AI";
-const description = "OpenOrbit is a premium software development agency delivering custom web applications, mobile apps, cloud solutions, and AI integration. 150+ successful projects, 98% client satisfaction. Enterprise-grade solutions for startups to Fortune 500 companies. Get a free consultation today.";
-
-const keywords = [
-  "software development agency San Francisco",
-  "custom software development company",
-  "enterprise web application development",
-  "React development agency",
-  "Next.js development company",
-  "AI software development",
-  "startup MVP development",
-  "mobile app development company USA",
-  "cloud migration services",
-  "DevOps consulting services"
-];
+const title = "OpenOrbit | Software Development Studio";
+const description = "Founder-led software solutions with senior-level expertise. We build web, mobile, and AI products with zero agency overhead. Fully autonomous, high-velocity delivery.";
 ---
 
-<Layout 
-  title={title} 
-  description={description}
-  keywords={keywords}
->
-  <main 
-    class="relative min-h-screen bg-[#FAFAFA] text-gray-900"
-    itemscope 
-    itemtype="https://schema.org/WebPage"
-    role="main"
-  >
-    <Navbar client:load />
-    <article itemscope itemtype="https://schema.org/Service">
-      <Hero client:visible />
-      <Marquee client:visible />
-      <Services client:visible />
-      <Process client:visible />
-      <Work client:visible />
-      <Testimonials client:visible />
-      <CTA client:visible />
-    </article>
-    <Footer client:visible />
+<Layout title={title} description={description}>
+  <div class="progress-top" id="progress-top"></div>
+  <Navbar client:load />
+  <DotIsland
+    sections={[
+      { id: "hero", label: "Home" },
+      { id: "services", label: "Services" },
+      { id: "work", label: "Work" },
+      { id: "why", label: "Why us" },
+      { id: "contact", label: "Contact" },
+    ]}
+    client:load
+  />
+  <main class="snap-scroll" id="main-scroll">
+    <Hero client:visible />
+    <Services client:visible />
+    <Work client:visible />
+    <WhyUs client:visible />
+    <CTA client:visible />
   </main>
+  <Footer client:visible />
 </Layout>
