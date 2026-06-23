@@ -3,9 +3,27 @@
 import { useEffect, useRef } from "react";
 
 const projects = [
-  { name: "MentIQ", tag: "Predictive retention SaaS", desc: "Churn-risk accounts surfaced weeks earlier." },
-  { name: "Athleon", tag: "Sports performance platform", desc: "Injury-risk signals delivered in real time." },
-  { name: "Axton Protocol", tag: "DeFi OTC infrastructure", desc: "Settlement transparency without slippage." },
+  {
+    name: "MentIQ",
+    tag: "Predictive retention SaaS",
+    desc: "Churn-risk accounts surfaced weeks earlier.",
+    href: "/portfolio#mentiq",
+    media: { type: "video", src: "/videos/mentiq-demo.mov" },
+  },
+  {
+    name: "Athleon",
+    tag: "Sports performance platform",
+    desc: "Injury-risk signals delivered in real time.",
+    href: "/portfolio#athleon",
+    media: { type: "video", src: "/videos/athleon.mp4" },
+  },
+  {
+    name: "Axton Protocol",
+    tag: "DeFi OTC infrastructure",
+    desc: "Settlement transparency without slippage.",
+    href: "/portfolio#axton",
+    media: { type: "image", src: "/images/axton-1.png" },
+  },
 ];
 
 export function Work() {
@@ -38,7 +56,7 @@ export function Work() {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
           <div>
-            <p className="eyebrow mb-6 reveal">Selected Work</p>
+            <p className="eyebrow mb-6 reveal">Portfolio</p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight max-w-2xl reveal stagger-1">
               Dynamic solutions built for scale.
             </h2>
@@ -52,25 +70,26 @@ export function Work() {
           </a>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="video-wrap aspect-video reveal-scale">
-            <video src="https://www.w3schools.com/html/mov_bbb.mp4" autoPlay muted loop playsInline />
-          </div>
-          <div className="video-wrap aspect-video reveal-scale stagger-2">
-            <video src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" autoPlay muted loop playsInline />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {projects.map((p, i) => (
-            <div
+            <a
               key={p.name}
-              className={`glass-panel p-6 rounded-2xl reveal stagger-${i + 1} hover:bg-green-50/60 transition-colors`}
+              href={p.href}
+              className={`group glass-panel rounded-2xl overflow-hidden reveal stagger-${i + 1} hover:bg-green-50/60 transition-all no-underline block`}
             >
-              <p className="text-[11px] text-green-700 uppercase tracking-wider mb-2">{p.name}</p>
-              <p className="font-semibold text-slate-900 mb-1">{p.tag}</p>
-              <p className="text-sm text-slate-600">{p.desc}</p>
-            </div>
+              <div className="aspect-video overflow-hidden border-b border-slate-900/5" style={{ background: "rgba(15, 23, 42, 0.04)" }}>
+                {p.media.type === "video" ? (
+                  <video src={p.media.src} autoPlay muted loop playsInline className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" />
+                ) : (
+                  <img src={p.media.src} alt={p.name} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" loading="lazy" />
+                )}
+              </div>
+              <div className="p-6">
+                <p className="text-[11px] text-green-700 uppercase tracking-wider mb-2">{p.name}</p>
+                <p className="font-semibold text-slate-900 mb-1">{p.tag}</p>
+                <p className="text-sm text-slate-600">{p.desc}</p>
+              </div>
+            </a>
           ))}
         </div>
       </div>

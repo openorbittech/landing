@@ -32,7 +32,10 @@ export function Navbar() {
         if (el) {
           const main = document.getElementById("main-scroll");
           if (main) {
-            main.scrollTo({ top: el.offsetTop, behavior: "smooth" });
+            const rect = el.getBoundingClientRect();
+            const mainRect = main.getBoundingClientRect();
+            const offset = rect.top - mainRect.top + main.scrollTop;
+            main.scrollTo({ top: offset, behavior: "smooth" });
           } else {
             el.scrollIntoView({ behavior: "smooth" });
           }

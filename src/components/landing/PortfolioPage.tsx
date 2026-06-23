@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { AsciiOverlay } from "./AsciiOverlay";
 
 const OpenOrbitLogo = () => (
   <svg className="h-5 w-auto text-green-500" viewBox="0 0 152 139" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -24,6 +25,7 @@ const dotSections = [
   { id: "mentiq", label: "MentIQ" },
   { id: "axton", label: "Axton Protocol" },
   { id: "ai", label: "AI Automation" },
+  { id: "predictx", label: "PredictX" },
   { id: "toolkit", label: "Toolkit" },
   { id: "contact", label: "Contact" },
 ];
@@ -38,16 +40,10 @@ const projects = [
     desc2: "The product integrates wearable APIs and high-speed camera feeds, normalizes noisy signal data, and surfaces trends coaches can act on within seconds.",
     tags: ["React", "Node.js", "Python", "TimescaleDB"],
     outcome: "Injury-risk signals delivered in real time.",
-    video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-    images: [
-      "https://images.unsplash.com/photo-1461896836934-bd45ba8fcf9b?w=800&q=80",
-      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80",
-      "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&q=80",
-    ],
+    video: "/videos/athleon.mp4",
+    images: [],
     gallery: [
-      { type: "video", src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" },
-      { type: "video", src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" },
-      { type: "image", src: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&q=80" },
+      { type: "video", src: "/videos/athleon-demo.mov" },
     ],
     domain: "Sports & Biomechanics",
     engagement: "End-to-end product build",
@@ -61,16 +57,10 @@ const projects = [
     desc2: "The system consumes product-usage events, computes risk scores, and presents clear cohort views and alerts instead of endless spreadsheets.",
     tags: ["Next.js", "PostgreSQL", "dbt", "Looker"],
     outcome: "Churn-risk accounts surfaced weeks earlier.",
-    video: "https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
-    images: [
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&q=80",
-    ],
+    video: "/videos/mentiq-demo.mov",
+    images: [],
     gallery: [
-      { type: "video", src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" },
-      { type: "image", src: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=800&q=80" },
-      { type: "image", src: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80" },
+      { type: "video", src: "/videos/mentiq-sdk.mov" },
     ],
     domain: "Enterprise SaaS",
     engagement: "Data platform & UI",
@@ -84,17 +74,11 @@ const projects = [
     desc2: "Every trade route is traceable on-chain, every contract is covered by automated tests, and the UI gives traders real-time settlement status without wallet confusion.",
     tags: ["Solidity", "Rust", "React", "Ethers.js"],
     outcome: "Settlement transparency without slippage.",
-    video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
     images: [
-      "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&q=80",
-      "https://images.unsplash.com/photo-1639322537228-f71034b1f5b3?w=800&q=80",
-      "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&q=80",
+      "/images/axton-1.png",
+      "/images/axton-2.png",
     ],
-    gallery: [
-      { type: "image", src: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&q=80" },
-      { type: "video", src: "https://storage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4" },
-      { type: "image", src: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&q=80" },
-    ],
+    gallery: [],
     domain: "DeFi & OTC",
     engagement: "Protocol engineering",
   },
@@ -107,19 +91,25 @@ const projects = [
     desc2: "Human reviewers stay in control through exception queues, while routine items are processed, validated and logged automatically.",
     tags: ["Python", "OpenAI API", "LangChain", "AWS Lambda"],
     outcome: "Manual processing replaced by auditable agents.",
-    video: "https://storage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-    images: [
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
-      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80",
-      "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&q=80",
-    ],
-    gallery: [
-      { type: "video", src: "https://storage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4" },
-      { type: "image", src: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80" },
-      { type: "image", src: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80" },
-    ],
+    images: [],
+    gallery: [],
     domain: "AI Operations",
     engagement: "Agentic workflow system",
+  },
+  {
+    id: "predictx",
+    num: "05",
+    eyebrow: "Predictive Analytics",
+    title: "PredictX",
+    desc: "A predictive analytics platform that transforms raw operational data into actionable forecasts. We built the data pipeline, ML model serving layer, and interactive dashboard that lets business teams explore what-if scenarios in real time.",
+    desc2: "The system ingests streaming data from multiple sources, trains and deploys models automatically, and surfaces predictions through a clean, collaborative interface.",
+    tags: ["Python", "TensorFlow", "React", "Apache Kafka"],
+    outcome: "Forecast accuracy improved by 35%.",
+    video: "/videos/predictx.mp4",
+    images: [],
+    gallery: [],
+    domain: "Predictive Analytics",
+    engagement: "ML platform & dashboard",
   },
 ];
 
@@ -235,6 +225,8 @@ export function PortfolioPage() {
 
       {/* Main scroll container */}
       <main className="snap-scroll" id="main-scroll">
+        <AsciiOverlay />
+        <div className="relative z-10">
         {/* Intro */}
         <section id="intro" className="snap-section min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-20 py-32 border-b border-slate-900/5">
           <div className="max-w-4xl">
@@ -363,6 +355,7 @@ export function PortfolioPage() {
             </form>
           </div>
         </section>
+          </div>
       </main>
 
       <footer className="px-6 md:px-12 lg:px-20 py-8 border-t border-slate-900/5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-sm text-slate-500">
@@ -381,42 +374,55 @@ function PortfolioDotIsland() {
     const main = document.getElementById("main-scroll");
     const scrollEl = main || document.documentElement;
     const dots = islandRef.current?.querySelectorAll(".dot-link");
+    const bar = document.getElementById("progress-top");
 
-    function update() {
-      const scrolled = scrollEl.scrollTop;
-      let currentId = dotSections[0]?.id || "";
-      dotSections.forEach((sec) => {
-        const el = document.getElementById(sec.id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight / 2.5) {
-            currentId = sec.id;
+    /* IntersectionObserver for active section */
+    const sectionEls = dotSections
+      .map((s) => document.getElementById(s.id))
+      .filter(Boolean) as HTMLElement[];
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        let currentId = dotSections[0]?.id || "";
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            currentId = entry.target.id;
           }
         }
-      });
+        dots?.forEach((dot) => {
+          dot.classList.toggle("active", dot.getAttribute("data-section") === currentId);
+        });
+      },
+      { threshold: 0, rootMargin: `-${window.innerHeight * 0.3}px 0px -${window.innerHeight * 0.3}px 0px` }
+    );
 
-      dots?.forEach((dot) => {
-        dot.classList.toggle("active", dot.getAttribute("data-section") === currentId);
-      });
+    sectionEls.forEach((el) => obs.observe(el));
 
-      const footer = document.querySelector("footer");
-      if (footer && islandRef.current) {
-        const footerRect = footer.getBoundingClientRect();
-        const viewBottom = window.innerHeight;
-        islandRef.current.classList.toggle("hide", viewBottom > footerRect.top + 40);
-      }
-
-      const bar = document.getElementById("progress-top");
+    /* Progress bar and footer hide via scroll */
+    function onScroll() {
+      const scrolled = scrollEl.scrollTop || window.scrollY;
       if (bar) {
         const max = scrollEl.scrollHeight - scrollEl.clientHeight;
         const pct = max > 0 ? (scrolled / max) * 100 : 0;
         bar.style.width = pct + "%";
       }
+
+      const footer = document.querySelector("footer");
+      if (footer && islandRef.current) {
+        const fr = footer.getBoundingClientRect();
+        islandRef.current.classList.toggle("hide", window.innerHeight > fr.top + 40);
+      }
     }
 
-    scrollEl.addEventListener("scroll", update, { passive: true });
-    update();
-    return () => scrollEl.removeEventListener("scroll", update);
+    scrollEl.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    return () => {
+      obs.disconnect();
+      scrollEl.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (
@@ -446,11 +452,12 @@ function ProjectSection({
   const isEven = index % 2 === 0;
 
   const carouselItems: { type: "video" | "image"; src: string; label?: string }[] = [
-    { type: "video", src: project.video, label: "Main video" },
+    ...(project.video ? [{ type: "video" as const, src: project.video, label: "Main video" }] : []),
     ...project.images.map((src) => ({ type: "image" as const, src, label: "Screenshot" })),
     ...project.gallery.map((g) => ({ type: g.type as "video" | "image", src: g.src, label: g.type === "video" ? "Gallery video" : "Gallery image" })),
   ];
 
+  const hasMedia = carouselItems.length > 0;
   const [activeIdx, setActiveIdx] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
@@ -491,85 +498,96 @@ function ProjectSection({
 
           {/* Carousel */}
           <div className={`lg:w-1/2 w-full ${isEven ? "" : "order-2 lg:order-1"}`}>
-            {/* Main display */}
-            <div
-              className="video-wrap aspect-[4/3] relative group cursor-pointer"
-              onClick={() => setLightboxOpen(true)}
-            >
-              {active.type === "video" ? (
-                <video
-                  key={active.src}
-                  src={active.src}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-full object-cover rounded-2xl"
-                />
-              ) : (
-                <img
-                  key={active.src}
-                  src={active.src}
-                  alt={`${project.title} ${activeIdx}`}
-                  className="w-full h-full object-cover rounded-2xl"
-                />
-              )}
+            {hasMedia ? (
+              <>
+                {/* Main display */}
+                <div
+                  className="video-wrap aspect-[4/3] relative group cursor-pointer"
+                  onClick={() => setLightboxOpen(true)}
+                >
+                  {active.type === "video" ? (
+                    <video
+                      key={active.src}
+                      src={active.src}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-full object-cover rounded-2xl"
+                    />
+                  ) : (
+                    <img
+                      key={active.src}
+                      src={active.src}
+                      alt={`${project.title} ${activeIdx}`}
+                      className="w-full h-full object-cover rounded-2xl"
+                    />
+                  )}
 
-              {/* Hover overlay */}
-              <div
-                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center bg-black/20 backdrop-blur-[2px]"
-              >
-                <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-white/90 text-slate-800 text-sm font-medium shadow-lg">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                  View fullscreen
+                  {/* Hover overlay */}
+                  <div
+                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center bg-black/20 backdrop-blur-[2px]"
+                  >
+                    <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-white/90 text-slate-800 text-sm font-medium shadow-lg">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                      View fullscreen
+                    </div>
+                  </div>
+
+                  {/* Arrow overlays */}
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setActiveIdx((i) => (i - 1 + carouselItems.length) % carouselItems.length); }}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm shadow flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
+                    aria-label="Previous"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                  </button>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setActiveIdx((i) => (i + 1) % carouselItems.length); }}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm shadow flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
+                    aria-label="Next"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                  </button>
+
+                  {/* Counter badge */}
+                  <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-sm text-white text-[11px] font-medium">
+                    {activeIdx + 1} / {carouselItems.length}
+                  </div>
+                </div>
+
+                {/* Thumbnails strip */}
+                <div className="mt-4 flex gap-2 overflow-x-auto pb-2 scrollbar-thin">
+                  {carouselItems.map((item, i) => (
+                    <button
+                      key={i}
+                      onMouseEnter={() => setActiveIdx(i)}
+                      onClick={() => setActiveIdx(i)}
+                      className={`flex-shrink-0 w-20 h-14 rounded-xl overflow-hidden border-2 transition-all duration-200 cursor-pointer ${
+                        i === activeIdx
+                          ? "border-green-500 shadow-[0_0_12px_rgba(34,197,94,0.3)] scale-105"
+                          : "border-slate-200/60 hover:border-slate-300 hover:scale-[1.04] opacity-70 hover:opacity-100"
+                      }`}
+                      style={{ background: "rgba(15, 23, 42, 0.04)" }}
+                      aria-label={`View ${item.label} ${i + 1}`}
+                    >
+                      {item.type === "video" ? (
+                        <video src={item.src} muted playsInline className="w-full h-full object-cover pointer-events-none" />
+                      ) : (
+                        <img src={item.src} alt="" className="w-full h-full object-cover pointer-events-none" loading="lazy" />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="video-wrap aspect-[4/3] rounded-2xl flex items-center justify-center" style={{ background: "rgba(15, 23, 42, 0.04)" }}>
+                <div className="text-center">
+                  <svg className="mx-auto mb-3 text-slate-400" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                  <p className="text-sm text-slate-500">Media preview coming soon</p>
                 </div>
               </div>
-
-              {/* Arrow overlays */}
-              <button
-                onClick={(e) => { e.stopPropagation(); setActiveIdx((i) => (i - 1 + carouselItems.length) % carouselItems.length); }}
-                className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm shadow flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
-                aria-label="Previous"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-              </button>
-              <button
-                onClick={(e) => { e.stopPropagation(); setActiveIdx((i) => (i + 1) % carouselItems.length); }}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm shadow flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
-                aria-label="Next"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-              </button>
-
-              {/* Counter badge */}
-              <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-sm text-white text-[11px] font-medium">
-                {activeIdx + 1} / {carouselItems.length}
-              </div>
-            </div>
-
-            {/* Thumbnails strip */}
-            <div className="mt-4 flex gap-2 overflow-x-auto pb-2 scrollbar-thin">
-              {carouselItems.map((item, i) => (
-                <button
-                  key={i}
-                  onMouseEnter={() => setActiveIdx(i)}
-                  onClick={() => setActiveIdx(i)}
-                  className={`flex-shrink-0 w-20 h-14 rounded-xl overflow-hidden border-2 transition-all duration-200 cursor-pointer ${
-                    i === activeIdx
-                      ? "border-green-500 shadow-[0_0_12px_rgba(34,197,94,0.3)] scale-105"
-                      : "border-slate-200/60 hover:border-slate-300 hover:scale-[1.04] opacity-70 hover:opacity-100"
-                  }`}
-                  style={{ background: "rgba(15, 23, 42, 0.04)" }}
-                  aria-label={`View ${item.label} ${i + 1}`}
-                >
-                  {item.type === "video" ? (
-                    <video src={item.src} muted playsInline className="w-full h-full object-cover pointer-events-none" />
-                  ) : (
-                    <img src={item.src} alt="" className="w-full h-full object-cover pointer-events-none" loading="lazy" />
-                  )}
-                </button>
-              ))}
-            </div>
+            )}
 
             {/* Domain & engagement cards */}
             <div className="mt-6 grid grid-cols-2 gap-4">
@@ -587,7 +605,7 @@ function ProjectSection({
       </div>
 
       {/* Lightbox overlay */}
-      {lightboxOpen && (
+      {lightboxOpen && hasMedia && (
         <div
           className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex items-center justify-center p-6"
           onClick={() => setLightboxOpen(false)}

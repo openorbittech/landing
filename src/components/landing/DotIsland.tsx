@@ -11,58 +11,60 @@ export function DotIsland({ sections }: DotIslandProps) {
 
   useEffect(() => {
     const main = document.getElementById("main-scroll");
-    const scrollEl = main || document.documentElement;
-    const dots = islandRef.current?.querySelectorAll(".dot-link");
     const bar = document.getElementById("progress-top");
+    const dots = islandRef.current?.querySelectorAll(".dot-link");
 
-    let ticking = false;
+    /* ── IntersectionObserver for active section ── */
+    const sectionEls = sections
+      .map((s) => document.getElementById(s.id))
+      .filter(Boolean) as HTMLElement[];
 
-    function update() {
-      const scrolled = scrollEl.scrollTop;
-      let currentId = sections[0]?.id || "";
-      sections.forEach((sec) => {
-        const el = document.getElementById(sec.id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight / 2.5) {
-            currentId = sec.id;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        let currentId = sections[0]?.id || "";
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            currentId = entry.target.id;
           }
         }
-      });
+        dots?.forEach((dot) => {
+          dot.classList.toggle("active", dot.getAttribute("data-section") === currentId);
+        });
+      },
+      { threshold: 0, rootMargin: `-${window.innerHeight * 0.3}px 0px -${window.innerHeight * 0.3}px 0px` }
+    );
 
-      dots?.forEach((dot) => {
-        dot.classList.toggle("active", dot.getAttribute("data-section") === currentId);
-      });
+    sectionEls.forEach((el) => obs.observe(el));
 
-      const footer = document.querySelector("footer");
-      if (footer && islandRef.current) {
-        const footerRect = footer.getBoundingClientRect();
-        const viewBottom = window.innerHeight;
-        islandRef.current.classList.toggle("hide", viewBottom > footerRect.top + 40);
-      }
+    /* ── Progress bar and footer hide via scroll ── */
+    const scrollEl = main || document.documentElement;
 
+    function onScroll() {
+      const scrolled = scrollEl.scrollTop || window.scrollY;
       if (bar) {
         const max = scrollEl.scrollHeight - scrollEl.clientHeight;
         const pct = max > 0 ? (scrolled / max) * 100 : 0;
         bar.style.width = pct + "%";
       }
-    }
 
-    function onScroll() {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          update();
-          ticking = false;
-        });
-        ticking = true;
+      const footer = document.querySelector("footer");
+      if (footer && islandRef.current) {
+        const fr = footer.getBoundingClientRect();
+        islandRef.current.classList.toggle("hide", window.innerHeight > fr.top + 40);
       }
     }
 
     scrollEl.addEventListener("scroll", onScroll, { passive: true });
-    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
 
-    return () => scrollEl.removeEventListener("scroll", onScroll);
-  }, [sections]);
+    return () => {
+      obs.disconnect();
+      scrollEl.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", onScroll);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <nav ref={islandRef} className="dot-island" aria-label="Section navigation">
