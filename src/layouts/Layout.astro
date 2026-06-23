@@ -17,9 +17,9 @@ interface Props {
 }
 
 const {
-  title = "OpenOrbit | Award-Winning Software Development Agency",
-  description = "OpenOrbit: Premium software development agency delivering web apps, mobile apps, cloud solutions & AI integration. 150+ successful projects, 98% client satisfaction. Enterprise-grade solutions for startups to Fortune 500.",
-  image = "https://openorbit.io/og-image.jpg",
+  title = "OpenOrbit | Software Development Studio",
+  description = "OpenOrbit is a founder-led software development studio building web, mobile, cloud and AI products with senior-level engineering velocity and zero agency overhead.",
+  image = "/og-image.jpg",
   canonicalUrl = Astro.url.href,
   noindex = false,
   structuredData = [],
@@ -87,42 +87,19 @@ const organizationSchema = {
     height: 630,
   },
   description: description,
-  foundingDate: "2012",
-  founders: [
-    {
-      "@type": "Person",
-      name: "OpenOrbit Team",
-    },
-  ],
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "US",
-    addressLocality: "San Francisco",
-    addressRegion: "CA",
-  },
   contactPoint: [
     {
       "@type": "ContactPoint",
       contactType: "sales",
-      email: "hello@openorbit.io",
+      email: "hello@openorbit.tech",
       availableLanguage: ["English"],
-      contactOption: "TollFree",
       areaServed: "Worldwide",
-    },
-    {
-      "@type": "ContactPoint",
-      contactType: "technical support",
-      email: "support@openorbit.io",
-      availableLanguage: ["English"],
     },
   ],
   sameAs: [
     "https://twitter.com/openorbit",
     "https://linkedin.com/company/openorbit",
     "https://github.com/openorbit",
-    "https://facebook.com/openorbit",
-    "https://instagram.com/openorbit",
-    "https://www.crunchbase.com/organization/openorbit",
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
@@ -165,19 +142,12 @@ const organizationSchema = {
       },
     ],
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: "150",
-    bestRating: "5",
-    worstRating: "1",
-  },
   makesOffer: [
     {
       "@type": "Offer",
       name: "Free Technical Consultation",
       description:
-        "Complimentary 30-minute technical consultation for new projects",
+        "Complimentary technical consultation and project roadmap for new projects",
     },
   ],
 };
@@ -187,55 +157,11 @@ const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": `${siteUrl}/#localbusiness`,
-  name: `${siteName} - Software Development Agency`,
+  name: `${siteName} - Software Development Studio`,
   image: image,
   url: siteUrl,
-  telephone: "+1-415-555-0123",
-  email: "hello@openorbit.io",
-  priceRange: "$$$",
-  currenciesAccepted: "USD, EUR, GBP",
-  paymentAccepted: "Credit Card, Wire Transfer, Cryptocurrency",
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "09:00",
-      closes: "18:00",
-      timeZone: "America/Los_Angeles",
-    },
-  ],
-  areaServed: [
-    {
-      "@type": "Place",
-      name: "Global",
-    },
-    {
-      "@type": "Country",
-      name: [
-        "United States",
-        "Canada",
-        "United Kingdom",
-        "Europe",
-        "Australia",
-      ],
-    },
-  ],
-  serviceArea: {
-    "@type": "GeoCircle",
-    geoMidpoint: {
-      "@type": "GeoCoordinates",
-      latitude: "37.7749",
-      longitude: "-122.4194",
-    },
-    geoRadius: "50000",
-    unitText: "km",
-  },
-  hasMap: "https://maps.google.com/?q=San+Francisco,CA",
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: "37.7749",
-    longitude: "-122.4194",
-  },
+  email: "hello@openorbit.tech",
+  areaServed: "Global",
 };
 
 // WebSite Schema for search features
@@ -544,7 +470,6 @@ const allSchemas = [
   serviceSchema,
   breadcrumbSchema,
   howToSchema,
-  reviewSchema,
   ...(Array.isArray(structuredData) ? structuredData : [structuredData]),
 ].filter(Boolean);
 
@@ -752,18 +677,9 @@ const jsonLdScript = allSchemas
     <meta name="slurp" content="index, follow" />
     <meta name="duckduckbot" content="index, follow" />
 
-    <!-- Search Engine Verification -->
-    <meta
-      name="google-site-verification"
-      content="YOUR_GOOGLE_VERIFICATION_CODE"
-    />
-    <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" />
-    <meta name="yandex-verification" content="YOUR_YANDEX_VERIFICATION_CODE" />
-    <meta name="p:domain_verify" content="YOUR_PINTEREST_VERIFICATION_CODE" />
-    <meta
-      name="facebook-domain-verification"
-      content="YOUR_FACEBOOK_VERIFICATION_CODE"
-    />
+    <!-- Search Engine Verification: add real codes here when available -->
+    <!-- <meta name="google-site-verification" content="" /> -->
+    <!-- <meta name="msvalidate.01" content="" /> -->
 
     <!-- Geo Meta Tags for Local SEO -->
     <meta name="geo.region" content="US-CA" />

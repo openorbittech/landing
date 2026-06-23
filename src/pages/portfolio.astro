@@ -4,9 +4,18 @@ import Layout from '../layouts/Layout.astro';
 import { PortfolioPage } from '../components/landing/PortfolioPage';
 
 const title = "OpenOrbit | Portfolio";
-const description = "A founder-led studio building production-grade software across sports, finance, AI and automation. Each project is a complete case study in architecture, velocity and scale.";
+const description = "Explore OpenOrbit's shipped systems: predictive SaaS, sports performance platforms, DeFi infrastructure, AI automation and predictive analytics.";
+const keywords = [
+  "OpenOrbit portfolio",
+  "software development projects",
+  "SaaS development",
+  "sports technology",
+  "DeFi infrastructure",
+  "AI automation",
+  "predictive analytics platform",
+];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} keywords={keywords}>
   <PortfolioPage client:load />
 </Layout>

@@ -8,7 +8,7 @@ const projects = [
     tag: "Predictive retention SaaS",
     desc: "Churn-risk accounts surfaced weeks earlier.",
     href: "/portfolio#mentiq",
-    media: { type: "video", src: "/videos/mentiq-demo.mov" },
+    media: { type: "video", src: "/videos/optimized/mentiq-demo.mp4" },
   },
   {
     name: "Athleon",
