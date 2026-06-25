@@ -105,7 +105,7 @@ const projects = [
     desc2: "The system ingests streaming data from multiple sources, trains and deploys models automatically, and surfaces predictions through a clean, collaborative interface.",
     tags: ["Python", "TensorFlow", "React", "Apache Kafka"],
     outcome: "Forecast accuracy improved by 35%.",
-    video: "/videos/optimized/predictx.mp4",
+    video: "https://openorbit-videos.s3.ap-south-1.amazonaws.com/videos/predictx.mp4",
     images: [],
     gallery: [],
     domain: "Predictive Analytics",
