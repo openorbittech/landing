@@ -21,7 +21,7 @@ const projects = [
     href: "/portfolio#athleon",
     media: {
       type: "video",
-      src: "/videos/optimized/athleon-demo.mp4",
+      src: "/videos/athleon.mp4",
       poster: "/images/athleon-poster.jpg",
     },
   },

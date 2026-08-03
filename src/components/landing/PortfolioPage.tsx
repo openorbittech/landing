@@ -40,11 +40,11 @@ const projects = [
     desc2: "The product integrates wearable APIs and high-speed camera feeds, normalizes noisy signal data, and surfaces trends coaches can act on within seconds.",
     tags: ["React", "Node.js", "Python", "TimescaleDB"],
     outcome: "Injury-risk signals delivered in real time.",
-    video: "https://openorbit-videos.s3.ap-south-1.amazonaws.com/videos/athleon.mp4",
+    video: "/videos/athleon.mp4",
     poster: "/images/athleon-poster.jpg",
     images: [],
     gallery: [
-      { type: "video", src: "https://openorbit-videos.s3.ap-south-1.amazonaws.com/videos/athleon-demo.mp4", poster: "/images/athleon-poster.jpg" },
+      { type: "video", src: "/videos/athleon.mp4", poster: "/images/athleon-poster.jpg" },
     ],
     domain: "Sports & Biomechanics",
     engagement: "End-to-end product build",
@@ -482,7 +482,7 @@ function ProjectSection({
     ...(project.video ? [{ type: "video" as const, src: project.video, poster: project.poster, label: "Main video" }] : []),
     ...project.images.map((src) => ({ type: "image" as const, src, label: "Screenshot" })),
     ...project.gallery.map((g) => ({ type: g.type as "video" | "image", src: g.src, poster: g.poster, label: g.type === "video" ? "Gallery video" : "Gallery image" })),
-  ];
+  ].filter((item, i, arr) => arr.findIndex((x) => x.src === item.src) === i);
 
   const hasMedia = carouselItems.length > 0;
   const [activeIdx, setActiveIdx] = useState(0);
@@ -564,29 +564,36 @@ function ProjectSection({
                   </div>
 
                   {/* Arrow overlays */}
-                  <button
-                    onClick={(e) => { e.stopPropagation(); setActiveIdx((i) => (i - 1 + carouselItems.length) % carouselItems.length); }}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm shadow flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
-                    aria-label="Previous"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-                  </button>
-                  <button
-                    onClick={(e) => { e.stopPropagation(); setActiveIdx((i) => (i + 1) % carouselItems.length); }}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm shadow flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
-                    aria-label="Next"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-                  </button>
+                  {carouselItems.length > 1 && (
+                    <>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setActiveIdx((i) => (i - 1 + carouselItems.length) % carouselItems.length); }}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm shadow flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
+                        aria-label="Previous"
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                      </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setActiveIdx((i) => (i + 1) % carouselItems.length); }}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm shadow flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
+                        aria-label="Next"
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                      </button>
+                    </>
+                  )}
 
                   {/* Counter badge */}
-                  <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-sm text-white text-[11px] font-medium">
-                    {activeIdx + 1} / {carouselItems.length}
-                  </div>
+                  {carouselItems.length > 1 && (
+                    <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-sm text-white text-[11px] font-medium">
+                      {activeIdx + 1} / {carouselItems.length}
+                    </div>
+                  )}
                 </div>
 
                 {/* Thumbnails strip */}
-                <div className="mt-4 flex gap-2 overflow-x-auto pb-2 scrollbar-thin">
+                {carouselItems.length > 1 && (
+                  <div className="mt-4 flex gap-2 overflow-x-auto pb-2 scrollbar-thin">
                   {carouselItems.map((item, i) => (
                     <button
                       key={i}
@@ -608,6 +615,7 @@ function ProjectSection({
                     </button>
                   ))}
                 </div>
+                )}
               </>
             ) : (
               <div className="video-wrap aspect-[4/3] rounded-2xl flex items-center justify-center" style={{ background: "rgba(15, 23, 42, 0.04)" }}>
@@ -666,17 +674,21 @@ function ProjectSection({
             )}
           </div>
 
-          <button
-            onClick={(e) => { e.stopPropagation(); setActiveIdx((i) => (i + 1) % carouselItems.length); }}
-            className="absolute right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
-            aria-label="Next"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
+          {carouselItems.length > 1 && (
+            <>
+              <button
+                onClick={(e) => { e.stopPropagation(); setActiveIdx((i) => (i + 1) % carouselItems.length); }}
+                className="absolute right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+                aria-label="Next"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
 
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-sm">
-            {activeIdx + 1} / {carouselItems.length}
-          </div>
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-sm">
+                {activeIdx + 1} / {carouselItems.length}
+              </div>
+            </>
+          )}
         </div>
       )}
     </section>
