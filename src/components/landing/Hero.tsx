@@ -29,13 +29,13 @@ export function Hero() {
     <section
       id="hero"
       ref={ref}
-      className="snap-section min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-20 py-32 border-b border-slate-900/5"
+      className="snap-section relative min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-20 py-32 border-b border-slate-900/5"
     >
-      <div className="absolute right-0 bottom-0 hidden lg:block pointer-events-none opacity-[0.06] select-none">
+      <div className="!absolute right-0 bottom-0 hidden lg:block pointer-events-none opacity-20 select-none">
         <img
           src="/logod/openorbitsmallpng.svg"
           alt=""
-          className="w-[min(55vw,800px)] h-[min(55vw,800px)] object-contain"
+          className="w-[min(70vw,900px)] h-[min(70vw,900px)] object-contain"
         />
       </div>
       <div className="max-w-4xl relative z-10">
