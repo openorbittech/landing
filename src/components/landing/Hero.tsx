@@ -31,7 +31,14 @@ export function Hero() {
       ref={ref}
       className="snap-section min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-20 py-32 border-b border-slate-900/5"
     >
-      <div className="max-w-4xl">
+      <div className="absolute right-0 bottom-0 hidden lg:block pointer-events-none opacity-[0.06] select-none">
+        <img
+          src="/logod/openorbitsmallpng.svg"
+          alt=""
+          className="w-[min(55vw,800px)] h-[min(55vw,800px)] object-contain"
+        />
+      </div>
+      <div className="max-w-4xl relative z-10">
         <p className="eyebrow mb-6 reveal">Elite Technical Studio</p>
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-8 reveal stagger-1">
           Turning ideas into <span className="text-green-500">functional systems</span>.
