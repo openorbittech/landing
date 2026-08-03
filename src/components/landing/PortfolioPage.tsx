@@ -41,9 +41,10 @@ const projects = [
     tags: ["React", "Node.js", "Python", "TimescaleDB"],
     outcome: "Injury-risk signals delivered in real time.",
     video: "https://openorbit-videos.s3.ap-south-1.amazonaws.com/videos/athleon.mp4",
+    poster: "/images/athleon-poster.jpg",
     images: [],
     gallery: [
-      { type: "video", src: "https://openorbit-videos.s3.ap-south-1.amazonaws.com/videos/athleon-demo.mp4" },
+      { type: "video", src: "https://openorbit-videos.s3.ap-south-1.amazonaws.com/videos/athleon-demo.mp4", poster: "/images/athleon-poster.jpg" },
     ],
     domain: "Sports & Biomechanics",
     engagement: "End-to-end product build",
@@ -58,9 +59,10 @@ const projects = [
     tags: ["Next.js", "PostgreSQL", "dbt", "Looker"],
     outcome: "Churn-risk accounts surfaced weeks earlier.",
     video: "https://openorbit-videos.s3.ap-south-1.amazonaws.com/videos/mentiq-demo.mp4",
+    poster: "/images/mentiq-poster.jpg",
     images: [],
     gallery: [
-      { type: "video", src: "https://openorbit-videos.s3.ap-south-1.amazonaws.com/videos/mentiq-sdk.mp4" },
+      { type: "video", src: "https://openorbit-videos.s3.ap-south-1.amazonaws.com/videos/mentiq-sdk.mp4", poster: "/images/mentiq-poster.jpg" },
     ],
     domain: "Enterprise SaaS",
     engagement: "Data platform & UI",
@@ -106,6 +108,7 @@ const projects = [
     tags: ["Python", "TensorFlow", "React", "Apache Kafka"],
     outcome: "Forecast accuracy improved by 35%.",
     video: "https://openorbit-videos.s3.ap-south-1.amazonaws.com/videos/predictx.mp4",
+    poster: "/images/predictx-poster.jpg",
     images: [],
     gallery: [],
     domain: "Predictive Analytics",
@@ -450,11 +453,35 @@ function ProjectSection({
   index: number;
 }) {
   const isEven = index % 2 === 0;
+  const mediaRef = useRef<HTMLDivElement>(null);
 
-  const carouselItems: { type: "video" | "image"; src: string; label?: string }[] = [
-    ...(project.video ? [{ type: "video" as const, src: project.video, label: "Main video" }] : []),
+  useEffect(() => {
+    const el = mediaRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.querySelectorAll("video[data-src]").forEach((v) => {
+              const video = v as HTMLVideoElement;
+              video.src = video.dataset.src || "";
+              video.load();
+              video.play().catch(() => {});
+            });
+            observer.disconnect();
+          }
+        });
+      },
+      { rootMargin: "300px 0px 300px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const carouselItems: { type: "video" | "image"; src: string; poster?: string; label?: string }[] = [
+    ...(project.video ? [{ type: "video" as const, src: project.video, poster: project.poster, label: "Main video" }] : []),
     ...project.images.map((src) => ({ type: "image" as const, src, label: "Screenshot" })),
-    ...project.gallery.map((g) => ({ type: g.type as "video" | "image", src: g.src, label: g.type === "video" ? "Gallery video" : "Gallery image" })),
+    ...project.gallery.map((g) => ({ type: g.type as "video" | "image", src: g.src, poster: g.poster, label: g.type === "video" ? "Gallery video" : "Gallery image" })),
   ];
 
   const hasMedia = carouselItems.length > 0;
@@ -502,17 +529,19 @@ function ProjectSection({
               <>
                 {/* Main display */}
                 <div
+                  ref={mediaRef}
                   className="video-wrap aspect-[4/3] relative group cursor-pointer"
                   onClick={() => setLightboxOpen(true)}
                 >
                   {active.type === "video" ? (
                     <video
                       key={active.src}
-                      src={active.src}
-                      autoPlay
+                      poster={active.poster}
                       muted
                       loop
                       playsInline
+                      preload="none"
+                      data-src={active.src}
                       className="w-full h-full object-cover rounded-2xl"
                     />
                   ) : (
@@ -572,7 +601,7 @@ function ProjectSection({
                       aria-label={`View ${item.label} ${i + 1}`}
                     >
                       {item.type === "video" ? (
-                        <video src={item.src} muted playsInline className="w-full h-full object-cover pointer-events-none" />
+                        <video src={item.src} poster={item.poster} muted playsInline preload="none" className="w-full h-full object-cover pointer-events-none" />
                       ) : (
                         <img src={item.src} alt="" className="w-full h-full object-cover pointer-events-none" loading="lazy" />
                       )}
@@ -631,7 +660,7 @@ function ProjectSection({
             onClick={(e) => e.stopPropagation()}
           >
             {active.type === "video" ? (
-              <video key={active.src} src={active.src} autoPlay muted loop playsInline className="w-full h-full object-contain max-h-[85vh]" controls />
+              <video key={active.src} src={active.src} poster={active.poster} autoPlay muted loop playsInline className="w-full h-full object-contain max-h-[85vh]" controls />
             ) : (
               <img key={active.src} src={active.src} alt={`${project.title} ${activeIdx}`} className="w-full h-full object-contain max-h-[85vh]" />
             )}

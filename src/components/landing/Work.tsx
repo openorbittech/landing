@@ -8,14 +8,22 @@ const projects = [
     tag: "Predictive retention SaaS",
     desc: "Churn-risk accounts surfaced weeks earlier.",
     href: "/portfolio#mentiq",
-    media: { type: "video", src: "/videos/optimized/mentiq-demo.mp4" },
+    media: {
+      type: "video",
+      src: "/videos/optimized/mentiq-demo.mp4",
+      poster: "/images/mentiq-poster.jpg",
+    },
   },
   {
     name: "Athleon",
     tag: "Sports performance platform",
     desc: "Injury-risk signals delivered in real time.",
     href: "/portfolio#athleon",
-    media: { type: "video", src: "/videos/athleon.mp4" },
+    media: {
+      type: "video",
+      src: "/videos/optimized/athleon-demo.mp4",
+      poster: "/images/athleon-poster.jpg",
+    },
   },
   {
     name: "Axton Protocol",
@@ -37,6 +45,12 @@ export function Work() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.querySelectorAll(".reveal, .reveal-scale").forEach((r) => r.classList.add("visible"));
+            entry.target.querySelectorAll("video[data-src]").forEach((v) => {
+              const video = v as HTMLVideoElement;
+              video.src = video.dataset.src || "";
+              video.load();
+              video.play().catch(() => {});
+            });
             observer.unobserve(entry.target);
           }
         });
@@ -79,7 +93,15 @@ export function Work() {
             >
               <div className="aspect-video overflow-hidden border-b border-slate-900/5" style={{ background: "rgba(15, 23, 42, 0.04)" }}>
                 {p.media.type === "video" ? (
-                  <video src={p.media.src} autoPlay muted loop playsInline className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" />
+                  <video
+                    poster={p.media.poster}
+                    muted
+                    loop
+                    playsInline
+                    preload="none"
+                    data-src={p.media.src}
+                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                  />
                 ) : (
                   <img src={p.media.src} alt={p.name} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" loading="lazy" />
                 )}
