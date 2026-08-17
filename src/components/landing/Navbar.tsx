@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { MobileHeader, MobileMenuDrawer } from "./MobileNav";
 import logoAsset from "../../assets/Logo.svg";
 
 const logoSrc = typeof logoAsset === "string" ? logoAsset : logoAsset.src;
@@ -20,25 +21,32 @@ export function Navbar() {
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (target.closest('a[href^="#"]')) {
-        const href = target.closest('a[href^="#"]')?.getAttribute("href") || "";
-        if (!href.startsWith("#")) return;
-        e.preventDefault();
-        const id = href.slice(1);
-        const el = document.getElementById(id);
-        if (el) {
-          const main = document.getElementById("main-scroll");
-          if (main) {
-            const rect = el.getBoundingClientRect();
-            const mainRect = main.getBoundingClientRect();
-            const offset = rect.top - mainRect.top + main.scrollTop;
-            main.scrollTo({ top: offset, behavior: "smooth" });
-          } else {
-            el.scrollIntoView({ behavior: "smooth" });
-          }
+      const link = target.closest('a[href^="#"]') as HTMLAnchorElement | null;
+      if (!link) return;
+      const href = link.getAttribute("href") || "";
+      if (!href.startsWith("#")) return;
+      e.preventDefault();
+      const id = href.slice(1);
+      const el = document.getElementById(id);
+      if (el) {
+        const main = document.getElementById("main-scroll");
+        const isDesktop = window.innerWidth >= 1024;
+        if (main && isDesktop) {
+          const rect = el.getBoundingClientRect();
+          const mainRect = main.getBoundingClientRect();
+          const offset = rect.top - mainRect.top + main.scrollTop;
+          main.scrollTo({ top: offset, behavior: "smooth" });
+        } else {
+          const headerOffset = 64;
+          const elementPosition = el.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.scrollY - headerOffset;
+          window.scrollTo({
+            top: Math.max(0, offsetPosition),
+            behavior: "smooth",
+          });
         }
-        setMobileOpen(false);
       }
+      setMobileOpen(false);
     };
 
     document.addEventListener("click", handleClick);
@@ -80,57 +88,8 @@ export function Navbar() {
         </a>
       </nav>
 
-      <header
-        className="fixed top-0 left-0 right-0 h-16 flex items-center justify-between px-6 z-50 lg:hidden"
-        style={{
-          background: "rgba(255, 255, 255, 0.82)",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-          borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
-        }}
-      >
-        <a href="/" className="flex items-center">
-          <img src={logoSrc} alt="OpenOrbit" className="h-6 w-auto" />
-        </a>
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="p-2 -mr-2 text-slate-600"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-        >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
-      </header>
-
-      {mobileOpen && (
-        <div
-          className="fixed inset-0 z-40 lg:hidden"
-          style={{
-            background: "rgba(244, 253, 247, 0.98)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-          }}
-        >
-          <div className="flex flex-col items-center gap-8 pt-28">
-            {[...navLinks, { href: "#contact", label: "Contact" }].map((link, i) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-2xl font-semibold text-slate-900 hover:text-green-600 transition-colors"
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href="#contact"
-              onClick={() => setMobileOpen(false)}
-              className="mt-4 inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-green-500 text-white text-sm font-semibold"
-            >
-              Start a project
-            </a>
-          </div>
-        </div>
-      )}
+      <MobileHeader isOpen={mobileOpen} onToggle={() => setMobileOpen(!mobileOpen)} />
+      <MobileMenuDrawer isOpen={mobileOpen} onClose={() => setMobileOpen(false)} links={navLinks} />
     </>
   );
 }

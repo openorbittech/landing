@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Menu, X } from "lucide-react";
 import { AsciiOverlay } from "./AsciiOverlay";
+import { MobileHeader, MobileMenuDrawer } from "./MobileNav";
 
 import logoAsset from "../../assets/Logo.svg";
 
@@ -156,26 +157,7 @@ export function PortfolioPage() {
       <div className="progress-top" id="progress-top" />
 
       {/* Mobile header */}
-      <header
-        className="fixed top-0 left-0 right-0 h-16 flex items-center justify-between px-6 z-50 lg:hidden"
-        style={{
-          background: "rgba(255, 255, 255, 0.82)",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-          borderBottom: "1px solid rgba(15, 23, 42, 0.08)",
-        }}
-      >
-        <a href="/" className="flex items-center">
-          <img src={logoSrc} alt="OpenOrbit" className="h-6 w-auto" />
-        </a>
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="p-2 -mr-2 text-slate-600"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-        >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
-      </header>
+      <MobileHeader isOpen={mobileOpen} onToggle={() => setMobileOpen(!mobileOpen)} />
 
       {/* Desktop navbar */}
       <nav
@@ -209,14 +191,8 @@ export function PortfolioPage() {
       {/* Dot island */}
       <PortfolioDotIsland />
 
-      {/* Mobile overlay */}
-      {mobileOpen && (
-        <div
-          className="fixed inset-0 z-40 lg:hidden"
-          style={{ background: "rgba(15, 23, 42, 0.25)" }}
-          onClick={() => setMobileOpen(false)}
-        />
-      )}
+      {/* Mobile menu drawer */}
+      <MobileMenuDrawer isOpen={mobileOpen} onClose={() => setMobileOpen(false)} links={navLinks} />
 
       {/* Main scroll container */}
       <main className="snap-scroll" id="main-scroll">
