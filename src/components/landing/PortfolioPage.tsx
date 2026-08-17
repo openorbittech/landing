@@ -14,14 +14,12 @@ const OpenOrbitLogo = () => (
 
 const navLinks = [
   { href: "#intro", label: "Intro" },
-  { href: "#stats", label: "Stats" },
-  { href: "#work", label: "Work" },
+  { href: "#athleon", label: "Work" },
   { href: "#toolkit", label: "Toolkit" },
 ];
 
 const dotSections = [
-  { id: "intro", label: "Intro" },
-  { id: "stats", label: "By the numbers" },
+  { id: "intro", label: "Intro & Stats" },
   { id: "athleon", label: "Athleon" },
   { id: "mentiq", label: "MentIQ" },
   { id: "axton", label: "Axton Protocol" },
@@ -232,42 +230,43 @@ export function PortfolioPage() {
       <main className="snap-scroll" id="main-scroll">
         <AsciiOverlay />
         <div className="relative z-10">
-          {/* Intro */}
-          <section id="intro" className="snap-section min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-20 py-32 border-b border-slate-900/5">
-            <div className="max-w-6xl mx-auto w-full">
+          {/* Intro & Stats (Combined Hero) */}
+          <section id="intro" className="snap-section flex flex-col px-6 md:px-12 lg:px-20 pt-28 pb-20 md:pt-32 md:pb-24 border-b border-slate-900/5">
+            <div className="max-w-6xl mx-auto w-full flex flex-col gap-12 md:gap-20">
+              {/* Top Hero Content */}
               <div className="max-w-4xl">
-                <p className="eyebrow mb-6">Selected Work</p>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-8">Systems we have shipped.</h1>
+                <p className="eyebrow mb-5">Selected Work</p>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-8">
+                  Systems we have shipped.
+                </h1>
                 <p className="text-lg md:text-xl text-slate-600 max-w-2xl leading-relaxed mb-10">
                   A founder-led studio building production-grade software across sports, finance, AI and automation. Each project below is a complete case study in architecture, velocity and scale.
                 </p>
                 <a
-                  href="#stats"
+                  href="#athleon"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-500 text-white text-sm font-semibold hover:bg-green-600 transition-all hover:scale-[1.03] hover:shadow-lg hover:shadow-green-500/25"
                 >
-                  Start scrolling
+                  Explore Work
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M5 12l7 7 7-7" /></svg>
                 </a>
               </div>
-            </div>
-          </section>
 
-          {/* Stats */}
-          <section id="stats" className="snap-section px-6 md:px-12 lg:px-20 py-24 border-b border-slate-900/5">
-            <div className="max-w-6xl mx-auto">
-              <p className="eyebrow mb-12">By the numbers</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-                {[
-                  { num: "6", label: "Years in software development" },
-                  { num: "100+", label: "Clients served" },
-                  { num: "1000+", label: "Systems built" },
-                  { num: "48h", label: "Project roadmap delivery" },
-                ].map((s) => (
-                  <div key={s.label}>
-                    <div className="stat-num">{s.num}</div>
-                    <p className="text-sm text-slate-500 mt-3 uppercase tracking-wider">{s.label}</p>
-                  </div>
-                ))}
+              {/* Bottom Hero Stats */}
+              <div className="pt-8 border-t border-slate-900/10">
+                <p className="eyebrow mb-6 text-slate-400">By the numbers</p>
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                  {[
+                    { num: "6", label: "Years in software development" },
+                    { num: "100+", label: "Clients served" },
+                    { num: "1000+", label: "Systems built" },
+                    { num: "48h", label: "Project roadmap delivery" },
+                  ].map((s) => (
+                    <div key={s.label}>
+                      <div className="stat-num">{s.num}</div>
+                      <p className="text-xs md:text-sm text-slate-500 mt-2 uppercase tracking-wider font-medium">{s.label}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </section>
@@ -638,8 +637,8 @@ function ProjectSection({
                         onMouseEnter={() => setActiveIdx(i)}
                         onClick={() => setActiveIdx(i)}
                         className={`flex-shrink-0 w-20 h-14 rounded-xl overflow-hidden border-2 transition-all duration-200 cursor-pointer ${i === activeIdx
-                            ? "border-green-500 shadow-[0_0_12px_rgba(34,197,94,0.3)] scale-105"
-                            : "border-slate-200/60 hover:border-slate-300 hover:scale-[1.04] opacity-70 hover:opacity-100"
+                          ? "border-green-500 shadow-[0_0_12px_rgba(34,197,94,0.3)] scale-105"
+                          : "border-slate-200/60 hover:border-slate-300 hover:scale-[1.04] opacity-70 hover:opacity-100"
                           }`}
                         style={{ background: "rgba(15, 23, 42, 0.04)" }}
                         aria-label={`View ${item.label} ${i + 1}`}
