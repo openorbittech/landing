@@ -389,38 +389,7 @@ function PortfolioDotIsland() {
     const dots = islandRef.current?.querySelectorAll(".dot-link");
     const bar = document.getElementById("progress-top");
 
-    /* IntersectionObserver for active section */
-    const sectionEls = dotSections
-      .map((s) => document.getElementById(s.id))
-      .filter(Boolean) as HTMLElement[];
-
-    const intersectingMap = new Map<string, boolean>();
-
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          intersectingMap.set(entry.target.id, entry.isIntersecting);
-        });
-
-        let currentId = "";
-        for (const sec of dotSections) {
-          if (intersectingMap.get(sec.id)) {
-            currentId = sec.id;
-          }
-        }
-
-        if (currentId) {
-          dots?.forEach((dot) => {
-            dot.classList.toggle("active", dot.getAttribute("data-section") === currentId);
-          });
-        }
-      },
-      { threshold: 0, rootMargin: `-${window.innerHeight * 0.3}px 0px -${window.innerHeight * 0.3}px 0px` }
-    );
-
-    sectionEls.forEach((el) => obs.observe(el));
-
-    /* Progress bar and footer hide via scroll */
+    /* Active section detection & scroll updates */
     function onScroll() {
       const isDesktop = window.innerWidth >= 1024;
       let scrolled = 0;
@@ -435,6 +404,30 @@ function PortfolioDotIsland() {
         max = doc.scrollHeight - window.innerHeight;
       }
 
+      /* Active section calculation based on focal point (35% down screen) */
+      let activeId = "";
+      if (max > 0 && max - scrolled <= 60) {
+        activeId = dotSections[dotSections.length - 1].id;
+      } else {
+        const targetY = window.innerHeight * 0.35;
+        for (const sec of dotSections) {
+          const el = document.getElementById(sec.id);
+          if (!el) continue;
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= targetY && rect.bottom > targetY) {
+            activeId = sec.id;
+            break;
+          }
+        }
+      }
+
+      if (activeId) {
+        dots?.forEach((dot) => {
+          dot.classList.toggle("active", dot.getAttribute("data-section") === activeId);
+        });
+      }
+
+      /* Progress bar update */
       if (bar) {
         let pct = max > 0 ? (scrolled / max) * 100 : 0;
         if (max > 0 && (max - scrolled <= 20 || pct >= 98)) {
@@ -444,6 +437,7 @@ function PortfolioDotIsland() {
         bar.style.width = pct + "%";
       }
 
+      /* Hide dot island near footer */
       const footer = document.querySelector("footer");
       if (footer && islandRef.current) {
         const fr = footer.getBoundingClientRect();
@@ -458,7 +452,6 @@ function PortfolioDotIsland() {
     onScroll();
 
     return () => {
-      obs.disconnect();
       if (main) main.removeEventListener("scroll", onScroll);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);

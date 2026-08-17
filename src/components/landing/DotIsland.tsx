@@ -14,38 +14,7 @@ export function DotIsland({ sections }: DotIslandProps) {
     const bar = document.getElementById("progress-top");
     const dots = islandRef.current?.querySelectorAll(".dot-link");
 
-    /* ── IntersectionObserver for active section ── */
-    const sectionEls = sections
-      .map((s) => document.getElementById(s.id))
-      .filter(Boolean) as HTMLElement[];
-
-    const intersectingMap = new Map<string, boolean>();
-
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          intersectingMap.set(entry.target.id, entry.isIntersecting);
-        });
-
-        let currentId = "";
-        for (const sec of sections) {
-          if (intersectingMap.get(sec.id)) {
-            currentId = sec.id;
-          }
-        }
-
-        if (currentId) {
-          dots?.forEach((dot) => {
-            dot.classList.toggle("active", dot.getAttribute("data-section") === currentId);
-          });
-        }
-      },
-      { threshold: 0, rootMargin: `-${window.innerHeight * 0.3}px 0px -${window.innerHeight * 0.3}px 0px` }
-    );
-
-    sectionEls.forEach((el) => obs.observe(el));
-
-    /* ── Progress bar and footer hide via scroll ── */
+    /* ── Active section detection & scroll updates ── */
     function onScroll() {
       const isDesktop = window.innerWidth >= 1024;
       let scrolled = 0;
@@ -58,6 +27,29 @@ export function DotIsland({ sections }: DotIslandProps) {
         const doc = document.documentElement;
         scrolled = window.scrollY || doc.scrollTop || 0;
         max = doc.scrollHeight - window.innerHeight;
+      }
+
+      /* Active section calculation based on focal point (35% down screen) */
+      let activeId = "";
+      if (max > 0 && max - scrolled <= 60) {
+        activeId = sections[sections.length - 1]?.id || "";
+      } else {
+        const targetY = window.innerHeight * 0.35;
+        for (const sec of sections) {
+          const el = document.getElementById(sec.id);
+          if (!el) continue;
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= targetY && rect.bottom > targetY) {
+            activeId = sec.id;
+            break;
+          }
+        }
+      }
+
+      if (activeId) {
+        dots?.forEach((dot) => {
+          dot.classList.toggle("active", dot.getAttribute("data-section") === activeId);
+        });
       }
 
       if (bar) {
@@ -83,7 +75,6 @@ export function DotIsland({ sections }: DotIslandProps) {
     onScroll();
 
     return () => {
-      obs.disconnect();
       if (main) main.removeEventListener("scroll", onScroll);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
