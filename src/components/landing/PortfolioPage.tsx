@@ -383,17 +383,26 @@ function PortfolioDotIsland() {
       .map((s) => document.getElementById(s.id))
       .filter(Boolean) as HTMLElement[];
 
+    const intersectingMap = new Map<string, boolean>();
+
     const obs = new IntersectionObserver(
       (entries) => {
-        let currentId = dotSections[0]?.id || "";
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            currentId = entry.target.id;
+        entries.forEach((entry) => {
+          intersectingMap.set(entry.target.id, entry.isIntersecting);
+        });
+
+        let currentId = "";
+        for (const sec of dotSections) {
+          if (intersectingMap.get(sec.id)) {
+            currentId = sec.id;
           }
         }
-        dots?.forEach((dot) => {
-          dot.classList.toggle("active", dot.getAttribute("data-section") === currentId);
-        });
+
+        if (currentId) {
+          dots?.forEach((dot) => {
+            dot.classList.toggle("active", dot.getAttribute("data-section") === currentId);
+          });
+        }
       },
       { threshold: 0, rootMargin: `-${window.innerHeight * 0.3}px 0px -${window.innerHeight * 0.3}px 0px` }
     );
@@ -412,7 +421,8 @@ function PortfolioDotIsland() {
       const footer = document.querySelector("footer");
       if (footer && islandRef.current) {
         const fr = footer.getBoundingClientRect();
-        islandRef.current.classList.toggle("hide", window.innerHeight > fr.top + 40);
+        const islandRect = islandRef.current.getBoundingClientRect();
+        islandRef.current.classList.toggle("hide", fr.top < islandRect.bottom + 20);
       }
     }
 
