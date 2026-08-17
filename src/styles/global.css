@@ -61,6 +61,11 @@ section[id].snap-section {
   position: relative;
 }
 
+.snap-footer {
+  scroll-snap-align: end;
+  scroll-snap-stop: always;
+}
+
 section[id].snap-section>* {
   position: relative;
   z-index: 1;
@@ -603,6 +608,12 @@ section[id].snap-section::before {
 }
 
 @media (min-width: 1024px) {
+  html,
+  body {
+    overflow: hidden;
+    height: 100%;
+  }
+
   .desktop-nav {
     display: flex;
   }
