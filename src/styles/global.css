@@ -29,6 +29,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  scroll-padding-top: 64px;
 }
 
 body {
@@ -620,6 +621,7 @@ section[id].snap-section::before {
 
   main.snap-scroll {
     padding-top: 72px;
+    scroll-padding-top: 72px;
   }
 
   .dot-island {

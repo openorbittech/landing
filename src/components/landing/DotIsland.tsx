@@ -46,13 +46,26 @@ export function DotIsland({ sections }: DotIslandProps) {
     sectionEls.forEach((el) => obs.observe(el));
 
     /* ── Progress bar and footer hide via scroll ── */
-    const scrollEl = main || document.documentElement;
-
     function onScroll() {
-      const scrolled = scrollEl.scrollTop || window.scrollY;
+      const isDesktop = window.innerWidth >= 1024;
+      let scrolled = 0;
+      let max = 0;
+
+      if (isDesktop && main) {
+        scrolled = main.scrollTop;
+        max = main.scrollHeight - main.clientHeight;
+      } else {
+        const doc = document.documentElement;
+        scrolled = window.scrollY || doc.scrollTop || 0;
+        max = doc.scrollHeight - window.innerHeight;
+      }
+
       if (bar) {
-        const max = scrollEl.scrollHeight - scrollEl.clientHeight;
-        const pct = max > 0 ? (scrolled / max) * 100 : 0;
+        let pct = max > 0 ? (scrolled / max) * 100 : 0;
+        if (max > 0 && (max - scrolled <= 20 || pct >= 98)) {
+          pct = 100;
+        }
+        pct = Math.max(0, Math.min(100, pct));
         bar.style.width = pct + "%";
       }
 
@@ -64,14 +77,16 @@ export function DotIsland({ sections }: DotIslandProps) {
       }
     }
 
-    scrollEl.addEventListener("scroll", onScroll, { passive: true });
+    if (main) main.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
     onScroll();
 
     return () => {
       obs.disconnect();
-      scrollEl.removeEventListener("scroll", onScroll);
+      if (main) main.removeEventListener("scroll", onScroll);
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
