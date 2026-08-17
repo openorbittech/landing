@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Menu, X } from "lucide-react";
 import { AsciiOverlay } from "./AsciiOverlay";
 
@@ -678,9 +679,9 @@ function ProjectSection({
       </div>
 
       {/* Lightbox overlay */}
-      {lightboxOpen && hasMedia && (
+      {lightboxOpen && hasMedia && typeof window !== "undefined" && createPortal(
         <div
-          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex items-center justify-center p-6"
+          className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-md flex items-center justify-center p-6"
           onClick={() => setLightboxOpen(false)}
         >
           <button
@@ -725,7 +726,8 @@ function ProjectSection({
               </div>
             </>
           )}
-        </div>
+        </div>,
+        document.body
       )}
     </section>
   );
