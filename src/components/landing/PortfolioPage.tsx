@@ -232,37 +232,41 @@ export function PortfolioPage() {
         <div className="relative z-10">
           {/* Intro */}
           <section id="intro" className="snap-section min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-20 py-32 border-b border-slate-900/5">
-            <div className="max-w-4xl">
-              <p className="eyebrow mb-6">Selected Work</p>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-8">Systems we have shipped.</h1>
-              <p className="text-lg md:text-xl text-slate-600 max-w-2xl leading-relaxed mb-10">
-                A founder-led studio building production-grade software across sports, finance, AI and automation. Each project below is a complete case study in architecture, velocity and scale.
-              </p>
-              <a
-                href="#stats"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-500 text-white text-sm font-semibold hover:bg-green-600 transition-all hover:scale-[1.03] hover:shadow-lg hover:shadow-green-500/25"
-              >
-                Start scrolling
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M5 12l7 7 7-7" /></svg>
-              </a>
+            <div className="max-w-6xl mx-auto w-full">
+              <div className="max-w-4xl">
+                <p className="eyebrow mb-6">Selected Work</p>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-8">Systems we have shipped.</h1>
+                <p className="text-lg md:text-xl text-slate-600 max-w-2xl leading-relaxed mb-10">
+                  A founder-led studio building production-grade software across sports, finance, AI and automation. Each project below is a complete case study in architecture, velocity and scale.
+                </p>
+                <a
+                  href="#stats"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-500 text-white text-sm font-semibold hover:bg-green-600 transition-all hover:scale-[1.03] hover:shadow-lg hover:shadow-green-500/25"
+                >
+                  Start scrolling
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M5 12l7 7 7-7" /></svg>
+                </a>
+              </div>
             </div>
           </section>
 
           {/* Stats */}
           <section id="stats" className="snap-section px-6 md:px-12 lg:px-20 py-24 border-b border-slate-900/5">
-            <p className="eyebrow mb-12">By the numbers</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-              {[
-                { num: "6", label: "Years in software development" },
-                { num: "100+", label: "Clients served" },
-                { num: "1000+", label: "Systems built" },
-                { num: "48h", label: "Project roadmap delivery" },
-              ].map((s) => (
-                <div key={s.label}>
-                  <div className="stat-num">{s.num}</div>
-                  <p className="text-sm text-slate-500 mt-3 uppercase tracking-wider">{s.label}</p>
-                </div>
-              ))}
+            <div className="max-w-6xl mx-auto">
+              <p className="eyebrow mb-12">By the numbers</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+                {[
+                  { num: "6", label: "Years in software development" },
+                  { num: "100+", label: "Clients served" },
+                  { num: "1000+", label: "Systems built" },
+                  { num: "48h", label: "Project roadmap delivery" },
+                ].map((s) => (
+                  <div key={s.label}>
+                    <div className="stat-num">{s.num}</div>
+                    <p className="text-sm text-slate-500 mt-3 uppercase tracking-wider">{s.label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
 
@@ -273,15 +277,17 @@ export function PortfolioPage() {
 
           {/* Toolkit */}
           <section id="toolkit" className="snap-section px-6 md:px-12 lg:px-20 py-24 border-b border-slate-900/5">
-            <p className="eyebrow mb-6">Toolkit</p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-16 max-w-2xl">The stack under the hood.</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
-              {toolkit.map((t) => (
-                <div key={t.title} className="glass-panel p-6 rounded-2xl hover:bg-green-50/60 transition-colors">
-                  <h3 className="font-semibold text-slate-900 mb-2">{t.title}</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">{t.desc}</p>
-                </div>
-              ))}
+            <div className="max-w-6xl mx-auto">
+              <p className="eyebrow mb-6">Toolkit</p>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-16 max-w-2xl">The stack under the hood.</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
+                {toolkit.map((t) => (
+                  <div key={t.title} className="glass-panel p-6 rounded-2xl hover:bg-green-50/60 transition-colors">
+                    <h3 className="font-semibold text-slate-900 mb-2">{t.title}</h3>
+                    <p className="text-sm text-slate-600 leading-relaxed">{t.desc}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
 
@@ -360,9 +366,11 @@ export function PortfolioPage() {
               </div>
             </div>
           </section>
-          <footer className="snap-footer px-6 md:px-12 lg:px-20 py-8 border-t border-slate-900/5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-sm text-slate-500">
-            <span>© 2026 OpenOrbit. All rights reserved.</span>
-            <a href="/" className="hover:text-green-600 transition-colors">Back to home</a>
+          <footer className="snap-footer px-6 md:px-12 lg:px-20 py-8 border-t border-slate-900/5 text-sm text-slate-500">
+            <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+              <span>© 2026 OpenOrbit. All rights reserved.</span>
+              <a href="/" className="hover:text-green-600 transition-colors">Back to home</a>
+            </div>
           </footer>
         </div>
       </main>
