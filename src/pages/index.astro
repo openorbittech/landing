@@ -6,6 +6,7 @@ import { Hero } from "../components/landing/Hero";
 import { Services } from "../components/landing/Services";
 import { Work } from "../components/landing/Work";
 import { WhyUs } from "../components/landing/WhyUs";
+import { Testimonials } from "../components/landing/Testimonials";
 import { Contact } from "../components/landing/Contact";
 import { Footer } from "../components/landing/Footer";
 import { DotIsland } from "../components/landing/DotIsland";
@@ -24,6 +25,7 @@ const description =
       { id: "services", label: "Services" },
       { id: "work", label: "Work" },
       { id: "why", label: "Why us" },
+      { id: "testimonials", label: "Reviews" },
       { id: "contact", label: "Contact" },
     ]}
     client:load
@@ -34,6 +36,7 @@ const description =
       <Services client:visible />
       <Work client:visible />
       <WhyUs client:visible />
+      <Testimonials client:visible />
       <Contact client:visible />
       <Footer client:visible />
     </div>
