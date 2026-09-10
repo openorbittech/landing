@@ -1,18 +1,18 @@
 ---
 export const prerender = true;
-import Layout from '../layouts/Layout.astro';
-import { AsciiOverlay } from '../components/landing/AsciiOverlay';
-import { Navbar } from '../components/landing/Navbar';
-import { Hero } from '../components/landing/Hero';
-import { Services } from '../components/landing/Services';
-import { Work } from '../components/landing/Work';
-import { WhyUs } from '../components/landing/WhyUs';
-import { CTA } from '../components/landing/CTA';
-import { Footer } from '../components/landing/Footer';
-import { DotIsland } from '../components/landing/DotIsland';
+import Layout from "../layouts/Layout.astro";
+import { Navbar } from "../components/landing/Navbar";
+import { Hero } from "../components/landing/Hero";
+import { Services } from "../components/landing/Services";
+import { Work } from "../components/landing/Work";
+import { WhyUs } from "../components/landing/WhyUs";
+import { Contact } from "../components/landing/Contact";
+import { Footer } from "../components/landing/Footer";
+import { DotIsland } from "../components/landing/DotIsland";
 
 const title = "OpenOrbit | Software Development Studio";
-const description = "Founder-led software solutions with senior-level expertise. We build web, mobile, and AI products with zero agency overhead. Fully autonomous, high-velocity delivery.";
+const description =
+  "Founder-led software solutions with senior-level expertise. We build web, mobile, and AI products with zero agency overhead. Fully autonomous, high-velocity delivery.";
 ---
 
 <Layout title={title} description={description}>
@@ -29,13 +29,12 @@ const description = "Founder-led software solutions with senior-level expertise.
     client:load
   />
   <main class="snap-scroll" id="main-scroll">
-    <AsciiOverlay client:load />
     <div class="relative z-10">
       <Hero client:visible />
       <Services client:visible />
       <Work client:visible />
       <WhyUs client:visible />
-      <CTA client:visible />
+      <Contact client:visible />
       <Footer client:visible />
     </div>
   </main>

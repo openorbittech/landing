@@ -50,15 +50,16 @@ export function MobileHeader({
 
 export function MobileMenuDrawer({
   isOpen,
-  onClose,
   links,
   ctaLink = { href: "#contact", label: "Start a project" },
 }: MobileNavProps) {
-  if (!isOpen) return null;
-
   return (
     <div
-      className="fixed inset-0 z-40 lg:hidden flex flex-col justify-between px-6 pt-24 pb-12 overflow-y-auto"
+      className={`fixed inset-0 z-40 lg:hidden flex flex-col justify-between px-6 pt-24 pb-12 overflow-y-auto transition-all duration-300 ease-out ${
+        isOpen
+          ? "opacity-100 translate-y-0 pointer-events-auto"
+          : "opacity-0 -translate-y-4 pointer-events-none"
+      }`}
       style={{
         background: "rgba(244, 253, 247, 0.98)",
         backdropFilter: "blur(20px)",
@@ -66,11 +67,18 @@ export function MobileMenuDrawer({
       }}
     >
       <div className="flex flex-col items-center gap-7 my-auto">
-        {links.map((link) => (
+        {links.map((link, idx) => (
           <a
             key={link.href + link.label}
             href={link.href}
-            className="text-2xl font-semibold text-slate-900 hover:text-green-600 transition-colors"
+            className={`text-2xl font-semibold text-slate-900 hover:text-green-600 transition-all duration-300 ${
+              isOpen
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-2"
+            }`}
+            style={{
+              transitionDelay: isOpen ? `${(idx + 1) * 40}ms` : "0ms",
+            }}
           >
             {link.label}
           </a>
@@ -78,7 +86,14 @@ export function MobileMenuDrawer({
         {ctaLink && (
           <a
             href={ctaLink.href}
-            className="mt-4 inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-green-500 text-white text-base font-semibold hover:bg-green-600 transition-colors shadow-lg shadow-green-500/20"
+            className={`mt-4 inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-green-500 text-white text-base font-semibold hover:bg-green-600 transition-all duration-300 shadow-lg shadow-green-500/20 ${
+              isOpen
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-2"
+            }`}
+            style={{
+              transitionDelay: isOpen ? `${(links.length + 1) * 40}ms` : "0ms",
+            }}
           >
             {ctaLink.label}
           </a>

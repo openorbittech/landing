@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-export function CTA() {
+export function Contact() {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export function CTA() {
     <section
       id="contact"
       ref={ref}
-      className="snap-section px-6 md:px-12 lg:px-20 py-32"
+      className="snap-section px-6 md:px-12 lg:px-20 py-16 md:py-32"
     >
       <div className="max-w-6xl mx-auto">
         <div className="max-w-2xl">

@@ -2,8 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { Menu, X } from "lucide-react";
-import { AsciiOverlay } from "./AsciiOverlay";
 import { MobileHeader, MobileMenuDrawer } from "./MobileNav";
 
 import logoAsset from "../../assets/Logo.svg";
@@ -196,7 +194,6 @@ export function PortfolioPage() {
 
       {/* Main scroll container */}
       <main className="snap-scroll" id="main-scroll">
-        <AsciiOverlay />
         <div className="relative z-10">
           {/* Intro & Stats (Combined Hero) */}
           <section id="intro" className="snap-section flex flex-col px-6 md:px-12 lg:px-20 pt-28 pb-20 md:pt-32 md:pb-24 border-b border-slate-900/5">

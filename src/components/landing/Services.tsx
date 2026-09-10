@@ -8,7 +8,7 @@ const services = [
     desc: "React, Next.js, React Native. Fast, responsive, and scalable interfaces.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-green-600">
-        <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+        <rect x="2" y="3" width="20" height="14" rx="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" />
       </svg>
     ),
   },
@@ -17,7 +17,7 @@ const services = [
     desc: "Machine Learning, LLM agents, and custom workflow automation.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-green-600">
-        <path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 0 1 10 10"/><path d="M12 12l7-7"/>
+        <path d="M12 2a10 10 0 1 0 10 10H12V2z" /><path d="M12 2a10 10 0 0 1 10 10" /><path d="M12 12l7-7" />
       </svg>
     ),
   },
@@ -26,7 +26,7 @@ const services = [
     desc: "AWS, Kubernetes, Data Pipelines. Robust infrastructure for growth.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-green-600">
-        <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+        <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
       </svg>
     ),
   },
@@ -35,7 +35,7 @@ const services = [
     desc: "Smart Contracts, dApps, DeFi. Secure and decentralized systems.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-green-600">
-        <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+        <rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
       </svg>
     ),
   },
@@ -66,7 +66,7 @@ export function Services() {
     <section
       id="services"
       ref={ref}
-      className="snap-section px-6 md:px-12 lg:px-20 py-24 border-b border-slate-900/5"
+      className="snap-section px-6 md:px-12 lg:px-20 py-12 md:py-24 border-b border-slate-900/5"
     >
       <div className="max-w-6xl mx-auto">
         <p className="eyebrow mb-6 reveal">Services</p>
