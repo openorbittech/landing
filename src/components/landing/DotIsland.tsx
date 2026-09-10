@@ -85,7 +85,7 @@ export function DotIsland({ sections }: DotIslandProps) {
   return (
     <nav
       ref={islandRef}
-      className="fixed right-3.5 lg:right-8 top-1/2 -translate-y-1/2 flex flex-col items-center gap-2.5 p-[7px] lg:p-2.5 lg:py-4 rounded-full bg-white/80 backdrop-blur-2xl border border-green-500/15 shadow-xl z-50 transition-all duration-300 ease-out animate-[islandFloat_6s_ease-in-out_infinite]"
+      className="hidden lg:flex fixed right-3.5 lg:right-8 top-1/2 -translate-y-1/2 flex-col items-center gap-2.5 p-[7px] lg:p-2.5 lg:py-4 rounded-full bg-white/80 backdrop-blur-2xl border border-green-500/15 shadow-xl z-50 transition-all duration-300 ease-out animate-[islandFloat_6s_ease-in-out_infinite]"
       aria-label="Section navigation"
     >
       {sections.map((sec) => (

@@ -425,7 +425,7 @@ function PortfolioDotIsland() {
   }, []);
 
   return (
-    <nav ref={islandRef} className="dot-island" aria-label="Portfolio sections">
+    <nav ref={islandRef} className="dot-island hidden lg:flex" aria-label="Portfolio sections">
       {dotSections.map((sec) => (
         <a
           key={sec.id}
