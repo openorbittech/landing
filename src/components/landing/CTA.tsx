@@ -43,7 +43,7 @@ export function CTA() {
               e.preventDefault();
               const form = e.target as HTMLFormElement;
               const data = new FormData(form);
-              fetch("https://formspree.io/f/movjdgag", {
+              fetch("https://formspree.io/f/xvzbzrvz", {
                 method: "POST",
                 body: data,
                 headers: { Accept: "application/json" },
@@ -87,7 +87,7 @@ export function CTA() {
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-green-500 text-white font-semibold hover:bg-green-600 transition-all hover:scale-[1.03] hover:shadow-lg hover:shadow-green-500/25"
               >
                 Send message
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
               </button>
               <a
                 href="https://calendly.com/openorbittech/30min"
@@ -96,7 +96,7 @@ export function CTA() {
                 className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full border font-semibold text-slate-700 hover:bg-green-50 hover:text-green-700 hover:border-green-300 transition-all"
                 style={{ borderColor: "rgba(15, 23, 42, 0.15)" }}
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
                 Schedule a call
               </a>
             </div>

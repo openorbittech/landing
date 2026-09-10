@@ -29,7 +29,7 @@ export function Hero() {
     <section
       id="hero"
       ref={ref}
-      className="snap-section relative min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-20 py-32 border-b border-slate-900/5"
+      className="snap-section relative lg:min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-20 py-16 md:py-24 lg:py-32 border-b border-slate-900/5"
     >
       <div className="!absolute right-0 bottom-0 hidden lg:block pointer-events-none opacity-20 select-none">
         <img
