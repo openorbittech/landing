@@ -79,7 +79,7 @@ export function Testimonials() {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
           <div>
-            <p className="eyebrow mb-6 reveal">Client Feedback</p>
+            <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-green-600 font-semibold mb-6 reveal">Client Feedback</p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight reveal stagger-1">
               What leaders say about us.
             </h2>

@@ -73,10 +73,10 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="nav-link text-[13px] font-medium tracking-wide text-slate-900 no-underline relative transition-colors duration-200"
-              style={{ letterSpacing: "0.02em" }}
+              className="group relative text-[13px] font-medium tracking-[0.02em] text-slate-900 hover:text-green-600 no-underline transition-colors duration-200"
             >
               {link.label}
+              <span className="absolute -bottom-1 left-0 w-0 h-[2px] rounded-sm bg-green-500 transition-all duration-300 ease-out group-hover:w-full" />
             </a>
           ))}
         </div>

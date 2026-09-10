@@ -39,7 +39,7 @@ export function Hero() {
         />
       </div>
       <div className="max-w-4xl relative z-10">
-        <p className="eyebrow mb-6 reveal">Elite Technical Studio</p>
+        <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-green-600 font-semibold mb-6 reveal">Elite Technical Studio</p>
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-8 reveal stagger-1">
           Turning ideas into <span className="text-green-500">functional systems</span>.
         </h1>

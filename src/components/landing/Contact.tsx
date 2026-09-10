@@ -31,7 +31,7 @@ export function Contact() {
     >
       <div className="max-w-6xl mx-auto">
         <div className="max-w-2xl">
-          <p className="eyebrow mb-6 reveal">Start a project</p>
+          <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-green-600 font-semibold mb-6 reveal">Start a project</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 reveal stagger-1">
             Ready to build something amazing?
           </h2>

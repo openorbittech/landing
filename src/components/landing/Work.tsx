@@ -70,7 +70,7 @@ export function Work() {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-6 md:mb-16 ">
           <div>
-            <p className="eyebrow mb-6 reveal">Portfolio</p>
+            <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-green-600 font-semibold mb-6 reveal">Portfolio</p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight max-w-2xl reveal stagger-1">
               Dynamic solutions built for scale.
             </h2>
@@ -89,7 +89,7 @@ export function Work() {
             <a
               key={p.name}
               href={p.href}
-              className={`group glass-panel rounded-2xl overflow-hidden reveal stagger-${i + 1} hover:bg-green-50/60 transition-all no-underline block`}
+              className={`group bg-white/80 backdrop-blur-xl border border-slate-900/10 rounded-2xl overflow-hidden reveal stagger-${i + 1} hover:bg-green-50/60 transition-all no-underline block`}
             >
               <div className="aspect-video overflow-hidden border-b border-slate-900/5" style={{ background: "rgba(15, 23, 42, 0.04)" }}>
                 {p.media.type === "video" ? (

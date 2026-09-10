@@ -69,7 +69,7 @@ export function Services() {
       className="snap-section px-6 md:px-12 lg:px-20 py-12 md:py-24 border-b border-slate-900/5"
     >
       <div className="max-w-6xl mx-auto">
-        <p className="eyebrow mb-6 reveal">Services</p>
+        <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-green-600 font-semibold mb-6 reveal">Services</p>
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-16 max-w-2xl reveal stagger-1">
           End-to-end solutions, built to ship.
         </h2>
@@ -77,7 +77,7 @@ export function Services() {
           {services.map((s, i) => (
             <div
               key={s.title}
-              className={`glass-panel p-8 rounded-2xl reveal stagger-${i + 1} ${i % 2 === 0 ? "float-card" : "float-card-delayed"} hover:bg-green-50/60 transition-colors`}
+              className={`bg-white/80 backdrop-blur-xl border border-slate-900/10 p-8 rounded-2xl reveal stagger-${i + 1} ${i % 2 === 0 ? "float-card" : "float-card-delayed"} hover:bg-green-50/60 transition-colors`}
             >
               <div className="w-12 h-12 rounded-xl bg-green-50 border border-green-100 flex items-center justify-center mb-5">
                 {s.icon}

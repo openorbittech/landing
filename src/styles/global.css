@@ -99,14 +99,6 @@ section[id].snap-section::before {
   border: 1px solid var(--border-strong);
 }
 
-/* Eyebrow */
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent-600);
-}
 
 /* Desktop nav cta */
 .desktop-nav .nav-cta {
@@ -318,36 +310,6 @@ section[id].snap-section::before {
   z-index: 60;
 }
 
-/* Desktop nav link hover underline */
-.desktop-nav .nav-link {
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  color: var(--fg);
-  text-decoration: none;
-  position: relative;
-  transition: color 0.2s ease;
-}
-
-.desktop-nav .nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--accent);
-  transition: width 0.25s cubic-bezier(0.2, 0, 0, 1);
-}
-
-.desktop-nav .nav-link:hover {
-  color: var(--accent-600);
-}
-
-.desktop-nav .nav-link:hover::after {
-  width: 100%;
-}
 
 /* Dot island */
 .dot-island {
@@ -609,6 +571,7 @@ section[id].snap-section::before {
 }
 
 @media (min-width: 1024px) {
+
   html,
   body {
     overflow: hidden;

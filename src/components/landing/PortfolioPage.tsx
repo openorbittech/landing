@@ -173,8 +173,9 @@ export function PortfolioPage() {
         </a>
         <div className="flex items-center gap-10">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="nav-link text-[13px] font-medium tracking-wide text-slate-900 no-underline relative">
+            <a key={link.href} href={link.href} className="group relative text-[13px] font-medium tracking-[0.02em] text-slate-900 hover:text-green-600 no-underline transition-colors duration-200">
               {link.label}
+              <span className="absolute -bottom-1 left-0 w-0 h-[2px] rounded-sm bg-green-500 transition-all duration-300 ease-out group-hover:w-full" />
             </a>
           ))}
         </div>
@@ -200,7 +201,7 @@ export function PortfolioPage() {
             <div className="max-w-6xl mx-auto w-full flex flex-col gap-12 md:gap-20">
               {/* Top Hero Content */}
               <div className="max-w-4xl">
-                <p className="eyebrow mb-5">Selected Work</p>
+                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-green-600 font-semibold mb-5">Selected Work</p>
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-8">
                   Systems we have shipped.
                 </h1>
@@ -218,7 +219,7 @@ export function PortfolioPage() {
 
               {/* Bottom Hero Stats */}
               <div className="pt-8 border-t border-slate-900/10">
-                <p className="eyebrow mb-6 text-slate-400">By the numbers</p>
+                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-green-600 font-semibold mb-6 text-slate-400">By the numbers</p>
                 <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
                   {[
                     { num: "6", label: "Years in software development" },
@@ -244,7 +245,7 @@ export function PortfolioPage() {
           {/* Toolkit */}
           <section id="toolkit" className="snap-section px-6 md:px-12 lg:px-20 py-24 border-b border-slate-900/5">
             <div className="max-w-6xl mx-auto">
-              <p className="eyebrow mb-6">Toolkit</p>
+              <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-green-600 font-semibold mb-6">Toolkit</p>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-16 max-w-2xl">The stack under the hood.</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
                 {toolkit.map((t) => (
@@ -261,7 +262,7 @@ export function PortfolioPage() {
           <section id="contact" className="snap-section px-6 md:px-12 lg:px-20 py-32">
             <div className="max-w-6xl mx-auto">
               <div className="max-w-2xl">
-                <p className="eyebrow mb-6">Start a project</p>
+                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-green-600 font-semibold mb-6">Start a project</p>
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">Ready to build your next system?</h2>
                 <p className="text-lg text-slate-600 mb-10 leading-relaxed">
                   Get a free technical consultation and a complete project roadmap within 48 hours.
@@ -494,7 +495,7 @@ function ProjectSection({
         <div className={`flex flex-col lg:flex-row gap-16 items-start ${isEven ? "" : ""}`}>
           <div className={`lg:w-1/2 ${isEven ? "lg:sticky lg:top-28" : "order-1 lg:order-2 lg:sticky lg:top-28"}`}>
             <div className="project-num">{project.num}</div>
-            <p className="eyebrow mt-4 mb-3">{project.eyebrow}</p>
+            <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-green-600 font-semibold mt-4 mb-3">{project.eyebrow}</p>
             <h2 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6">{project.title}</h2>
             <p className="text-slate-600 text-lg leading-relaxed mb-5">{project.desc}</p>
             <p className="text-slate-600 leading-relaxed mb-8">{project.desc2}</p>
@@ -522,7 +523,6 @@ function ProjectSection({
           <div className={`lg:w-1/2 w-full ${isEven ? "" : "order-2 lg:order-1"}`}>
             {hasMedia ? (
               <>
-                {/* Main display */}
                 <div
                   ref={mediaRef}
                   className="video-wrap aspect-[4/3] relative group cursor-pointer"
@@ -537,7 +537,7 @@ function ProjectSection({
                       playsInline
                       preload="none"
                       data-src={active.src}
-                      className="w-full h-full object-cover rounded-2xl"
+                      className="w-full h-full object-cover saturate-[1.15] contrast-[1.06] transition-transform duration-500 ease-out group-hover:scale-[1.005]"
                     />
                   ) : (
                     <img
