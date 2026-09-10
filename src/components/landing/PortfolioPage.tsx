@@ -219,7 +219,7 @@ export function PortfolioPage() {
 
               {/* Bottom Hero Stats */}
               <div className="pt-8 border-t border-slate-900/10">
-                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-green-600 font-semibold mb-6 text-slate-400">By the numbers</p>
+                <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-green-600 font-semibold mb-6">By the numbers</p>
                 <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
                   {[
                     { num: "6", label: "Years in software development" },
