@@ -80,22 +80,8 @@ const projects = [
     engagement: "Protocol engineering",
   },
   {
-    id: "ai",
-    num: "04",
-    eyebrow: "AI Automation",
-    title: "Custom AI Solutions",
-    desc: "An autonomous workflow orchestration layer for a finance operations team. We connected document parsers, LLM reasoning steps and approval rules into a single system that handles repetitive data work end to end.",
-    desc2: "Human reviewers stay in control through exception queues, while routine items are processed, validated and logged automatically.",
-    tags: ["Python", "OpenAI API", "LangChain", "AWS Lambda"],
-    outcome: "Manual processing replaced by auditable agents.",
-    images: [],
-    gallery: [],
-    domain: "AI Operations",
-    engagement: "Agentic workflow system",
-  },
-  {
     id: "predictx",
-    num: "05",
+    num: "04",
     eyebrow: "Predictive Analytics",
     title: "PredictX",
     desc: "A predictive analytics platform that transforms raw operational data into actionable forecasts. We built the data pipeline, ML model serving layer, and interactive dashboard that lets business teams explore what-if scenarios in real time.",
@@ -319,7 +305,7 @@ export function PortfolioPage() {
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                     </button>
                     <a
-                      href="https://calendly.com/openorbittech/30min"
+                      href="https://cal.com/open-orbit/lets-build?overlayCalendar=true"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full border font-semibold text-slate-700 hover:bg-green-50 hover:text-green-700 hover:border-green-300 transition-all"

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
 import { MobileHeader, MobileMenuDrawer } from "./MobileNav";
 import logoAsset from "../../assets/Logo.svg";
 
@@ -10,7 +9,7 @@ const logoSrc = typeof logoAsset === "string" ? logoAsset : logoAsset.src;
 const navLinks = [
   { href: "#hero", label: "Home" },
   { href: "#services", label: "Services" },
-  { href: "#work", label: "Work" },
+  { href: "#work", label: "Our Works" },
   { href: "#why", label: "Why us" },
   { href: "#contact", label: "Contact Us" },
 ];
