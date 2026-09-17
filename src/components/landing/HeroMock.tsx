@@ -46,14 +46,14 @@ export function HeroMock() {
             <div className="bg-slate-50/70 border border-slate-900/5 rounded-xl p-3.5 transition-colors duration-200 hover:bg-slate-50">
               <div className="text-amber-500 text-[11px] tracking-widest mb-1.5">★★★★★</div>
               <p className="text-xs text-slate-700 leading-relaxed mb-2.5">
-                "Senior engineers who actually own the outcome. Zero hand-holding, real velocity."
+                "It feels exactly like having an in-house senior engineering team, just without the recruiting headache. They write exceptionally clean code and ship relentlessly."
               </p>
               <div className="flex items-center gap-2.5">
                 <span className="w-7 h-7 rounded-full bg-green-600 text-white font-mono text-[10px] font-medium flex items-center justify-center">
-                  AK
+                  SK
                 </span>
                 <div className="text-xs">
-                  <b className="block font-semibold text-slate-900 leading-tight">Amara Kade</b>
+                  <b className="block font-semibold text-slate-900 leading-tight">Sharikh</b>
                   <span className="text-slate-500 text-[10px]">CTO, Athleon</span>
                 </div>
               </div>
