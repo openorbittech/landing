@@ -29,7 +29,7 @@ const projects = [
   {
     id: "athleon",
     num: "01",
-    eyebrow: "Sports Performance",
+    eyebrow: "Precision sports tech for shooting & target sports",
     title: "Athleon",
     desc: "Asia's first roll-less laser scorer with sub-0.1mm accuracy, including dry-fire training modules for ISSF pistol disciplines, a visual-cue training platform.",
     desc2: "Built the complete software stack for Athleon's electronic target ecosystem. Native desktop apps for Windows and macOS (Tauri), and mobile apps for Android and iOS (Flutter), backed by cloud infrastructure supporting real-time data sync and live scoring views across devices. Handled architecture, deployment, and the full release pipeline end to end.",

@@ -16,8 +16,8 @@ const projects = [
   },
   {
     name: "Athleon",
-    tag: "Sports performance platform",
-    desc: "Injury-risk signals delivered in real time.",
+    tag: "Precision sports tech",
+    desc: "Real-time laser scoring, zero paper rolls.",
     href: "/portfolio#athleon",
     media: {
       type: "video",
