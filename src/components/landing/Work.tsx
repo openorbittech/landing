@@ -16,8 +16,8 @@ const projects = [
   },
   {
     name: "Athleon",
-    tag: "Sports performance platform",
-    desc: "Injury-risk signals delivered in real time.",
+    tag: "Precision sports tech",
+    desc: "Real-time laser scoring, zero paper rolls.",
     href: "/portfolio#athleon",
     media: {
       type: "video",
@@ -49,7 +49,7 @@ export function Work() {
               const video = v as HTMLVideoElement;
               video.src = video.dataset.src || "";
               video.load();
-              video.play().catch(() => {});
+              video.play().catch(() => { });
             });
             observer.unobserve(entry.target);
           }
@@ -65,12 +65,12 @@ export function Work() {
     <section
       id="work"
       ref={ref}
-      className="snap-section px-6 md:px-12 lg:px-20 py-24 border-b border-slate-900/5"
+      className="snap-section px-6 md:px-12 lg:px-20 py-12 md:py-24 border-b border-slate-900/5"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-6 md:mb-16 ">
           <div>
-            <p className="eyebrow mb-6 reveal">Portfolio</p>
+            <p className="font-mono text-[11px] tracking-[0.14em] uppercase text-green-600 font-semibold mb-6 reveal">Portfolio</p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight max-w-2xl reveal stagger-1">
               Dynamic solutions built for scale.
             </h2>
@@ -80,7 +80,7 @@ export function Work() {
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-900/10 text-slate-900 text-sm font-semibold hover:bg-green-50 transition-all reveal stagger-2"
           >
             View full portfolio
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
           </a>
         </div>
 
@@ -89,7 +89,7 @@ export function Work() {
             <a
               key={p.name}
               href={p.href}
-              className={`group glass-panel rounded-2xl overflow-hidden reveal stagger-${i + 1} hover:bg-green-50/60 transition-all no-underline block`}
+              className={`group bg-white/80 backdrop-blur-xl border border-slate-900/10 rounded-2xl overflow-hidden reveal stagger-${i + 1} hover:bg-green-50/60 transition-all no-underline block`}
             >
               <div className="aspect-video overflow-hidden border-b border-slate-900/5" style={{ background: "rgba(15, 23, 42, 0.04)" }}>
                 {p.media.type === "video" ? (
