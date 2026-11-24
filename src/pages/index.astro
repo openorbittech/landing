@@ -1,42 +1,180 @@
 ---
 export const prerender = true;
-import Layout from '../layouts/Layout.astro';
-import { AsciiOverlay } from '../components/landing/AsciiOverlay';
-import { Navbar } from '../components/landing/Navbar';
-import { Hero } from '../components/landing/Hero';
-import { Services } from '../components/landing/Services';
-import { Work } from '../components/landing/Work';
-import { WhyUs } from '../components/landing/WhyUs';
-import { CTA } from '../components/landing/CTA';
-import { Footer } from '../components/landing/Footer';
-import { DotIsland } from '../components/landing/DotIsland';
+import Layout from "../layouts/SiteLayout.astro";
 
-const title = "OpenOrbit | Software Development Studio";
-const description = "Founder-led software solutions with senior-level expertise. We build web, mobile, and AI products with zero agency overhead. Fully autonomous, high-velocity delivery.";
+const title = "OpenOrbit | Custom AI agents, built for the job";
+const description =
+  "OpenOrbit builds custom AI agents for organisations: lead screening, AI receptionists, voice tutors, workflow automation and more, built on your own knowledge and tools.";
+
+const CALENDLY = "https://calendly.com/openorbittech/30min";
+
+const frames = [
+  { name: "Start", head: "Custom AI agents, built for the job.", body: "Tell us the work. We build the agent that does it." },
+  { name: "Lead screening", head: "Screen every lead.", body: "Qualified, scored and routed before your team picks up." },
+  { name: "Receptionist", head: "Answer every call.", body: "An AI receptionist that books, answers and transfers." },
+  { name: "Voice tutor", head: "Teach out loud.", body: "A voice tutor that explains, quizzes and adapts." },
+  { name: "Workflows", head: "Automate the busywork.", body: "Agents that draft, route, fill and update." },
+  { name: "Knowledge", head: "Know what you know.", body: "Answers from your own documents, with sources." },
+  { name: "Yours", head: "What’s the job?", body: "Built around your organisation, not sold as a licence." },
+];
+
+const niches = [
+  "Lead screening agent",
+  "AI receptionist",
+  "AI voice tutor",
+  "Workflow automation",
+  "Knowledge assistant",
+  "Support agent",
+  "Appointment booking",
+  "Sales follow-up",
+  "Document extraction",
+  "Onboarding guide",
+  "Candidate screening",
+  "Internal ops copilot",
+];
+
+// Real shipped projects, taken from the existing portfolio page.
+const work = [
+  { id: "chatqik", tag: "WhatsApp agent", title: "Chatqik", outcome: "Every property inquiry answered, qualified and routed.", poster: "/images/chatqik-poster.jpg", video: "/videos/optimized/chatqik-launch.mp4" },
+  { id: "caselaw", tag: "Legal research agent", title: "Caselaw Agent", outcome: "UK judgments searched in plain English, every quote verified." },
+  { id: "ai", tag: "Agent", title: "Finance ops agent", outcome: "Manual processing replaced by auditable agents." },
+  { id: "predictx", tag: "Predictive analytics", title: "PredictX", outcome: "Forecast accuracy improved by 35%.", poster: "/images/predictx-poster.jpg", video: "https://openorbit-videos.s3.ap-south-1.amazonaws.com/videos/predictx.mp4" },
+  { id: "mentiq", tag: "Predictive SaaS", title: "MentIQ", outcome: "Churn-risk accounts surfaced weeks earlier.", poster: "/images/mentiq-poster.jpg", video: "/videos/optimized/mentiq-demo.mp4" },
+  { id: "athleon", tag: "Sports tech", title: "Athleon", outcome: "Injury-risk signals delivered in real time.", poster: "/images/athleon-poster.jpg", video: "/videos/optimized/athleon-demo.mp4" },
+  { id: "axton", tag: "DeFi", title: "Axton Protocol", outcome: "Settlement transparency without slippage.", poster: "/images/axton-1.png" },
+];
+
+const arrow =
+  '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
 ---
 
 <Layout title={title} description={description}>
-  <div class="progress-top" id="progress-top"></div>
-  <Navbar client:load />
-  <DotIsland
-    sections={[
-      { id: "hero", label: "Home" },
-      { id: "services", label: "Services" },
-      { id: "work", label: "Work" },
-      { id: "why", label: "Why us" },
-      { id: "contact", label: "Contact" },
-    ]}
-    client:load
-  />
-  <main class="snap-scroll" id="main-scroll">
-    <AsciiOverlay client:load />
-    <div class="relative z-10">
-      <Hero client:visible />
-      <Services client:visible />
-      <Work client:visible />
-      <WhyUs client:visible />
-      <CTA client:visible />
-    </div>
+  <header class="nav">
+    <a class="nav-logo" href="/" aria-label="OpenOrbit home">
+      <img src="/logod/openorbitlogo.svg" alt="OpenOrbit" width="118" height="24" />
+    </a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="#build">What we build</a></li>
+        <li><a href="#engage">How it starts</a></li>
+        <li><a href="#work">Work</a></li>
+        <li class="keep"><a class="nav-cta" href="#contact">Start a project</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="film" id="film" aria-label="What OpenOrbit builds">
+      <div class="film-pin" id="film-pin">
+        <canvas id="field" aria-hidden="true"></canvas>
+
+        <div class="film-copy">
+          {frames.map((f, i) => (
+            <div class:list={["cap", { on: i === 0 }]} data-ch={i}>
+              {i === 0 ? <h1>{f.head}</h1> : <h2>{f.head}</h2>}
+              <p>{f.body}</p>
+              {(i === 0 || i === frames.length - 1) && (
+                <div class="actions">
+                  <a class="btn" href={CALENDLY} target="_blank" rel="noopener noreferrer">Book a 30-minute call <Fragment set:html={arrow} /></a>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div class="hud mono" aria-hidden="true">
+          <span><b id="hud-n">01</b> / 0{frames.length}</span>
+          <span id="hud-name">{frames[0].name}</span>
+          <span class="hud-hint" id="hud-hint">Scroll ↓</span>
+          <div class="hud-bar">{frames.map(() => <i />)}</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="build">
+      <p class="kicker">Some of what we build.</p>
+      <ul class="niches" id="niches">
+        {niches.map((n) => <li>{n}</li>)}
+      </ul>
+      <p class="aside">Yours isn’t on the list? <a href="#contact">Tell us the job.</a></p>
+    </section>
+
+    <section class="band" id="work">
+      <p class="kicker">Shipped.</p>
+      <ul class="work" id="work-list">
+        {work.map((w, i) => (
+          <li>
+            <a href={`/portfolio#${w.id}`} data-poster={w.poster} data-video={w.video}>
+              <span class="mono">0{i + 1}</span>
+              <span class="work-title">{w.title}</span>
+              <span class="mono work-tag">{w.tag}</span>
+              <span class="work-out">{w.outcome}</span>
+              {w.poster && <img class="work-thumb" src={w.poster} alt="" loading="lazy" decoding="async" />}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="aside"><a href="/portfolio">Full case studies →</a></p>
+      <div class="peek" id="peek" aria-hidden="true"></div>
+    </section>
+
+    <section class="band" id="engage">
+      <p class="clock" id="clock" aria-label="48 hours"><b>48</b>:00:00</p>
+      <h2 class="clock-head">A written roadmap within 48 hours.</h2>
+      <ol class="steps" id="steps">
+        <li><span class="mono">Day 0</span><h3>Call</h3><p>Thirty minutes, one problem.</p></li>
+        <li><span class="mono">+48 h</span><h3>Roadmap</h3><p>In writing. Free. Under NDA.</p></li>
+        <li><span class="mono">Build</span><h3>Build</h3><p>On your real data and tools.</p></li>
+        <li><span class="mono">Live</span><h3>Launch</h3><p>In your team’s hands.</p></li>
+      </ol>
+    </section>
+
+    <section class="band" aria-label="Track record">
+      <p class="ledger" id="ledger">
+        <span><b data-count="3">3</b> years</span>
+        <span><b data-count="20">20</b><b>+</b> clients</span>
+        <span><b data-count="50">50</b><b>+</b> systems built</span>
+      </p>
+      <div class="quotes">
+        <blockquote>
+          <p>“It feels exactly like having an in-house senior engineering team, just without the recruiting headache.”</p>
+          <footer class="mono">Sharikh, CTO, Athleon</footer>
+        </blockquote>
+        <blockquote>
+          <p>“They shipped our MVP in six weeks and the quality was production-grade from day one.”</p>
+          <footer class="mono">James Doyle, Founder, MentIQ</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="band ask" id="contact">
+      <h2>Tell us the job.</h2>
+      <form class="prompt" id="request" action="https://formspree.io/f/movjdgag" method="POST">
+        <label class="line"><span class="mono">Name</span><input type="text" name="name" autocomplete="name" required /></label>
+        <label class="line"><span class="mono">Work email</span><input type="email" name="email" autocomplete="email" required /></label>
+        <label class="line"><span class="mono">The job</span><textarea name="message" rows="2" placeholder="We need an agent that…" required></textarea></label>
+        <div class="prompt-foot">
+          <button class="btn" type="submit">Send <Fragment set:html={arrow} /></button>
+          <p>or <a href={CALENDLY} target="_blank" rel="noopener noreferrer">book a call</a> · <a href="mailto:contact@openorbit.tech">contact@openorbit.tech</a></p>
+        </div>
+        <p class="form-state mono" id="form-state" role="status" hidden></p>
+      </form>
+    </section>
   </main>
-  <Footer client:visible />
+
+  <footer class="foot">
+    <img src="/logod/openorbitlogo.svg" alt="OpenOrbit" width="108" height="22" />
+    <ul class="mono">
+      <li><a href="/portfolio">Portfolio</a></li>
+      <li><a href="https://x.com/openorbittech" rel="noopener noreferrer">X</a></li>
+      <li><a href="https://linkedin.com/company/openorbit-tech" rel="noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/openorbittech" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://instagram.com/openorbit.tech" rel="noopener noreferrer">Instagram</a></li>
+    </ul>
+    <span class="mono">© 2026 OpenOrbit</span>
+  </footer>
+
+  <script>
+    import "../scripts/home.js";
+  </script>
 </Layout>

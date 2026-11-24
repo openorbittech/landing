@@ -1,21 +1,245 @@
 ---
 export const prerender = true;
-import Layout from '../layouts/Layout.astro';
-import { PortfolioPage } from '../components/landing/PortfolioPage';
+import Layout from "../layouts/SiteLayout.astro";
 
-const title = "OpenOrbit | Portfolio";
-const description = "Explore OpenOrbit's shipped systems: predictive SaaS, sports performance platforms, DeFi infrastructure, AI automation and predictive analytics.";
-const keywords = [
-  "OpenOrbit portfolio",
-  "software development projects",
-  "SaaS development",
-  "sports technology",
-  "DeFi infrastructure",
-  "AI automation",
-  "predictive analytics platform",
+const title = "OpenOrbit | Work";
+const description =
+  "Case studies from OpenOrbit: Chatqik, Caselaw Agent, a finance operations agent, PredictX, MentIQ, Athleon and Axton Protocol. What we built, how, and what changed.";
+
+const CALENDLY = "https://calendly.com/openorbittech/30min";
+
+// Content carried over from the previous portfolio page. Order matches the home page list.
+const cases = [
+  {
+    id: "chatqik",
+    tag: "WhatsApp agent",
+    title: "Chatqik",
+    link: { href: "https://chatqik.com", label: "chatqik.com" },
+    outcome: "Every property inquiry answered, qualified and routed on WhatsApp.",
+    body: [
+      "A WhatsApp agent for real estate agencies. It answers buyer inquiries around the clock, qualifies leads on budget and location, sends matching properties and hands over to a human when the conversation needs one.",
+      "Voice notes are transcribed, every message passes a safety check before the agent sees it, and listings are matched by distance from where the buyer wants to live. The agency follows every lead on a live dashboard with a pipeline board, inbox and broadcast campaigns.",
+    ],
+    domain: "Real estate",
+    engagement: "OpenOrbit product",
+    stack: ["TypeScript", "Mastra", "PostgreSQL + PostGIS", "Groq Whisper", "WhatsApp API", "React"],
+    flow: ["WhatsApp message in", "Transcribe voice notes", "Safety check", "Agent matches properties", "Reply and update lead"],
+    flowNote: "Needs a person? Escalated to the agency team",
+    media: [
+      { type: "video", src: "/videos/optimized/chatqik-launch.mp4", poster: "/images/chatqik-poster.jpg", w: 1280, h: 720, label: "Chatqik launch video" },
+      { type: "image", src: "/images/chatqik-dashboard.png", w: 1920, h: 973, label: "Chatqik agency dashboard overview" },
+    ],
+  },
+  {
+    id: "caselaw",
+    tag: "Legal research agent",
+    title: "Caselaw Agent",
+    outcome: "Plain-English search over UK judgments, with every quote verified.",
+    body: [
+      "Natural-language search over UK judgments from The National Archives’ Find Case Law. Ask a question the way you would ask a colleague; the agent finds the relevant judgments and shows exactly which paragraphs discuss it, or says clearly that nothing strongly matches.",
+      "The official search only matches literal keywords, so the agent expands each question into search variants, reranks paragraphs with a local model and has an LLM judge what is relevant. Quotes are checked word for word against the judgment before they are shown. Follow-up chat and a citation graph sit on top, and a labelled eval suite scores every change.",
+    ],
+    domain: "Legal research",
+    engagement: "In-house build",
+    stack: ["Next.js", "Vercel AI SDK", "PostgreSQL + pgvector", "bge-reranker", "Firecrawl"],
+    flow: ["Question in plain English", "Expand into search variants", "Fetch and parse judgments", "Rerank and judge paragraphs", "Verify quotes word for word"],
+    flowNote: "No strong match? It says so",
+    media: [],
+  },
+  {
+    id: "ai",
+    tag: "Agent",
+    title: "Finance ops agent",
+    outcome: "Manual processing replaced by auditable agents.",
+    body: [
+      "An autonomous workflow orchestration layer for a finance operations team. We connected document parsers, LLM reasoning steps and approval rules into a single system that handles repetitive data work end to end.",
+      "Human reviewers stay in control through exception queues, while routine items are processed, validated and logged automatically.",
+    ],
+    domain: "AI operations",
+    engagement: "Agentic workflow system",
+    stack: ["Python", "OpenAI API", "LangChain", "AWS Lambda"],
+    flow: ["Documents in", "Parse", "LLM reasoning", "Approval rules", "Processed and logged"],
+    flowNote: "Exceptions go to a human review queue",
+    media: [],
+  },
+  {
+    id: "predictx",
+    tag: "Predictive analytics",
+    title: "PredictX",
+    outcome: "Forecast accuracy improved by 35%.",
+    body: [
+      "A predictive analytics platform that transforms raw operational data into actionable forecasts. We built the data pipeline, ML model serving layer, and interactive dashboard that lets business teams explore what-if scenarios in real time.",
+      "The system ingests streaming data from multiple sources, trains and deploys models automatically, and surfaces predictions through a clean, collaborative interface.",
+    ],
+    domain: "Predictive analytics",
+    engagement: "ML platform and dashboard",
+    stack: ["Python", "TensorFlow", "React", "Apache Kafka"],
+    media: [
+      { type: "video", src: "https://openorbit-videos.s3.ap-south-1.amazonaws.com/videos/predictx.mp4", poster: "/images/predictx-poster.jpg", w: 1200, h: 900, label: "PredictX demo" },
+    ],
+  },
+  {
+    id: "mentiq",
+    tag: "Predictive SaaS",
+    title: "MentIQ",
+    outcome: "Churn-risk accounts surfaced weeks earlier.",
+    body: [
+      "A predictive retention platform for enterprise SaaS. We designed the data model, built the analytics pipeline and shipped a clean analytics UI that helps customer success teams spot churn before renewal conversations begin.",
+      "The system consumes product-usage events, computes risk scores, and presents clear cohort views and alerts instead of endless spreadsheets.",
+    ],
+    domain: "Enterprise SaaS",
+    engagement: "Data platform and UI",
+    stack: ["Next.js", "PostgreSQL", "dbt", "Looker"],
+    quote: { text: "They shipped our MVP in six weeks and the quality was production-grade from day one.", by: "James Doyle, Founder, MentIQ" },
+    media: [
+      { type: "video", src: "/videos/optimized/mentiq-demo.mp4", poster: "/images/mentiq-poster.jpg", w: 1920, h: 1120, label: "MentIQ product demo" },
+    ],
+  },
+  {
+    id: "athleon",
+    tag: "Sports tech",
+    title: "Athleon",
+    outcome: "Injury-risk signals delivered in real time.",
+    body: [
+      "A biomechanics tracking platform for professional sports franchises. We built the real-time data ingestion pipeline, athlete dashboard and mobile capture tools that turn sensor and video inputs into actionable injury-risk signals.",
+      "The product integrates wearable APIs and high-speed camera feeds, normalizes noisy signal data, and surfaces trends coaches can act on within seconds.",
+    ],
+    domain: "Sports and biomechanics",
+    engagement: "End-to-end product build",
+    stack: ["React", "Node.js", "Python", "TimescaleDB"],
+    quote: { text: "It feels exactly like having an in-house senior engineering team, just without the recruiting headache.", by: "Sharikh, CTO, Athleon" },
+    media: [
+      { type: "video", src: "/videos/optimized/athleon-demo.mp4", poster: "/images/athleon-poster.jpg", w: 1854, h: 2446, label: "Athleon app demo" },
+    ],
+  },
+  {
+    id: "axton",
+    tag: "DeFi",
+    title: "Axton Protocol",
+    outcome: "Settlement transparency without slippage.",
+    body: [
+      "A zero-slippage decentralized exchange infrastructure for institutional OTC desks. We architected the smart-contract layer, order-matching engine and trader dashboard with security and auditability first.",
+      "Every trade route is traceable on-chain, every contract is covered by automated tests, and the UI gives traders real-time settlement status without wallet confusion.",
+    ],
+    domain: "DeFi and OTC",
+    engagement: "Protocol engineering",
+    stack: ["Solidity", "Rust", "React", "Ethers.js"],
+    media: [
+      { type: "image", src: "/images/axton-2.png", w: 1974, h: 1133, label: "Axton Protocol trader dashboard" },
+      { type: "image", src: "/images/axton-1.png", w: 1420, h: 1850, label: "Axton Protocol screen" },
+    ],
+  },
 ];
+
+const arrow =
+  '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
 ---
 
-<Layout title={title} description={description} keywords={keywords}>
-  <PortfolioPage client:load />
+<Layout title={title} description={description}>
+  <header class="nav">
+    <a class="nav-logo" href="/" aria-label="OpenOrbit home">
+      <img src="/logod/openorbitlogo.svg" alt="OpenOrbit" width="118" height="24" />
+    </a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="/#build">What we build</a></li>
+        <li><a href="/#engage">How it starts</a></li>
+        <li><a href="/portfolio" aria-current="page">Work</a></li>
+        <li class="keep"><a class="nav-cta" href="/#contact">Start a project</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="pf-hero">
+      <h1>Shipped.</h1>
+      <p>Seven systems. What we built, how, and what changed.</p>
+      <ol class="pf-index mono" id="pf-index">
+        {cases.map((c, i) => (
+          <li><a href={`#${c.id}`}><span>0{i + 1}</span> {c.title}</a></li>
+        ))}
+      </ol>
+    </section>
+
+    {cases.map((c, i) => (
+      <article class="case" id={c.id}>
+        <div class="case-text">
+          <p class="mono"><span>0{i + 1} / 0{cases.length}</span> <span class="work-tag">{c.tag}</span></p>
+          <h2>{c.title}</h2>
+          <p class="case-out">{c.outcome}</p>
+          {c.body.map((p) => <p class="case-p">{p}</p>)}
+          <dl class="case-spec">
+            <div><dt class="mono">Domain</dt><dd>{c.domain}</dd></div>
+            <div><dt class="mono">Engagement</dt><dd>{c.engagement}</dd></div>
+            <div><dt class="mono">Stack</dt><dd>{c.stack.join(" · ")}</dd></div>
+            {c.link && (
+              <div><dt class="mono">Live</dt><dd><a href={c.link.href} target="_blank" rel="noopener noreferrer">{c.link.label} ↗</a></dd></div>
+            )}
+          </dl>
+          {c.quote && (
+            <blockquote class="case-quote">
+              <p>“{c.quote.text}”</p>
+              <footer class="mono">{c.quote.by}</footer>
+            </blockquote>
+          )}
+        </div>
+
+        <div class="case-media">
+          {c.flow && (
+            <figure class="flow">
+              <ol>
+                {c.flow.map((step, n) => (
+                  <li><span class="mono">0{n + 1}</span>{step}</li>
+                ))}
+              </ol>
+              <figcaption class="mono">↳ {c.flowNote}</figcaption>
+            </figure>
+          )}
+          {c.media.map((m) =>
+            m.type === "video" ? (
+              <video
+                class:list={{ tall: m.h > m.w }}
+                data-src={m.src}
+                poster={m.poster}
+                width={m.w}
+                height={m.h}
+                aria-label={m.label}
+                muted
+                loop
+                playsinline
+                controls
+                preload="none"
+              />
+            ) : (
+              <img class:list={{ tall: m.h > m.w }} src={m.src} alt={m.label} width={m.w} height={m.h} loading="lazy" decoding="async" />
+            ),
+          )}
+        </div>
+      </article>
+    ))}
+
+    <section class="band ask">
+      <h2>Yours next?</h2>
+      <div class="prompt-foot">
+        <a class="btn" href={CALENDLY} target="_blank" rel="noopener noreferrer">Book a 30-minute call <Fragment set:html={arrow} /></a>
+        <p>or <a href="/#contact">tell us the job</a> · <a href="mailto:contact@openorbit.tech">contact@openorbit.tech</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <img src="/logod/openorbitlogo.svg" alt="OpenOrbit" width="108" height="22" />
+    <ul class="mono">
+      <li><a href="/">Home</a></li>
+      <li><a href="https://x.com/openorbittech" rel="noopener noreferrer">X</a></li>
+      <li><a href="https://linkedin.com/company/openorbit-tech" rel="noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/openorbittech" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://instagram.com/openorbit.tech" rel="noopener noreferrer">Instagram</a></li>
+    </ul>
+    <span class="mono">© 2026 OpenOrbit</span>
+  </footer>
+
+  <script>
+    import "../scripts/portfolio.js";
+  </script>
 </Layout>
